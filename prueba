@@ -1,0 +1,7 @@
+declare contador integer execute
+    $- Asignar al contador
+    el valor 35. -$
+    contador := 35 
+  end 
+TkDeclare TkIdent("contador") TkType TkInteger TkExecute
+ TkIdent("contador") TkAsignacion TkNum(35) TkEnd 
