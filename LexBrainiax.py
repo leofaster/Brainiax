@@ -8,7 +8,7 @@
 
 # Modulo: expresiones.py
 
-# Autores: Wilthew, Patricia 	09-10910
+# Autores: Wilthew, Patricia    09-10910
 
 #          Leopoldo Pimentel    06-40095
 
@@ -31,9 +31,6 @@ file_name = sys.argv[1]
 fp = open(file_name)
 
 codigo = fp.read()
-
-
-
 
 
 # Identificadores de los tokens del lenguaje Rangex
@@ -62,7 +59,7 @@ tokens = ['TkComa',
 
           'TkMas',
 
-          'TkMenos',
+          'TkResta',
 
           'TkMult',
 
@@ -92,9 +89,9 @@ tokens = ['TkComa',
 
           'TkInspeccion',
 
-          'TkId',
+          'TkIdent',
 
-          'TkNumero',
+          'TkNum',
 
           'TkCadena',
 
@@ -102,18 +99,15 @@ tokens = ['TkComa',
 
          ]
 
-  
 
 # Declaracion de lista de errores
 
 errores = []
 
 
-
 # Declaracion de lista de tokens a imprimir
 
 tok_lista = []
-
 
 
 # Diccionario con la lista de palabras reservadas del lenguaje Rangex
@@ -154,9 +148,12 @@ palabras_reservadas = {
 
          'execute' : 'TkExecute',
 
-         'to' : 'TkTo'
+         'to' : 'TkTo',
 
-         
+         'from' : 'TkFrom',
+          
+         'at'  : 'tkAt'
+
 
 }
 
@@ -176,7 +173,6 @@ def t_TkComa(t):
 
   return t
 
-  
 
 def t_TkPunto(t):
 
@@ -186,7 +182,6 @@ def t_TkPunto(t):
 
   return t
 
-  
 
 def t_TkPuntoYComa(t):
 
@@ -206,7 +201,6 @@ def t_TkParAbre(t):
 
   return t
 
-  
 
 def t_TkParCierra(t):
 
@@ -214,9 +208,8 @@ def t_TkParCierra(t):
 
   tok_lista.append(t)
 
-  return t  
+  return t
 
-  
 
 def t_TkCorcheteAbre(t):
 
@@ -226,7 +219,6 @@ def t_TkCorcheteAbre(t):
 
   return t
 
-  
 
 def t_TkCorcheteCierra(t):
 
@@ -234,7 +226,7 @@ def t_TkCorcheteCierra(t):
 
   tok_lista.append(t)
 
-  return t 
+  return t
 
 
 
@@ -246,7 +238,6 @@ def t_TkLlaveAbre(t):
 
   return t
 
-  
 
 def t_TkLlaveCierra(t):
 
@@ -254,9 +245,10 @@ def t_TkLlaveCierra(t):
 
   tok_lista.append(t)
 
-  return t    
+  return t
 
-  
+
+
 
 def t_TkAsignacion(t):
 
@@ -264,8 +256,7 @@ def t_TkAsignacion(t):
 
   tok_lista.append(t)
 
-  return t   
-
+  return t
 
 
 def t_TkType(t):
@@ -274,9 +265,8 @@ def t_TkType(t):
 
   tok_lista.append(t)
 
-  return t    
+  return t
 
-  
 
 def t_TkMas(t):
 
@@ -286,16 +276,14 @@ def t_TkMas(t):
 
   return t
 
-  
 
-def t_TkMenos(t):
+def t_TkResta(t):
 
   r'-'
 
   tok_lista.append(t)
 
   return t
-
 
 
 def t_TkMult(t):
@@ -315,7 +303,13 @@ def t_TkConjuncion(t):
 
   return t
 
+def t_TkDesigual(t):
 
+  r'/='
+
+  tok_lista.append(t)
+
+  return t
 
 def t_TkDiv(t):
 
@@ -324,7 +318,6 @@ def t_TkDiv(t):
   tok_lista.append(t)
 
   return t
-
 
 
 def t_TkMod(t):
@@ -336,12 +329,6 @@ def t_TkMod(t):
   return t
 
 
-
-
-
-
-def t_TkDisyuncion(t):
-
   r'\\/'
 
   tok_lista.append(t)
@@ -349,12 +336,6 @@ def t_TkDisyuncion(t):
   return t
 
 
-
-def t_TkNegacion(t):
-
-  r'~'
-
-  return t
 
 
 
@@ -368,7 +349,7 @@ def t_TkMenor(t):
 
 
 
-def t_TkMenorIgual(t): 
+def t_TkMenorIgual(t):
 
   r'<='
 
@@ -376,7 +357,6 @@ def t_TkMenorIgual(t):
 
   return t
 
-  
 
 def t_TkMayor(t):
 
@@ -388,14 +368,13 @@ def t_TkMayor(t):
 
 
 
-def t_TkMayorIgual(t): 
+def t_TkMayorIgual(t):
 
   r'>='
 
   tok_lista.append(t)
 
   return t
-
 
 
 def t_TkIgual(t):
@@ -406,19 +385,15 @@ def t_TkIgual(t):
 
   return t
 
-  
 
-def t_TkDesigual(t):
+def t_TkNegacion(t):
 
-  r'/='
-
-  tok_lista.append(t)
+  r'\~'
 
   return t
 
-  
 
-def t_TkConcat(t): 
+def t_TkConcat(t):
 
   r'&'
 
@@ -426,9 +401,8 @@ def t_TkConcat(t):
 
   return t
 
-  
 
-def t_TkInspeccion(t): 
+def t_TkInspeccion(t):
 
   r'\#'
 
@@ -438,20 +412,18 @@ def t_TkInspeccion(t):
 
 
 
-def t_TkNumero(t): 
+def t_TkNum(t):
 
   r'[\+-]?\d+'
 
-  t.value = int(t.value)
+  #t.value = int(t.value)
 
   t.value = str(t.value)
 
   tok_lista.append(t)
 
-  
   return t
 
-  
 
 def t_TkCadena(t): 
 
@@ -463,17 +435,16 @@ def t_TkCadena(t):
 
 
 
-def t_TkId(t):
+def t_TkIdent(t):
 
    r"[a-zA-Z_][a-zA-Z0-9]*"
 
-   t.type = palabras_reservadas.get(t.value, "TkId")
+   t.type = palabras_reservadas.get(t.value, "TkIdent")
 
    tok_lista.append(t)
 
    return t
 
-  
 
 def t_SaltoLinea(t):
 
@@ -492,8 +463,6 @@ t_ignore_EspaciosEnBlanco = r'[ \t\f\r\v]+'
 # Ignorar los comentarios hasta que se llegue a un salto de linea
 
 t_ignore_Comentarios = r'\$-(.|\n)*?-\$|\${2}[^\n]*'
-
-
 
 
 
@@ -527,7 +496,7 @@ lexer = lex.lex()
 
 #for line in sys.stdin:
 
-#	codigo += line
+#codigo += line
 
 
 
@@ -555,14 +524,14 @@ if not errores:
 
     posCol= hallar_columna(codigo,elem)
 
-    if elem.type == ("TkNumero"):
-      print elem.type,'(%s)' %(elem.value)
-    if elem.type == ("TkId"):
-      print elem.type,'("%s")' %(elem.value)
+    if elem.type == ("TkNum"):
+      print '%s(%s)' %(elem.type,elem.value)
+    if elem.type == ("TkIdent"):
+      print '%s("%s")' %(elem.type,elem.value)
     else:
-      print '%s' %(elem.type)
+      if elem.type !=("TkNum"):
+        print '%s' %(elem.type)
 
-      
 
 # En caso contrario, se imprimen solo los errores encontrados
 
