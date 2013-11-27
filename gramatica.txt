@@ -1,0 +1,11 @@
+S -> ProgramaConDeclaracion | ProgramaSinDeclaracion
+
+ProgramaConDeclaracion -> Declaracion TkExecute Secuenciacion TkDone
+
+ProgramaSinDeclaracion -> TkExecute Secuenciacion TkDone
+
+Secuenciacion -> Instruccion | Instruccion TkPuntoYComa Secuenciacion
+
+Instruccion -> Declaracion | Asignacion | Condicional | Iteracion_indet |
+iteracion_det ............
+
