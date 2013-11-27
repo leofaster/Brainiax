@@ -21,7 +21,7 @@ def main():
 
     # Identificadores de los tokens del lenguaje Brainiac
     tokens = ['TkComa',
-              'TkPunto',
+
               'TkPuntoYComa',
               'TkParAbre',
               'TkParCierra',
@@ -51,7 +51,7 @@ def main():
               'TkNum',
               'TkCadena'
              ]
-
+#Elimine TkPunto temporalmente
 
     # Declaracion de lista de errores
     errores = []
@@ -75,7 +75,6 @@ def main():
              'for' : 'TkFor',
              'done' : 'TkDone',
              'while' : 'TkWhile',
-             'end' : 'TkEnd',
              'false' : 'TkFalse',
              'true' : 'TkTrue',
              'tape' : 'TkTape',
@@ -96,10 +95,10 @@ def main():
       return t
 
 
-    def t_TkPunto(t):
-      r'\.'
-      tok_lista.append(t)
-      return t
+#    def t_TkPunto(t):
+#     r'\.'
+#    tok_lista.append(t)
+#    return t
 
 
     def t_TkPuntoYComa(t):
@@ -619,7 +618,7 @@ def main():
                 | exp TkDisyuncion exp
                 | exp TkConjuncion exp
                 | exp TkAt exp '''
-#TkPunto y  TkEnd?
+#TkPunto
         if len(p) == 2:
             p[0] = p[1]
         elif len(p) == 4 and p[1] != '(' and p[1] != '[' and p[1] != '{':
@@ -675,12 +674,22 @@ def main():
 
     # IF
     def p_instruccion_if(p):
-        ''' instruccion : TkIf exp TkThen instruccion
-			                | TkIf exp TkThen instruccion TkElse instruccion '''
-        if len(p) == 5:
+        ''' instruccion : TkIf exp TkThen instruccion TkDone
+			                | TkIf exp TkThen instruccion TkElse instruccion TkDone '''
+        if len(p) == 6:
             p[0] = inst_if(p[2],p[4],None)
         else:
             p[0] = inst_if(p[2],p[4],p[6])
+
+
+    # Gramatica del bloque de instrucciones
+    def p_instruction_bloque(p):
+        ''' instruccion :  declaracion TkExecute instlist TkDone
+                            | TkExecute instlist TkDone'''
+        if len(p) == 4:
+            p[0] = inst_bloque(p[2])
+        elif len(p) == 5:
+            p[0] = inst_bloque(p[3])
 
 
     # SECUENCIACION DE INSTRUCCIONES
@@ -726,7 +735,7 @@ def main():
 
 
 
-    # Funcion de error del parser
+    #Funcion de error del parser
     def p_error(p):
         c = hallar_columna(codigo,p)
         print "Error de sintaxis en linea %s, columna %s: token \'%s\' inesperado." % (p.lineno,c,p.value)
