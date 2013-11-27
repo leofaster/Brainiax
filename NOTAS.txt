@@ -1,0 +1,2 @@
+Hacer una regla para las b-instrucciones
+Las declaraciones estan mal reflejadas en las reglas hechas
