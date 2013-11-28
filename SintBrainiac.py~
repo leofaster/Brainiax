@@ -48,10 +48,9 @@ def main():
               'TkConcat',
               'TkInspeccion',
               'TkIdent',
-              'TkNum',
-              'TkCadena'
+              'TkNum'
              ]
-#Elimine TkPunto temporalmente
+#Elimine TkPunto y 'TkCadena' temporalmente
 
     # Declaracion de lista de errores
     errores = []
@@ -265,7 +264,7 @@ def main():
        return t
 
 
-    t_TkCadena = r'\"([^\\\n]|(\\.))*?\"'
+    #t_TkCadena = r'\"([^\\\n]|(\\.))*?\"'
 
 
 
@@ -301,7 +300,7 @@ def main():
     #                                                        CLASES                                                     #
     ####################################################
 
-    # Clase Numero
+    # Clase para NUMERO
     class numero:
         def __init__(self,value):
             self.type = "Numero"
@@ -314,7 +313,7 @@ def main():
             contador = contador - 1
             return str_
 
-    # Clase Identificador           
+    # Clase para IDENTIFICADOR           
     class ident:
         def __init__(self,name):
             self.type = "Identificador"
@@ -327,7 +326,7 @@ def main():
             contador = contador - 1
             return str_
 
-    # Clase de una expresion unaria
+    # Clase para EXPRESION UNARIA
     class op_un:
         def __init__(self,pre,e):                        
             self.pre = pre
@@ -340,7 +339,7 @@ def main():
             contador = contador - 1
             return str_
 
-    # Clase de una expresion binaria                        
+    # Clase para EXPRESION BINARIA                       
     class op_bin:
         def __init__(self,left,right,op):
             self.left = left
@@ -387,11 +386,11 @@ def main():
             tabs = contador*"  "
             tabs_plus =  "  " + tabs
             str_ = "EXPRESION_BINARIA\n" + tabs  + "Operacion: " + str(self.op) + "\n"  
-            str_ = str_ + tabs + "Operador izquierdo: " + str(self.left) + "\n"  + tabs + "Operador derecho: " + str(self.right)
+            str_ = str_ + tabs + "Operador izquierdo: " + str(self.left) + "\n"  + tabs + "Operador derecho: " + str(self.right)  + " "
             contador = contador - 1
             return str_
 
-    # Clase While
+    # Clase para ITERACION_INDETERMINADA
     class inst_while:
         def __init__(self,cond,inst):
             self.cond = cond
@@ -401,11 +400,12 @@ def main():
             global contador
             contador = contador + 1
             tabs = "  "*contador
-            str_ = "ITERACION_INDETERMINADA\n" + tabs + "Condicion: " + str(self.cond) + "\n" + tabs + "Instruccion: " + str(self.inst) 
+            str_ = "ITERACION_INDETERMINADA\n" + tabs + "Condicion: " 
+            str_ = str_+ str(self.cond) + "\n" + tabs + "Instruccion: " + str(self.inst)
             contador = contador - 1
             return str_
 
-    # Clase For
+    # Clase para ITERACION_DETERMINADA
     class inst_for:
         def __init__(self,ident,inf,sup,inst):
             self.ident = ident
@@ -417,11 +417,13 @@ def main():
             global contador
             contador = contador + 1
             tabs = "  "*contador
-            str_ = "ITERACION_DETERMINADA\n" + tabs + "Identificador: " + str(self.ident) + "\n" + tabs + "Cota inf: " + str(self.inf) +", Cota sup: " + str(self.sup) + "\n" + tabs + "instruccion: " + str(self.inst)
+            str_ = "ITERACION_DETERMINADA\n" + tabs + "Identificador: " + str(self.ident) 
+            str_ = str_ + "\n" + tabs + "Cota inf: " + str(self.inf) +", Cota sup: " 
+            str_ = str_ + str(self.sup) + "\n" + tabs + "Instruccion: " + str(self.inst)
             contador = contador - 1
             return str_
 
-    # Clase If
+    # Clase para CONDICIONAL
     class inst_if:
         def __init__(self,cond,instr0,instr1):
             self.cond = cond
@@ -433,12 +435,12 @@ def main():
             tabs = "  "*contador
             aux = ""
             if self.instr1 != None:
-                aux = tabs + "\nElse: " + str(self.instr1)
+                aux = "\n" +tabs + "Else: " + str(self.instr1)
             str_ = "CONDICIONAL\n" + tabs + "Guardia: " + str(self.cond) + "\n" + tabs + "Exito: " + str(self.instr0) + aux  
             contador = contador - 1
             return str_
 
-    # Clase Asignacion
+    # Clase para ASIGNACION
     class inst_asig:
         def __init__(self,ident,val):
             self.ident = ident
@@ -451,7 +453,7 @@ def main():
             contador = contador - 1
             return str_
 
-    # Clase Read
+    # Clase para READ
     class inst_read:
         def __init__(self,ident):
             self.ident = ident
@@ -463,11 +465,10 @@ def main():
             contador = contador - 1
             return str_
 
-    # Clase Write
+    # Clase para WRITE
     class inst_write:
-        def __init__(self,type):
-            self.type = type
-            self.args = []
+        def __init__(self,expr):
+            self.expr = expr
         def __str__(self):
             global contador
             contador += 1
@@ -475,17 +476,13 @@ def main():
             strw = "WRITE"
             str0 = strw + "\n"
             str1 = ""
-            while len(self.args) > 0:
-                strs = ""
-                elem = self.argls.pop()
-                if not isinstance(elem, op_bin) and not isinstance(elem, op_un):
-                # Si se trata de una cadena:
-                    strs = "CADENA\n" + tabs + "  " + "Valor: "
-                    str1 = tabs + "Elemento: " + strs + str(elem) + "\n" + str1
+            strs = "CADENA\n" + tabs + "  " + "Valor: "
+            str1 = tabs + "Elemento: " + strs + str(self.expr) + "\n" + str1
             contador = contador - 1
             return str0 + str1
 
-    # Clase para lista de instrucciones
+
+    # Clase para SECUENCIACION
     class inst_list:
         def __init__(self):
             self.lista = []
@@ -517,10 +514,10 @@ def main():
                 elemento.print_(contador,0)
                 tabs = contador*"  "
                 if len(self.lista) != 0:
-                    str_ = str_ + "SEPARADOR"
+                    str_ = str_ + ";"
             return str_
 
-    # Clase para un bloque de instrucciones
+    # Clase para BLOQUE
     class bloque:
         def __init__(self,lista):
             self.lista = lista
@@ -640,41 +637,25 @@ def main():
 
     # WRITE
     def p_instruccion_write(p):
-        ''' instruccion : TkWrite TkCadena '''
-        p[0] = inst_write(p[1])
-        p[0].args = p[2]
-
-
-    # WRITE ARGUMENTOS
-	def p_instruccion_write_args(p):
-		'''writeargs  : writeargs TkComma TkCadena
-			   | writeargs TkComa exp
-			   | TkCadena
-			   | exp'''
-
-		if len(p) == 2:
-			p[0] = []
-			p[0].append(p[1])
-		elif len(p) == 4:
-			p[0] = p[1]
-			p[0].append(p[3])
+        ''' instruccion : TkWrite exp '''
+        p[0] = inst_write(p[2])
 
 
     # WHILE
     def p_instruccion_while(p):
-        ''' instruccion : TkWhile exp TkDo instruccion TkDone '''
+        ''' instruccion : TkWhile exp TkDo instlist TkDone '''
         p[0] = inst_while(p[2],p[4])
 
 
     # FOR
     def p_instruccion_for(p):
-        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone'''
+        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone'''
         p[0] = inst_for(p[2],p[4],p[6],p[8])
 
     # IF
     def p_instruccion_if(p):
-        ''' instruccion : TkIf exp TkThen instruccion TkDone
-			                | TkIf exp TkThen instruccion TkElse instruccion TkDone '''
+        ''' instruccion : TkIf exp TkThen instlist TkDone
+			                | TkIf exp TkThen instlist TkElse instlist TkDone '''
         if len(p) == 6:
             p[0] = inst_if(p[2],p[4],None)
         else:
@@ -682,9 +663,9 @@ def main():
 
 
     # Gramatica del bloque de instrucciones
-    def p_instruction_bloque(p):
+    def p_instruccion_bloque(p):
         ''' instruccion :  declaracion TkExecute instlist TkDone
-                            | TkExecute instlist TkDone'''
+                            | TkExecute instlist TkDone '''
         if len(p) == 4:
             p[0] = inst_bloque(p[2])
         elif len(p) == 5:
