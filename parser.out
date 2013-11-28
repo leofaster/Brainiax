@@ -36,7 +36,7 @@ Rule 30    instruccion -> TkIdent TkAsignacion exp
 Rule 31    instruccion -> TkRead exp
 Rule 32    instruccion -> TkWrite TkCadena
 Rule 33    instruccion -> TkWhile exp TkDo instruccion TkDone
-Rule 34    instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+Rule 34    instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
 Rule 35    instruccion -> TkIf exp TkThen instruccion TkDone
 Rule 36    instruccion -> TkIf exp TkThen instruccion TkElse instruccion TkDone
 Rule 37    instruccion -> declaracion TkExecute instlist TkDone
@@ -70,7 +70,7 @@ TkDesigual           : 20
 TkDisyuncion         : 27
 TkDiv                : 17
 TkDo                 : 33 34
-TkDone               : 1 2 33 35 36 37 38
+TkDone               : 1 2 33 34 35 36 37 38
 TkElse               : 36
 TkExecute            : 1 2 37 38
 TkFalse              : 9
@@ -152,7 +152,7 @@ state 2
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -202,7 +202,7 @@ state 5
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -367,7 +367,7 @@ state 9
 
 state 10
 
-    (34) instruccion -> TkFor . TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> TkFor . TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
 
     TkIdent         shift and go to state 36
 
@@ -400,7 +400,7 @@ state 13
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -1055,7 +1055,7 @@ state 35
 
 state 36
 
-    (34) instruccion -> TkFor TkIdent . TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> TkFor TkIdent . TkFrom exp TkTo exp TkDo instruccion TkDone
 
     TkFrom          shift and go to state 71
 
@@ -1067,7 +1067,7 @@ state 37
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -1130,7 +1130,7 @@ state 42
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -2084,7 +2084,7 @@ state 66
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -2235,7 +2235,7 @@ state 70
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -2256,7 +2256,7 @@ state 70
 
 state 71
 
-    (34) instruccion -> TkFor TkIdent TkFrom . exp TkTo exp TkDo instruccion
+    (34) instruccion -> TkFor TkIdent TkFrom . exp TkTo exp TkDo instruccion TkDone
     (7) exp -> . term
     (8) exp -> . TkTrue
     (9) exp -> . TkFalse
@@ -3508,7 +3508,7 @@ state 101
 
 state 102
 
-    (34) instruccion -> TkFor TkIdent TkFrom exp . TkTo exp TkDo instruccion
+    (34) instruccion -> TkFor TkIdent TkFrom exp . TkTo exp TkDo instruccion TkDone
     (14) exp -> exp . TkMas exp
     (15) exp -> exp . TkMult exp
     (16) exp -> exp . TkMod exp
@@ -3561,7 +3561,7 @@ state 104
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -3600,7 +3600,7 @@ state 106
 
 state 107
 
-    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo . exp TkDo instruccion
+    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo . exp TkDo instruccion TkDone
     (7) exp -> . term
     (8) exp -> . TkTrue
     (9) exp -> . TkFalse
@@ -3652,7 +3652,7 @@ state 108
 
 state 109
 
-    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo exp . TkDo instruccion
+    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo exp . TkDo instruccion TkDone
     (14) exp -> exp . TkMas exp
     (15) exp -> exp . TkMult exp
     (16) exp -> exp . TkMod exp
@@ -3700,12 +3700,12 @@ state 110
 
 state 111
 
-    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo . instruccion
+    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo . instruccion TkDone
     (30) instruccion -> . TkIdent TkAsignacion exp
     (31) instruccion -> . TkRead exp
     (32) instruccion -> . TkWrite TkCadena
     (33) instruccion -> . TkWhile exp TkDo instruccion TkDone
-    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion
+    (34) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone
     (35) instruccion -> . TkIf exp TkThen instruccion TkDone
     (36) instruccion -> . TkIf exp TkThen instruccion TkElse instruccion TkDone
     (37) instruccion -> . declaracion TkExecute instlist TkDone
@@ -3726,9 +3726,16 @@ state 111
 
 state 112
 
-    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion .
+    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion . TkDone
 
-    TkDone          reduce using rule 34 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion .)
-    TkPuntoYComa    reduce using rule 34 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion .)
-    TkElse          reduce using rule 34 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion .)
+    TkDone          shift and go to state 113
+
+
+state 113
+
+    (34) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone .
+
+    TkDone          reduce using rule 34 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone .)
+    TkPuntoYComa    reduce using rule 34 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone .)
+    TkElse          reduce using rule 34 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone .)
 

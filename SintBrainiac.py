@@ -265,11 +265,8 @@ def main():
        return t
 
 
-    def t_TkCadena(t):
-        r'\"([^\\\n]|(\\.))*?\"'
-        t.value = string(t.value)
-        tok_lista.append(t)
-        return t
+    t_TkCadena = r'\"([^\\\n]|(\\.))*?\"'
+
 
 
     def t_SaltoLinea(t):
@@ -307,26 +304,26 @@ def main():
     # Clase Numero
     class numero:
         def __init__(self,value):
-            self.type = "numero"
+            self.type = "Numero"
             self.value = value
         def __str__(self):
             global contador
             contador = contador + 1
             tabs = "  "*contador
-            str_ = "CONSTANTE\n" + tabs +  "Valor: " + str(self.value)
+            str_ = str(self.value)
             contador = contador - 1
             return str_
 
     # Clase Identificador           
     class ident:
         def __init__(self,name):
-            self.type = "identificador"
+            self.type = "Identificador"
             self.name = name
         def __str__(self):
             global contador
             contador = contador + 1
             tabs = "  "*contador
-            str_ = "IDENTIFICADOR \n" + tabs + "Nombre: " + str(self.name)
+            str_ =  str(self.name)
             contador = contador - 1
             return str_
 
@@ -350,46 +347,47 @@ def main():
             self.right = right
             self.op = op
             if op == '+':
-                self.op = 'mas'
+                self.op = 'Suma'
             elif op == '-':
-                self.op = 'menos'
+                self.op = 'Resta'
             elif op == '~':
-                self.op = 'negacion'
+                self.op = 'Negacion'
             elif op == '*':
-                self.op = 'por'
+                self.op = 'Multiplicacion'
             elif op == '%':
-                self.op = 'modulo'
+                self.op = 'Modulo'
             elif op == '/':
-                self.op = 'division'
+                self.op = 'Division'
             elif op == '=':
-                self.op = 'igual'
+                self.op = 'Igual'
             elif op == '/=':
-                self.op = 'desigual'
+                self.op = 'Desigual'
             elif op == '<':
-                self.op = 'menor que'
+                self.op = 'Menor que'
             elif op == '>':
-                self.op = 'mayor que'
+                self.op = 'Mayor que'
             elif op == '>=':
-                self.op = 'mayor o igual que'
+                self.op = 'Mayor o igual que'
             elif op == '<=':
-                self.op = 'menor o igual que'
+                self.op = 'Menor o igual que'
             elif op == '&':
-                self.op = 'concatenacion'
+                self.op = 'Concatenacion'
             elif op == '#':
-                self.op = 'inspeccion'
+                self.op = 'Inspeccion'
             elif op == '\/':
-                self.op = 'or'
+                self.op = 'Or'
             #elif op == '/\':
-             #   self.op = 'and'
+             #   self.op = 'And'
             else:
-                self.op = 'and'
+                self.op = 'And'
 
         def __str__(self):
             global contador
             contador = contador + 1
             tabs = contador*"  "
             tabs_plus =  "  " + tabs
-            str_ = "EXPRESION_BINARIA\n" + tabs  + "Operador: " + str(self.op) + "\n"  + tabs + "Operando izquierdo: " + str(self.left) + "\n"  + tabs + "Operando derecho: " + str(self.right)
+            str_ = "EXPRESION_BINARIA\n" + tabs  + "Operacion: " + str(self.op) + "\n"  
+            str_ = str_ + tabs + "Operador izquierdo: " + str(self.left) + "\n"  + tabs + "Operador derecho: " + str(self.right)
             contador = contador - 1
             return str_
 
@@ -435,8 +433,8 @@ def main():
             tabs = "  "*contador
             aux = ""
             if self.instr1 != None:
-                aux = tabs + "Y sino: " + str(self.instr1)
-            str_ = "CONDICIONAL\n" + tabs + "Condicion: " + str(self.cond) + "\n" + tabs + "Hacer: " + str(self.instr0) + "\n" + aux  
+                aux = "\n" +tabs + "Else: " + str(self.instr1)
+            str_ = "CONDICIONAL\n" + tabs + "Guardia: " + str(self.cond) + "\n" + tabs + "Exito: " + str(self.instr0) + aux  
             contador = contador - 1
             return str_
 
@@ -467,25 +465,25 @@ def main():
 
     # Clase Write
     class inst_write:
-		def __init__(self,type):
-			self.type = type
-			self.args = []
-		def __str__(self):
-			global contador
-			contador += 1
-			tabs = contador*"  "
-			strw = "WRITE"
-			str0 = strw + "\n"
-			str1 = ""
-			while len(self.args) > 0:
-				strs = ""
-				elem = self.args.pop()
-				if not isinstance(elem, op_bin) and not isinstance(elem, op_un):
-				# Si se trata de una cadena:
-					strs = "CADENA\n" + tabs + "  " + "Valor: "
-				str1 = tabs + "Elemento: " + strs + str(elem) + "\n" + str1
-			contador -= 1
-			return str0 + str1
+        def __init__(self,type):
+            self.type = type
+            self.args = []
+        def __str__(self):
+            global contador
+            contador += 1
+            tabs = contador*"  "
+            strw = "WRITE"
+            str0 = strw + "\n"
+            str1 = ""
+            while len(self.args) > 0:
+                strs = ""
+                elem = self.argls.pop()
+                if not isinstance(elem, op_bin) and not isinstance(elem, op_un):
+                # Si se trata de una cadena:
+                    strs = "CADENA\n" + tabs + "  " + "Valor: "
+                    str1 = tabs + "Elemento: " + strs + str(elem) + "\n" + str1
+            contador = contador - 1
+            return str0 + str1
 
     # Clase para lista de instrucciones
     class inst_list:
@@ -500,13 +498,14 @@ def main():
             contador = contador + 1
                         
             self.lista.reverse()
-            str_ = ""
+            str_ = "SECUENCIACION\n"
+            contador = contador + 1
             tabs = contador*"  "
             while self.lista:
                 elemento =  self.lista.pop()
                 str_ = str_ + tabs +   str(elemento)
                 if len(self.lista) != 0:
-                    str_ = str_ +  "\n" + tabs + "SEPARADOR\n"
+                    str_ = str_ +  "\n" + tabs + ";\n"
             contador = contador - 1
             return str_
 
@@ -669,7 +668,7 @@ def main():
 
     # FOR
     def p_instruccion_for(p):
-        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion '''
+        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion TkDone'''
         p[0] = inst_for(p[2],p[4],p[6],p[8])
 
     # IF
