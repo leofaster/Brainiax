@@ -48,9 +48,9 @@ def main():
               'TkConcat',
               'TkInspeccion',
               'TkIdent',
-              'TkNum'
+              'TkNum',
+              'TkPunto'
              ]
-#Elimine TkPunto y 'TkCadena' temporalmente
 
     # Declaracion de lista de errores
     errores = []
@@ -94,10 +94,10 @@ def main():
       return t
 
 
-#    def t_TkPunto(t):
-#     r'\.'
-#    tok_lista.append(t)
-#    return t
+    def t_TkPunto(t):
+      r'\.'
+      tok_lista.append(t)
+      return t
 
 
     def t_TkPuntoYComa(t):
@@ -264,10 +264,6 @@ def main():
        return t
 
 
-    #t_TkCadena = r'\"([^\\\n]|(\\.))*?\"'
-
-
-
     def t_SaltoLinea(t):
        r'\n+'
        t.lexer.lineno += len(t.value)
@@ -316,7 +312,7 @@ def main():
     # Clase para IDENTIFICADOR           
     class ident:
         def __init__(self,name):
-            self.type = "Identificador"
+            self.type = "Identificador: "
             self.name = name
         def __str__(self):
             global contador
@@ -440,6 +436,27 @@ def main():
             contador = contador - 1
             return str_
 
+    # Clase para B-INSTRUCCION
+    class inst_b:
+        def __init__(self, slist, ident):
+            self.slist = slist
+            self.ident = ident
+        def __pop__(self):
+            return self.slist.pop()
+        def __len__(self):
+            return len(self.slist)
+        def __str__(self):
+            global contador
+            contador = contador +1
+            tabs = "  "*contador
+            lista_simbolos = ""
+            for elem in self.slist:
+                lista_simbolos = lista_simbolos + str(elem)
+            str_ = "B-INSTRUCCION\n" + tabs + "Lista de simbolos: " + lista_simbolos + "\n" 
+            straux = tabs + "Identificador: " + str(self.ident) + " "
+            contador = contador - 1
+            return str_ + straux
+
     # Clase para ASIGNACION
     class inst_asig:
         def __init__(self,ident,val):
@@ -477,10 +494,9 @@ def main():
             str0 = strw + "\n"
             str1 = ""
             strs = "CADENA\n" + tabs + "  " + "Valor: "
-            str1 = tabs + "Elemento: " + strs + str(self.expr) + "\n" + str1
+            str1 = tabs + "Elemento: " + strs + str(self.expr) + str1
             contador = contador - 1
             return str0 + str1
-
 
     # Clase para SECUENCIACION
     class inst_list:
@@ -498,11 +514,16 @@ def main():
             str_ = "SECUENCIACION\n"
             contador = contador + 1
             tabs = contador*"  "
+            if len(self.lista) == 1 :
+                str_ = ""
+                elemento =  self.lista.pop()
+                str_ = str_ +   str(elemento)
+                return str_
             while self.lista:
                 elemento =  self.lista.pop()
                 str_ = str_ + tabs +   str(elemento)
                 if len(self.lista) != 0:
-                    str_ = str_ +  "\n" + tabs + ";\n"
+                    str_ = str_ +  "\n" + tabs + "\n"
             contador = contador - 1
             return str_
 
@@ -538,7 +559,6 @@ def main():
     ####################################################
 
 
-
     # Definicion del símbolo inicial
     start = 'programa'
 
@@ -551,9 +571,8 @@ def main():
             ('left','TkMas','TkResta'),
             ('left','TkMult','TkDiv','TkMod'),
             ('left','TkConcat'),
-            ('left','TkInspeccion'),
             ('left','TkAt'),
-            ('right','uminus','unot'),                
+            ('right','uminus','unot', 'uinspeccion'),                
         )
 
     # PROGRAMA
@@ -582,46 +601,45 @@ def main():
         tabs = (contador+1)*"  "
 
 
-    # EXPRESION UNARIA
+    # EXPRESION UNARIA ARITMETICA
     def p_exp_un(p):
-        ''' exp_un : TkResta exp %prec uminus
-                      | TkNegacion exp %prec unot '''
+        ''' exp_un : TkResta exp %prec uminus 
+                      | TkNegacion exp %prec unot
+                      | TkInspeccion exp %prec uinspeccion '''
         p[0] = op_un(p[1],p[2])
 
 
-    # EXPRESION
-    def p_exp(p):
+    # EXPRESION 
+    def p_exp(p): 
         ''' exp : term
-                | TkTrue
-                | TkFalse
                 | exp_un
                 | TkParAbre exp TkParCierra
                 | TkCorcheteAbre exp TkCorcheteCierra
-                | TkLlaveAbre exp TkLlaveCierra
+                | TkLlaveAbre exp TkLlaveCierra 
                 | exp TkMas exp 
                 | exp TkMult exp
                 | exp TkMod exp
                 | exp TkDiv exp
                 | exp TkResta exp
+                | TkTrue
+                | TkFalse
                 | exp TkIgual exp
                 | exp TkDesigual exp
                 | exp TkMenor exp
                 | exp TkMayor exp
                 | exp TkMenorIgual exp
                 | exp TkMayorIgual exp
-                | exp TkConcat exp
-                | exp TkInspeccion exp
                 | exp TkDisyuncion exp
-                | exp TkConjuncion exp
-                | exp TkAt exp '''
-#TkPunto
+                | exp TkConjuncion exp 
+                | exp TkConcat exp '''
+
         if len(p) == 2:
             p[0] = p[1]
         elif len(p) == 4 and p[1] != '(' and p[1] != '[' and p[1] != '{':
             p[0] = op_bin(p[1],p[3],p[2])
         else:
 			p[0] = p[2]
-                
+
 
     # ASIGNACION
     def p_instruccion_asignacion(p):
@@ -652,6 +670,7 @@ def main():
         ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone'''
         p[0] = inst_for(p[2],p[4],p[6],p[8])
 
+
     # IF
     def p_instruccion_if(p):
         ''' instruccion : TkIf exp TkThen instlist TkDone
@@ -662,7 +681,7 @@ def main():
             p[0] = inst_if(p[2],p[4],p[6])
 
 
-    # Gramatica del bloque de instrucciones
+    # BLOQUE DE INSTRUCCIONES
     def p_instruccion_bloque(p):
         ''' instruccion :  declaracion TkExecute instlist TkDone
                             | TkExecute instlist TkDone '''
@@ -672,7 +691,41 @@ def main():
             p[0] = inst_bloque(p[3])
 
 
-    # SECUENCIACION DE INSTRUCCIONES
+    # BLOQUE DE B-INSTRUCCION (Ej: {lista_tape} At [a] )
+    def p_instruccion_b(p):
+        ''' instruccion : TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape '''
+        p[0] = inst_b(p[2], p[5])
+
+    def p_ident_tape(p):
+        ''' ident_tape : TkCorcheteAbre exp TkCorcheteCierra
+                           | TkIdent '''
+        if len(p) == 4:        
+            p[0] = p[2]
+        elif len(p) == 2:
+            p[0] = p[1] 
+
+ 
+    # LISTA DE SIMBOLOS DE B-INSTRUCCIONES (Ej: ++++--...>>><..)
+    def p_lista_tape(p):
+        ''' lista_tape : lista_tape simb_tape
+                         | simb_tape '''
+        if len(p) == 2:
+            p[0] = []
+            p[0].append(p[1])
+        else:
+            p[0] = p[1]
+            p[0].append(p[2])
+
+    def p_simb_tape(p):
+        '''simb_tape : TkPunto
+                         | TkMayor
+                         | TkMenor
+                         | TkMas
+                         | TkResta
+                         | TkComa '''
+        p[0] = p[1]
+
+   # SECUENCIACION DE INSTRUCCIONES
     def p_instlist(p):
         '''  instlist : instlist semicoloninst 
                       | instruccion '''
@@ -714,7 +767,6 @@ def main():
 
 
 
-
     #Funcion de error del parser
     def p_error(p):
         c = hallar_columna(codigo,p)
@@ -740,8 +792,6 @@ def main():
         posCol= hallar_columna(codigo,errores[0])
         print 'Error: caracter inesperado \"%s\" en linea %d, columna %d.' %(errores[0].value[0], errores[0].lineno, posCol)
         sys.exit(0)
-
-
 
 
     # Se construye la funcion del parser

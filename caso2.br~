@@ -1,19 +1,16 @@
 declare foo, bar :: integer execute
     bar := 3 ;
     $- Asignar a foo
-    el valor 35 + bar, si bar > 2. -$
+    el valor 35 + bar, si bar > -$
     read bar ;
-    write a + b;
-    if bar > 2 then
-        foo := 35 + bar
-    else
-        foo := 3
-    done;
+    {>++.>+.+++++++..+++.>++.} at bar;
+    write (a + b);
     for foo from 0 to 7 do
-        bar := bar + 1
-        while foo < 4 do
+        bar := bar + 1;
+        while #foo =/ (4+7) do
             foo := foo + 1
         done
     done
 done
+
 
