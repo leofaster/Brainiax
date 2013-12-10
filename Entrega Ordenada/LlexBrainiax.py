@@ -10,86 +10,81 @@ import ply.yacc as yacc
 import sys
 
 # Se abre el archivo y se guarda su contenido en el string codigo
-file_name = sys.argv[1]
-fp = open(file_name)
-codigo = fp.read()
+# file_name = sys.argv[1]
+# fp = open(file_name)
+# codigo = fp.read()
 
 
 # Identificadores de los tokens del lenguaje Brainiac
 tokens = ['TkComa',
-          'TkPunto',
-          'TkPuntoYComa',
-          'TkParAbre',
-          'TkParCierra',
-          'TkCorcheteAbre',
-          'TkCorcheteCierra',
-          'TkLlaveAbre',
-          'TkLlaveCierra',
-          'TkAsignacion',
-          'TkType',
-          'TkMas',
-          'TkResta',
-          'TkMult',
-          'TkDiv',
-          'TkMod',
-          'TkConjuncion',
-          'TkDisyuncion',
-          'TkNegacion',
-          'TkMenor',
-          'TkMenorIgual',
-          'TkMayor',
-          'TkMayorIgual',
-          'TkIgual',
-          'TkDesigual',
-          'TkConcat',
-          'TkInspeccion',
-          'TkIdent',
-          'TkNum',
-          'TkCadena',
-          'TkComentario'
-         ]
+              'TkPuntoYComa',
+              'TkParAbre',
+              'TkParCierra',
+              'TkCorcheteAbre',
+              'TkCorcheteCierra',
+              'TkLlaveAbre',
+              'TkLlaveCierra',
+              'TkAsignacion',
+              'TkType',
+              'TkMas',
+              'TkResta',
+              'TkMult',
+              'TkDiv',
+              'TkMod',
+              'TkConjuncion',
+              'TkDisyuncion',
+              'TkNegacion',
+              'TkMenor',
+              'TkMenorIgual',
+              'TkMayor',
+              'TkMayorIgual',
+              'TkIgual',
+              'TkDesigual',
+              'TkConcat',
+              'TkInspeccion',
+              'TkIdent',
+              'TkNum'
+             ]
 
 
-# Declaracion de lista de errores
+ # Declaracion de lista de errores
 errores = []
 
 
-# Declaracion de lista de tokens a imprimir
+    # Declaracion de lista de tokens a imprimir
 tok_lista = []
 
 
-# Diccionario con la lista de palabras reservadas del lenguaje Brainiac
+    # Diccionario con la lista de palabras reservadas del lenguaje Brainiac
 palabras_reservadas = {
-         'if' : 'TkIf',
-         'then' : 'TkThen',
-         'else' : 'TkElse',
-         'integer' : 'TkInteger',
-         'boolean' : 'TkBoolean',
-         'declare' : 'TkDeclare',
-         'read' : 'TkRead',
-         'write' : 'TkWrite',
-         'do' : 'TkDo',
-         'for' : 'TkFor',
-         'done' : 'TkDone',
-         'while' : 'TkWhile',
-         'end' : 'TkEnd',
-         'false' : 'TkFalse',
-         'true' : 'TkTrue',
-         'tape' : 'TkTape',
-         'execute' : 'TkExecute',
-         'to' : 'TkTo',
-         'from' : 'TkFrom',
-         'at'  : 'TkAt'
-}
+             'if' : 'TkIf',
+             'then' : 'TkThen',
+             'else' : 'TkElse',
+             'integer' : 'TkInteger',
+             'boolean' : 'TkBoolean',
+             'declare' : 'TkDeclare',
+             'read' : 'TkRead',
+             'write' : 'TkWrite',
+             'do' : 'TkDo',
+             'for' : 'TkFor',
+             'done' : 'TkDone',
+             'while' : 'TkWhile',
+             'false' : 'TkFalse',
+             'true' : 'TkTrue',
+             'tape' : 'TkTape',
+             'execute' : 'TkExecute',
+             'to' : 'TkTo',
+             'from' : 'TkFrom',
+             'at' : 'TkAt'
+    }
 
 
 tokens = tokens + list(palabras_reservadas.values())
 
-
 # A continuacion, se presentan las expresiones regulares para cada token
 
 t_TkComa = r','
-t_TkPunto = r'\.'
+#t_TkPunto = r'\.'
 t_TkPuntoYComa =  r';'
 t_TkParAbre = r'\('
 t_TkParCierra =  r'\)'
@@ -140,17 +135,19 @@ t_ignore_EspaciosEnBlanco = r'[ \t\f\r\v]+'
 t_ignore_Comentarios = r'\$-(.|\n)*?-\$|\${2}[^\n]*'
 
 
-# Funcion para obtener errores en una lista
-def t_error(t):
-   errores.append(t)
-   t.lexer.skip(1)
 
 
 # Funcion para hallar el nro de columna
 def hallar_columna(programa, t):
-   inicio_linea = programa.rfind("\n", 0, t.lexpos)
-   return (t.lexpos - inicio_linea)
+    inicio_linea = programa.rfind("\n", 0, t.lexpos)
+    return (t.lexpos - inicio_linea)
 
+# Funcion para obtener errores en una lista
+def t_error(t):
+  c = hallar_columna(codigo,t)
+  print "Error: caracter inesperado \"%s\" en linea %s, columna %s." % (t.value[0],t.lineno,c)
+  t.lexer.skip(1)                
+  return t
 
 
 # Construccion del lexer 
@@ -158,21 +155,21 @@ lexer = lex.lex()
 
 
 # Se pasa el codigo como argumento de entrada
-lexer.input(codigo)
+#lexer.input(codigo)
 
 
 # Tokenize
-while True:
-    tok = lexer.token()
-    if not tok: break      # No mas input
-    tok_lista.append (tok)
+# while True:
+#     tok = lexer.token()
+#     if not tok: break      # No mas input
+#     tok_lista.append (tok)
 
 
 # Si hay errores, se imprime el primero
-if errores:
-    posCol= hallar_columna(codigo,errores[0])
-    print 'Error: caracter inesperado \"%s\" en linea %d, columna %d.' %(errores[0].value[0], errores[0].lineno, posCol)
-    sys.exit(0)
+# if errores:
+#     posCol= hallar_columna(codigo,errores[0])
+#     print 'Error: caracter inesperado \"%s\" en linea %d, columna %d.' %(errores[0].value[0], errores[0].lineno, posCol)
+#     sys.exit(0)
 
 
 # Si no hay errores, se procede a construir el arbol
