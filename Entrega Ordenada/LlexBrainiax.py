@@ -17,34 +17,35 @@ import sys
 
 # Identificadores de los tokens del lenguaje Brainiac
 tokens = ['TkComa',
-              'TkPuntoYComa',
-              'TkParAbre',
-              'TkParCierra',
-              'TkCorcheteAbre',
-              'TkCorcheteCierra',
-              'TkLlaveAbre',
-              'TkLlaveCierra',
-              'TkAsignacion',
-              'TkType',
-              'TkMas',
-              'TkResta',
-              'TkMult',
-              'TkDiv',
-              'TkMod',
-              'TkConjuncion',
-              'TkDisyuncion',
-              'TkNegacion',
-              'TkMenor',
-              'TkMenorIgual',
-              'TkMayor',
-              'TkMayorIgual',
-              'TkIgual',
-              'TkDesigual',
-              'TkConcat',
-              'TkInspeccion',
-              'TkIdent',
-              'TkNum'
-             ]
+          'TkPuntoYComa',
+          'TkParAbre',
+          'TkParCierra',
+          'TkCorcheteAbre',
+          'TkCorcheteCierra',
+          'TkLlaveAbre',
+          'TkLlaveCierra',
+          'TkAsignacion',
+          'TkType',
+          'TkMas',
+          'TkResta',
+          'TkMult',
+          'TkDiv',
+          'TkMod',
+          'TkConjuncion',
+          'TkDisyuncion',
+          'TkNegacion',
+          'TkMenor',
+          'TkMenorIgual',
+          'TkMayor',
+          'TkMayorIgual',
+          'TkIgual',
+          'TkDesigual',
+          'TkConcat',
+          'TkInspeccion',
+          'TkIdent',
+          'TkNum',
+          'TkPunto'
+         ]
 
 
  # Declaracion de lista de errores
@@ -84,7 +85,7 @@ tokens = tokens + list(palabras_reservadas.values())
 # A continuacion, se presentan las expresiones regulares para cada token
 
 t_TkComa = r','
-#t_TkPunto = r'\.'
+t_TkPunto = r'\.'
 t_TkPuntoYComa =  r';'
 t_TkParAbre = r'\('
 t_TkParCierra =  r'\)'
@@ -138,13 +139,18 @@ t_ignore_Comentarios = r'\$-(.|\n)*?-\$|\${2}[^\n]*'
 
 
 # Funcion para hallar el nro de columna
-def hallar_columna(programa, t):
-    inicio_linea = programa.rfind("\n", 0, t.lexpos)
-    return (t.lexpos - inicio_linea)
+def hallar_columna(input, t):
+        inicio = input.rfind('\n',0,t.lexpos)
+        # Si es el primer token de la primera linea, su posicion es 1
+        if inicio < 0 and t.lexpos == 0:         
+            inicio = 0
+            return 1
+        column = (t.lexpos - inicio)
+        return column
 
 # Funcion para obtener errores en una lista
 def t_error(t):
-  c = hallar_columna(codigo,t)
+  c = hallar_columna(t.lexer.lexdata,t)
   print "Error: caracter inesperado \"%s\" en linea %s, columna %s." % (t.value[0],t.lineno,c)
   t.lexer.skip(1)                
   return t

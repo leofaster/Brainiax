@@ -7,3 +7,11 @@ def print_arbol(arb):
         str_ = str(arb)
         str_ = str_[:len(str_)-1]
         return str_
+def hallar_columna(input, t):
+        inicio = input.rfind('\n',0,t.lexpos)
+        # Si es el primer token de la primera linea, su posicion es 1
+        if inicio < 0 and t.lexpos == 0:         
+            inicio = 0
+            return 1
+        column = (t.lexpos - inicio)
+        return column

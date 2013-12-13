@@ -9,14 +9,7 @@ import ply.lex as lex
 import ply.yacc as yacc
 import sys
 import funciones
-# import LlexBrainiax as lexer2
-# import clases
 from LlexBrainiax import tokens
-
-
-
-# tokens = lexer2.tokens
-
 
 contador = -1
 
@@ -164,7 +157,25 @@ class inst_if:
         str_ = "CONDICIONAL\n" + tabs + "Guardia: " + str(self.cond) + "\n" + tabs + "Exito: " + str(self.instr0) + aux  
         contador = contador - 1
         return str_
-
+class inst_b:
+    def __init__(self, slist, ident):
+        self.slist = slist
+        self.ident = ident
+    def __pop__(self):
+        return self.slist.pop()
+    def __len__(self):
+        return len(self.slist)
+    def __str__(self):
+        global contador
+        contador = contador +1
+        tabs = "  "*contador
+        lista_simbolos = ""
+        for elem in self.slist:
+            lista_simbolos = lista_simbolos + str(elem)
+        str_ = "B-INSTRUCCION\n" + tabs + "Lista de simbolos: " + lista_simbolos + "\n" 
+        straux = tabs + "Identificador: " + str(self.ident) + " "
+        contador = contador - 1
+        return str_ + straux
 # Clase para ASIGNACION
 class inst_asig:
     def __init__(self,ident,val):
@@ -290,9 +301,8 @@ def main():
             ('left','TkMas','TkResta'),
             ('left','TkMult','TkDiv','TkMod'),
             ('left','TkConcat'),
-            ('left','TkInspeccion'),
             ('left','TkAt'),
-            ('right','uminus','unot'),                
+            ('right','uminus','unot', 'uinspeccion'),                
         )
 
     # PROGRAMA
@@ -321,45 +331,43 @@ def main():
         tabs = (contador+1)*"  "
 
 
-    # EXPRESION UNARIA
+    # EXPRESION UNARIA ARITMETICA
     def p_exp_un(p):
-        ''' exp_un : TkResta exp %prec uminus
-                      | TkNegacion exp %prec unot '''
+        ''' exp_un : TkResta exp %prec uminus 
+                      | TkNegacion exp %prec unot
+                      | TkInspeccion exp %prec uinspeccion '''
         p[0] = op_un(p[1],p[2])
 
-
     # EXPRESION
-    def p_exp(p):
+    def p_exp(p): 
         ''' exp : term
-                | TkTrue
-                | TkFalse
                 | exp_un
                 | TkParAbre exp TkParCierra
                 | TkCorcheteAbre exp TkCorcheteCierra
-                | TkLlaveAbre exp TkLlaveCierra
+                | TkLlaveAbre exp TkLlaveCierra 
                 | exp TkMas exp 
                 | exp TkMult exp
                 | exp TkMod exp
                 | exp TkDiv exp
                 | exp TkResta exp
+                | TkTrue
+                | TkFalse
                 | exp TkIgual exp
                 | exp TkDesigual exp
                 | exp TkMenor exp
                 | exp TkMayor exp
                 | exp TkMenorIgual exp
                 | exp TkMayorIgual exp
-                | exp TkConcat exp
-                | exp TkInspeccion exp
                 | exp TkDisyuncion exp
-                | exp TkConjuncion exp
-                | exp TkAt exp '''
-#TkPunto
+                | exp TkConjuncion exp 
+                | exp TkConcat exp '''
+
         if len(p) == 2:
             p[0] = p[1]
         elif len(p) == 4 and p[1] != '(' and p[1] != '[' and p[1] != '{':
             p[0] = op_bin(p[1],p[3],p[2])
         else:
-			p[0] = p[2]
+            p[0] = p[2]
                 
 
     # ASIGNACION
@@ -394,7 +402,7 @@ def main():
     # IF
     def p_instruccion_if(p):
         ''' instruccion : TkIf exp TkThen instlist TkDone
-			                | TkIf exp TkThen instlist TkElse instlist TkDone '''
+                            | TkIf exp TkThen instlist TkElse instlist TkDone '''
         if len(p) == 6:
             p[0] = inst_if(p[2],p[4],None)
         else:
@@ -410,6 +418,42 @@ def main():
         elif len(p) == 5:
             p[0] = inst_bloque(p[3])
 
+
+
+
+    # BLOQUE DE B-INSTRUCCION (Ej: {lista_tape} At [a] )
+    def p_instruccion_b(p):
+        ''' instruccion : TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape '''
+        p[0] = inst_b(p[2], p[5])
+
+    def p_ident_tape(p):
+        ''' ident_tape : TkCorcheteAbre exp TkCorcheteCierra
+                           | TkIdent '''
+        if len(p) == 4:        
+            p[0] = p[2]
+        elif len(p) == 2:
+            p[0] = p[1] 
+
+ 
+    # LISTA DE SIMBOLOS DE B-INSTRUCCIONES (Ej: ++++--...>>><..)
+    def p_lista_tape(p):
+        ''' lista_tape : lista_tape simb_tape
+                         | simb_tape '''
+        if len(p) == 2:
+            p[0] = []
+            p[0].append(p[1])
+        else:
+            p[0] = p[1]
+            p[0].append(p[2])
+
+    def p_simb_tape(p):
+        '''simb_tape : TkPunto
+                         | TkMayor
+                         | TkMenor
+                         | TkMas
+                         | TkResta
+                         | TkComa '''
+        p[0] = p[1]
 
     # SECUENCIACION DE INSTRUCCIONES
     def p_instlist(p):
@@ -454,8 +498,8 @@ def main():
 
     #Funcion de error del parser
     def p_error(p):
-        c = hallar_columna(codigo,p)
-        print "Error de sintaxis en linea %s, columna %s: token \'%s\' inesperado." % (p.lineno,c,p.value)
+        c = funciones.hallar_columna(codigo,p)
+        print "Error de sintaxis en linea %s, columna %s: token \'%s\' inesperado." % (p.lineno,c,p.value[0])
         sys.exit(0)
 
 
