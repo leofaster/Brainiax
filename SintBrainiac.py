@@ -19,6 +19,7 @@ def main():
     codigo = fp.read()
 
 
+
     # Identificadores de los tokens del lenguaje Brainiac
     tokens = ['TkComa',
 
@@ -51,9 +52,6 @@ def main():
               'TkNum',
               'TkPunto'
              ]
-
-    # Declaracion de lista de errores
-    errores = []
 
 
     # Declaracion de lista de tokens a imprimir
@@ -278,16 +276,21 @@ def main():
 
 
     # Funcion para hallar el nro de columna
-    def hallar_columna(programa, t):
-       inicio_linea = programa.rfind("\n", 0, t.lexpos)
-       return (t.lexpos - inicio_linea)
+    def hallar_columna(input, t):
+        inicio = input.rfind('\n',0,t.lexpos)
+        # Si es el primer token de la primera línea, su posición es 1
+        if inicio < 0 and t.lexpos == 0:         
+            inicio = 0
+            return 1
+        column = (t.lexpos - inicio)
+        return column
 
 
     # Funcion para obtener errores en una lista
     def t_error(t):
         c = hallar_columna(codigo,t)
         print "Error: caracter inesperado \"%s\" en linea %s, columna %s." % (t.value[0],t.lineno,c)
-        t.lexer.skip(1)                
+        sys.exit(0)                
         return t
 
 
@@ -777,6 +780,7 @@ def main():
     # Construccion del lexer 
     lexer = lex.lex()
     lexer.input(codigo)
+    lexer.lineno = 1
 
 
     errores = False 
@@ -789,8 +793,6 @@ def main():
 
     # Si hay errores, se imprime el primero
     if errores:
-        posCol= hallar_columna(codigo,errores[0])
-        print 'Error: caracter inesperado \"%s\" en linea %d, columna %d.' %(errores[0].value[0], errores[0].lineno, posCol)
         sys.exit(0)
 
 
@@ -819,6 +821,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
 

@@ -12,5 +12,3 @@ declare foo, bar :: integer execute
         done
     done
 done
-
-
