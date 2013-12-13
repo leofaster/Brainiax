@@ -22,7 +22,6 @@ def main():
 
     # Identificadores de los tokens del lenguaje Brainiac
     tokens = ['TkComa',
-
               'TkPuntoYComa',
               'TkParAbre',
               'TkParCierra',
@@ -769,7 +768,6 @@ def main():
         'tipo : TkTape'
 
 
-
     #Funcion de error del parser
     def p_error(p):
         c = hallar_columna(codigo,p)
@@ -780,7 +778,6 @@ def main():
     # Construccion del lexer 
     lexer = lex.lex()
     lexer.input(codigo)
-    lexer.lineno = 1
 
 
     errores = False 
@@ -791,10 +788,11 @@ def main():
             errores = True
             continue
 
-    # Si hay errores, se imprime el primero
+    # Si hay errores, se imprime el primero y aborta
     if errores:
         sys.exit(0)
 
+    lexer.lineno = 1
 
     # Se construye la funcion del parser
     parser = yacc.yacc()

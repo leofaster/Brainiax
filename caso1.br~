@@ -1,4 +1,4 @@
-declare x, y :: integer; t :: tape execute  
+declare x, y :: integer; t :: tape execute ;
     x := 3 ;
     y := 15  ;
    for y from 1 to x do

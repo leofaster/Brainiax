@@ -1,4 +1,4 @@
-declare foo, bar :: integer execute;
+declare foo, bar :: integer execute
     bar := 3 ;
     $- Asignar a foo
     el valor 35 + bar, si bar > -$
