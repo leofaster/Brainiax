@@ -22,7 +22,6 @@ def main():
 
     # Identificadores de los tokens del lenguaje Brainiac
     tokens = ['TkComa',
-
               'TkPuntoYComa',
               'TkParAbre',
               'TkParCierra',
