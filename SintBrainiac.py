@@ -683,7 +683,7 @@ def main():
             p[0] = inst_if(p[2],p[4],p[6])
 
 
-    # BLOQUE DE INSTRUCCIONES
+    # Gramatica del bloque de instrucciones
     def p_instruccion_bloque(p):
         ''' instruccion :  declaracion TkExecute instlist TkDone
                             | TkExecute instlist TkDone '''
