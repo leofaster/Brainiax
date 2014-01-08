@@ -1,0 +1,131 @@
+//Caso sin errores: if, while, for, case con instrucciones simples
+program
+begin
+  declare
+    x1, x2 as int;
+    x3 as bool;
+    x4, x5 as range
+
+    x1 = 7+x2;
+    x4 = 10..20;
+
+    begin
+      declare 
+        x1, x2 as bool;
+        x3 as int
+
+      x1 = true;
+      x2 = (2 == 7 or 2 /= 2);
+
+      if x1 and x2 then
+        read x3
+      else
+        write "Hola, este fue el resultado del if", (x1 and x2);
+
+      begin
+        declare
+          x6, x7, x8 as int;
+          x1, x2 as range
+
+        x1 = 1..100;
+        x6 = x7+top(x1);
+        read x2;
+        begin
+          declare x6, x7 as int
+
+          x8 = 5;
+          x6 = x8+7;
+          x7 = x8*x6
+        end;
+        x6 = x8+8;
+        x7 = x8*x6+15-x6;
+
+        write x6;
+        write x7;
+        write x8
+      end;
+
+      begin
+        declare x1, x2, x3 as int
+        
+        x1 = 1;
+        x2 = 10;
+        read x3;
+
+        for i in x1..x3 do
+          write "JIJIJI";
+
+        while x2 >> x4 do
+          x2 = x2+1;
+
+        begin
+          declare 
+            x1, x2, x3, x4 as int;
+            x5, x6, x7, x8 as bool;
+            x9 as range
+          begin
+            declare x10 as int
+            
+            begin
+              declare x11 as bool
+              begin
+                declare x12 as range
+                
+                x1 = 1;
+                x2 = 2;
+                read x4;
+                x5 = true;
+                x7 = (x5 and not x6) or (x2 == x3 and not(x4/=7) or (x1>=0));
+                x8 = not x7;
+                x9 = 1..10;
+                x10 = x1*x2*x3*x4-x1-x2-x3-x4%2;
+                x12 = 8..20;
+
+                case x4 of
+                  -10..10      -> writeln "Hola 1";
+                  x9           -> writeln "Hola 2";
+                  15..20       -> writeln "Hola 3";
+                  x12          -> writeln "Hola 4";
+                  x12+(21..50) -> writeln "Hola 5";
+                end
+              end;
+
+              if x11 then
+                write x4
+              else
+                write x10
+            end;
+
+            begin
+              declare x1 as int
+              
+              x1 = 3;
+              writeln x1
+            end;
+
+            begin
+              declare x2 as int
+
+              x2 = 5;
+              writeln x1;
+              writeln x2
+            end;
+
+            writeln x1;
+            writeln x2;
+            writeln x3
+          end
+
+        end
+      end;
+
+      x4 = 1..5
+    end;
+
+    if x1>>x4 
+    then
+      write "Hola"
+    else
+      write "Chao" 
+end
+

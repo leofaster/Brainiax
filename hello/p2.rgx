@@ -1,0 +1,146 @@
+//Caso sin errores: if, while, for, case con instrucciones compuestas
+program
+begin
+  declare 
+    a1, a2, a3 as int;
+    a4, a5 as bool
+
+  a1 = 12345679*49;
+  a2 = a1 - 777;
+
+  a4 = a1 <= 1000000;
+  a5 = not a4;
+
+  begin
+    declare b1, b2 as range
+
+    b1 = 1..25;
+    read b2;
+
+    begin
+      declare 
+        c1, c2, c3 as int;
+        c4 as bool;
+        c5, c6 as range
+
+      c1 = 1;
+      read c3;
+
+      c4 = a5;
+
+      c5 = b1;
+      c6 = c5*7;
+
+      if a3 >> b2 then 
+        begin
+          declare d1, d2 as range
+
+          read d1;
+          d2 = d1+(1..80);
+
+          for c1 in d1 do
+            begin
+              declare c2 as int
+
+              c2 = 0;
+              for c2 in d2 do
+                begin
+                  declare c2 as int
+
+                  c2 = c3*7;
+                  writeln "Hola", c2;
+                  c3 = c3+1
+                end;
+              writeln c2
+            end;
+
+          begin
+            declare e1, e2, e3, e4, e5 as int
+
+            e1 = c1+c2+c3+e2-e3*e4/e5;
+            e2 = c1-c2-c3;
+            e3 = c1*c2*c3;
+            e4 = c1/c2%c3;
+            e5 = e1+e2-(-e3)*e4/10%2
+          end;
+
+          writeln "Estas son las variables:", c1,c2,c3,c4,c5,c6
+        end
+      else
+        if not a4 then
+          begin
+            declare d1, d2, d3 as int
+
+            d1 = 0;
+            for d1 in 0..20 do
+              begin
+                d2 = d1*2;
+                d3 = d2-5;
+                write d2
+              end
+          end
+    end;
+
+    begin
+      declare 
+        c1, c2 as bool;
+        c3, c4 as range
+
+      begin
+        declare d1, d2 as bool
+        d1 = true
+      end
+    end;
+
+    begin
+      declare 
+        c1 as int;
+        c2 as bool;
+        c3 as range
+
+      c1 = a2%3;
+      c2 = a4 or not a5 and not a4 or a5;
+      a2 = c1*3;
+      read c3;
+
+      while c1>>c3 do
+        begin
+          declare d1 as int
+          d1 = c1*9;
+          write d1;
+          c1 = c1/2
+        end;
+
+      begin
+        declare d1 as bool
+
+        d1 = not c2;
+        a4 = d1 or not d1
+      end;
+
+      case c1 of
+      1..100 ->
+        begin
+          declare 
+            d1 as int;
+            d2 as range
+
+          d2 = c3*2;
+
+          for d1 in d2 do
+            begin
+              declare 
+                d1, e1 as int
+
+                d1 = 1;
+                e1 = d1*2
+            end
+        end;
+      (1..100)<>c3 -> write "Hola";
+      c3 -> write "Chao";
+      end
+    end;
+
+    writeln "Se acabo"
+  end
+end

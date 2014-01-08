@@ -1,0 +1,80 @@
+//Caso con errores: variables no declaradas y redeclaradas
+program
+begin
+  declare a1, a2, a3 as int
+
+  a1 = 1;
+  a2 = 1;
+  read a3;
+
+  a4 = 2*a3;
+
+  for a1 in 1..10 do
+    begin
+      declare 
+        a1 as int;
+        a2 as bool
+
+      a1 = a3*2;
+      write a4-a3;
+      a3 = a1
+    end;
+
+  begin
+    if a5>=5 then
+      begin
+        declare 
+          a5 as int;
+          a6 as bool;
+          a1 as range
+
+        read a1;
+        a5 = length(a5);
+        a6 = bottom(a1);
+
+        while a6 >= top(a1) do
+          begin
+            declare
+              a1 as int;
+              a1 as bool;
+              a1 as range
+
+              a6 = a6+1
+          end
+      end
+    else
+      write "Operaciones con el rango inexistente", 
+        length(x),top(x),bottom(x),rtoi(x);
+
+    begin
+      declare
+        a1, a1, a1 as int;
+        a2 as bool;
+        a3, a4, a5 as range
+
+      a1 = 1;
+      a2 = true;
+      read a3;
+      read a4;
+      read a5;
+      read a6;
+      read a7;
+
+      begin
+        declare a1 as range
+
+        a1 = a3<>a7;
+        a7 = a3+a4;
+
+        for i in 1..100 do
+          begin
+            declare 
+              a1 as bool;
+              a1 as int
+
+            a1 = a2 or a8 and a9 or not a2
+          end
+      end
+    end
+  end
+end

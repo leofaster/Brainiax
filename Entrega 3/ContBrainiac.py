@@ -13,7 +13,11 @@ import tablaSimbolos
 from LexBrainiax import tokens
 
 contador = -1
-listaTablas = []
+
+stack = []  #Pila de tabla de simbolos
+static_analysis = ""
+
+tkpline = 1
 
 # Clases utilizadas para imprimir el arbol sintactico
                                                
@@ -270,79 +274,43 @@ class bloque:
 
 
 
-#Clase para DECLARACION de variables
-class bloqueDeclaracion:
-  def __init__(self,listaDeclaraciones):
-    # Esta es una lista de lineas del declare
-    self.listaDeclaraciones = listaDeclaraciones
-    self.tablaSimbolos = tablaSimbolos.SymTable()
-    for i in self.listaDeclaraciones.listaPorTipos:
-      retorno = self.tablaSimbolos.merge(i.tablaSimbolos)
-      global error
-      if retorno is not None:
-        print 'Error: Linea '+str(retorno[0])+', columna '+str(retorno[1])+': Variable "'+retorno[2]+'" declarada dos veces'
-        error = 1
-  def __str__(self):
-    global contador
-    contador = contador + 1
-    tabs = "  "*contador
+#Clases para DECLARACION de variables
+class declare:
+    def __init__(self,declist,line,column):
+        self.symtable = SymTable.symtable()	 
+        self.line = line
+        self.column =  column 
+        while declist:
+            elem = declist.pop()
+            if isinstance(elem, dec):
+                while elem.l:
+                    e = elem.l.pop()
+	                if self.symtable.isMember(str(e)):
+                        global static_analysis
+                        str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
+                        str0 = str0 + "la variable " + '"'+ str(e) + '"' + " ya ha sido declarada"
+                        static_analysis = static_analysis + "\n" + str0
+                    self.symtable.insert(str(e),elem.type)
 
-    contador = contador - 1
-    return "Hola"
-
-#Clase para DECLARACION de variables por tipos
-class declareTipos:
-  def __init__(self,listaPorTipos):
-    self.listaPorTipos = listaPorTipos    
-  def __str__(self):
-    global contador
-    contador = contador + 1
-    tabs = "  "*contador
-
-    str_ = "DECLARE TIPOS\n + tabs"
-    for i in self.listaPorTipos:
-        str_ = str_ + str(i)
-    
-    contador = contador - 1
-    return str_
-
-      
-#Clase que representara una declaracion de variables
-#donde contendra en listaVariables todas las variables
-#declaradas y en otro atributo tendra el tipo de esas variables
-#declaradas
-class unaDeclaracion:
-  def __init__(self,listaVariables,tipo):
-    global error
-    self.listaVariables = listaVariables
-    self.tipo = tipo
-    self.tablaSimbolos = tablaSimbolos.SymTable()
-    for i in self.listaVariables.lista: 
-      retorno = self.tablaSimbolos.insert(i)
-      if retorno == 1:
-        error = retorno
-        print 'Error: Linea '+str(i.lineno)+', columna '+str(i.colno)+': Variable "'+i.id+'" declarada dos veces'
-  def __str__(self):
-    global contador
-    contador = contador + 1
-    tabs = "  "*contador    
-    str_ = tabs + "Variables: "
-    str_ += str(self.listaVariables)
-    str_ += "declaradas como " + self.tipo
-    contador = contador - 1
-    return str_
-
-#Clase que representa una lista de variables que se dan en una misma
-#linea de un declare
-class listaVariables:
-  def __init__(self,lista):
-    self.lista = lista
-  def __str__(self):
-    str_ = " "
-    for i in self.lista:
-      str_ += i.id +","    
-    contador = contador - 1                
-    return str_
+        stack.append(self.symtable.cloneSymtable())            
+    def __str__(self):
+        global cont
+        cont = cont + 1
+        tabs = "  "*cont
+        staux = self.symtable.get()
+        str_st = ""
+        for key, value in dict.items(staux):
+            str0 = "variable: " + key + " | "
+            str1 = "tipo: " + value + "\n"
+            str_st = tabs + str0 + str1 + str_st
+        str_st = tabs + "TABLA DE SIMBOLOS\n" + str_st
+        return str_st
+                        
+class dec:
+    def __init__(self,l,type):
+        self.l = l
+        self.type = type
+		
 
 
 
@@ -550,36 +518,31 @@ def main():
     # DECLARACION
     def p_declaracion(p):
         ''' declaracion : TkDeclare declist '''
-        p[0] = bloqueDeclaracion(p[2])
-        global listaTablas
-        listaTablas.append(p[0].tablaSimbolos)
+        p[0] = declare(p[2],p.lineno(1),funciones.find_column_parser(inputString,p.lexpos(1)))
 
     def p_declist(p):
         ''' declist : dec TkPuntoYComa declist 
                     | dec '''
-        if len(p)>=4:
-            p[0] = declareTipos(p[3].listaPorTipos)
-            p[0].listaPorTipos.insert(0,p[1])
-        else:
-            p[0]=declareTipos([p[1]])
+		if len(p) == 2:
+			p[0] = []
+			p[0].append(p[1])
+		else:
+			p[0] = p[3]
+			p[0].append(p[1])
 
     def p_dec(p):
         ''' dec : varlist TkType tipo '''
-        p[0] = unaDeclaracion(p[1],p[3])
-        for i in p[1].lista:
-            i.setType(p[3])
+		p[0] = dec(p[1],p[3])
 
     def p_varlist(p):
         ''' varlist : TkIdent TkComa varlist 
                     | TkIdent '''
-        insercion = tablaSimbolos.variable(p[1],'')
-        insercion.setLine(p.lineno(1))
-        insercion.setColumn(funciones.hallar_columna(p.slice[1].lexer.lexdata,p.slice[1]))
-        if(len(p)>=3):  
-            p[3].lista.insert(0,insercion)
-            p[0] = listaVariables( p[3].lista)
-        else:
-            p[0] = listaVariables([insercion])
+		if len(p) == 2:
+			p[0] = []
+			p[0].append(p[1])
+		else:
+			p[0] = p[3]
+			p[0].append(p[1])
 
     def p_tipo(p):
         ''' tipo : TkInteger
@@ -615,8 +578,10 @@ def main():
     arbol = parser.parse(codigo,debug=log)
 
     # Se imprime el árbol
-    print funciones.print_arbol(arbol)
-
+	if static_analysis == '':
+        print funciones.print_arbol(arbol)
+	else:
+		print static_analysis	
 
 if __name__ == "__main__":
     main()

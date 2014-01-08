@@ -1,0 +1,51 @@
+//Caso con errores: Declaraciones, tipos, for.
+program
+begin
+  declare 
+    a1, a2, a3 as int;
+    a4, a5 as bool;
+    a6 as range
+
+    a1 = a2+25;
+    a2 = a4+36;
+    a3 = 49;
+
+    a4 = true;
+    a5 = a7 and a4 or a8 or a6;
+
+    a6 = a1..a3;
+
+    for i in (a6+(1..10))<>(25..36) do
+      begin
+        declare
+          a1 as int;
+          a1 as bool
+
+        if a5 then
+          begin
+            declare
+              a2 as int;
+              a3 as range
+
+            a1 = (a2==length(a3))
+          end
+        else
+          write "Hola: ", a10;
+
+        i=a1+2*i
+      end;
+
+    begin
+      declare a1, a1 as int
+
+      read a1;
+      read a2;
+      read a7;
+
+      while a1>>a6 do
+        a6 = a4+a5-a1%(1..100)
+    end;
+
+    writeln "Soy una mala expresion: ", (1..20)-5<>15%3*(-20..20)
+
+end

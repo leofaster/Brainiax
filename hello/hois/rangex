@@ -1,0 +1,972 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
+# Se importa la libreria del lexer, parser y funciones adicionales
+import ply.lex as lex
+import ply.yacc as yacc
+import funciones
+import SymTable
+import sys
+cont = -1
+
+stack = []  #Pila de tabla de simbolos
+static_analysis = ""
+
+tkpline = 1
+
+# Función principal
+def main():
+        funciones.process_input()
+        fent = funciones.open_file(sys.argv[1])       
+        inputString = fent.read()       
+        listaTokens = []
+
+        #Palabras reservadas
+        reserved_keys = {
+                'program' : 'TkProgram',
+                'begin' : 'TkBegin',
+                'end' : 'TkEnd',
+                'declare' : 'TkDeclare',        
+                'as' : 'TkAs',
+                'read' : 'TkRead',
+                'int' : 'TkInt',
+                'bool' : 'TkBool',
+                'range' : 'TkRange',
+                'if' : 'TkIf',  
+                'then' : 'TkThen',
+                'else' : 'TkElse',
+                'while' : 'TkWhile',
+                'for' : 'TkFor',
+                'in' : 'TkIn',
+                'do' : 'TkDo',
+                'case' : 'TkCase',
+                'of' : 'TkOf',
+                'write' : 'TkWrite',
+                'writeln' : 'TkWriteln',
+                'length' : 'TkLength',
+                'rtoi' : 'TkRtoi',
+                'top' : 'TkTop',
+                'bottom' : 'TkBottom',
+                'and' : 'TkAnd',
+                'or'  : 'TkOr',
+                'true' : 'TkTrue',
+                'false' : 'TkFalse',
+                'not' : 'TkNot'
+        }
+
+        # Lista de Tokens
+        tokens = [
+                'TkId',
+                'TkNum',
+                'TkPlus',
+                'TkMinus',
+                'TkDivide',
+                'TkModule',
+                'TkEquiv',
+                'TkGEqua',
+                'TkBelong',
+                'TkUneq',
+                'TkLEqua',
+                'TkEqual',
+                'TkLess',
+                'TkGreat',
+                'TkMult',
+                'TkComma',
+                'TkRun',
+                'TkSemicolon',
+                'TkConstruct',
+                'TkString',
+                'TkInter',
+                'TkRPar',
+                'TkLPar'] + list(reserved_keys.values())        
+        t_ignore = ' \t'
+
+        # Funcion que reconoce un número
+        def t_TkNum(t):
+                r'\d+'
+
+                valido = funciones.num_valid(int(t.value))
+                if not valido:
+                        c = funciones.find_column(inputString,t)
+                        print "Error: numero de más de 32 bits en linea %s, columna %s." % (t.lineno,c)
+                        sys.exit(0)
+                t.value = int(t.value)
+                return t
+
+        # Función que reconoce una variable
+        def t_TkId(t):
+                r'[a-zA-Z_][a-zA-Z0-9_]*'
+                t.type = reserved_keys.get(t.value,'TkId')
+                return t
+                
+        def t_newline(t):
+                r'\n'
+                t.lexer.lineno += 1
+
+        # Funciones que reconocen operadores
+        t_ignore_COMMENT = r'//.*'
+        t_TkPlus = r'\+'
+        t_TkRun = r'->'
+        t_TkMinus = r'-'
+        t_TkDivide = r'/'
+        t_TkModule = r'%'
+        t_TkEquiv = r'=='
+        t_TkGEqua = r'>='
+        t_TkLEqua = r'<='
+        t_TkInter = r'<>'
+        t_TkUneq = r'/='
+        t_TkEqual = r'='
+        t_TkBelong = r'>>'
+        t_TkLess = r'<'
+        t_TkGreat = r'>'
+        t_TkMult = r'\*'
+        t_TkComma = r','
+        t_TkSemicolon = r';'
+        t_TkString = r'\"([^\\\n]|(\\.))*?\"'
+        t_TkConstruct = r'\.\.'
+        t_TkRPar = r'\)'
+        t_TkLPar = r'\('
+        
+        # Función de error
+        def t_error(t):
+                c = funciones.find_column(inputString,t)
+                print "Error: caracter inesperado \"%s\" en linea %s, columna %s." % (t.value[0],t.lineno,c)
+                t.lexer.skip(1)                
+                return t
+
+
+        ##########
+        # Clases 
+        ##########
+
+	
+        # Clase de un numero
+        class number:
+                def __init__(self,value,line,column):
+                        self.type = "number"
+                        self.value = value
+			self.line = line
+			self.column = column
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "CONSTANTE_ENT\n" + tabs +  "valor: " + str(self.value)
+                        cont = cont - 1
+                        return str_
+		def checktype(self):
+			return 'int'
+		def getLine(self):
+			return self.line
+		def getColumn(self):
+			return self.column
+		
+	class boolean:
+		def __init__(self,value,line,column):
+			self.type = "boolean"
+			self.value = value
+			self.line = line
+			self.column = column
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "CONSTANTE_ENT\n" + tabs +  "valor: " + str(self.value)
+                        cont = cont - 1
+                        return str_
+		def checktype(self):
+			return 'bool'
+		def getLine(self):
+			return self.line
+		def getColumn(self):
+			return self.column
+
+        # Clase de una variable                
+        class id:
+                def __init__(self,name,line,column):
+                        self.type = "variable"
+                        self.name = name
+			self.line = line  
+			self.column = column
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "VARIABLE \n" + tabs + "nombre: " + str(self.name)
+                        cont = cont - 1
+                        return str_
+		def checktype(self):
+			clone = list(stack)
+			result = 'error' 
+			while clone and result == 'error':
+				st = clone.pop()
+				if st.isMember(self.name):
+					if st.goesTo(self.name,'int'):
+						result = 'int'	
+					elif st.goesTo(self.name,'bool'):
+						result = 'bool'
+					elif st.goesTo(self.name,'range'):
+						result = 'range'
+			if result == 'error':
+				global static_analysis
+				str0 = "Error en Linea %s , Columna %s:" %(self.line,self.column) 
+				str0 = str0 + " no puede usar la variable" + '"' + self.name + '"' + ", pues no ha sido declarada" 
+				static_analysis = static_analysis + "\n" + str0
+			return result 
+		def getLine(self):
+			return self.line 
+		def getColumn(self):
+			return self.column
+
+        # Clase de una expresion unaria
+        class op_un:
+                def __init__(self,pre,e):                        
+                        self.pre = pre
+                        self.e = e
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "EXPRESION_UN\n" + tabs + "operador: " + str(self.pre) + "\n" + tabs +  "valor: "  + str(self.e)
+                        cont = cont - 1
+                        return str_
+
+        # Clase de una expresion binaria                        
+        class op_bin:
+                def __init__(self,left,right,op):
+                        self.left = left
+                        self.right = right
+                        self.op = op
+                        if op == '+':
+                                self.op = 'sumar'
+                        elif op == '-':
+                                self.op = 'restar'
+                        elif op == '*':
+                                self.op = 'multiplicar'
+                        elif op == '%':
+                                self.op = 'modulo'
+                        elif op == '..':
+                                self.op = 'construccion'
+                        elif op == '/':
+                                self.op = 'division'
+                        elif op == '>>':
+                                self.op = 'pertenece'
+                        elif op == '==':
+                                self.op = 'equivalencia'
+                        elif op == '/=':
+                                self.op = 'desigual'
+                        elif op == '<':
+                                self.op = 'menorque'
+                        elif op == '>':
+                                self.op = 'mayorque'
+                        elif op == '>=':
+                                self.op = 'mayorig'
+                        elif op == '<=':
+                                self.op = 'menorig'
+                        elif op == '<>':
+                                self.op = 'interseccion'
+                        elif op == 'or':
+                                self.op = 'or'
+                        elif op == 'and':
+                                self.op = 'and'
+
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = cont*"  "
+                        tabs_plus =  "  " + tabs
+                        str_ = "EXPRESION_BIN\n" + tabs  + "operador: " + str(self.op) + "\n"  + tabs + "operando izq: " + str(self.left) + "\n"  + tabs + "operando der: " + str(self.right)
+                        cont = cont - 1
+                        return str_
+
+		def checktype(self):
+			result1 = self.left.checktype() #se verifica que 
+			result2 = self.right.checktype()
+			result = "error"
+			global static_analysis
+			if (result1 == 'int') and (result2 == 'int'): 
+				if (self.op == 'sumar' or self.op == 'restar' or self.op == 'multiplicar'
+					or self.op == 'modulo' or self.op == 'division'):
+					result = 'int' 
+				elif (self.op == 'construccion'):
+					result = 'range'
+				elif (self.op == 'mayorque' or self.op == 'mayorig' or self.op == 'menorque'
+					or self.op == 'menorig' or self.op == 'equivalencia' or self.op == 'desigual'):
+					result = 'bool'
+				else:
+					str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
+					str0 = str0 + "Se intenta operacion " + self.op
+					str1 = " con expresiones del tipo entera" 
+					static_analysis = static_analysis + "\n" + str0 + str1
+			elif (result1 == 'range') and (result2 == 'range'):
+				if (self.op == 'sumar' or self.op == 'interseccion'):	
+					result = 'range'
+				elif (self.op == 'mayorque' or self.op == 'mayorig' or self.op == 'menorque'
+					or self.op == 'menorig' or self.op == 'equivalencia' or self.op == 'desigual'):
+					result = 'bool'
+				else:
+					str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
+					str0 = str0 + "Se intenta operacion " + self.op
+					str1 = " con expresiones del tipo range" 
+					static_analysis = static_analysis + "\n" + str0 + str1
+			elif (result1 == 'bool' and result2 == 'bool'):
+				if self.op == 'equivalencia' or self.op == 'desigual' or self.op == 'or' or self.op ==  'and':
+					result = 'bool'
+				else:
+					str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
+					str0 = str0 + "Se intenta operacion " + self.op
+
+					str1 = " con expresiones del tipo bool" 
+					static_analysis = static_analysis + "\n" + str0 + str1
+			elif (result1 == 'int' and result2 == 'range'):	
+				if self.op == 'multiplicar' or self.op == 'pertenece':	
+					result = 'bool'
+				else:
+					str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
+					str0 = str0 + "Se intenta operacion " + self.op
+					str1 = " con expresion izquierda del tipo entera y expresion derecha del tipo range" 
+					static_analysis = static_analysis + "\n" + str0 + str1
+			else:
+				if result1 != "error" and result2 != "error":	
+					str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
+					str0 = str0 + "Se intenta operacion " + self.op
+					str1 = " con expresion izquierda del tipo " + result1 + " y expresion derecha del tipo " + result2
+					static_analysis = static_analysis + "\n" + str0 + str1
+			return result 
+		
+		def getLine(self):
+			return self.left.getLine()
+		def getColumn(self):
+			return self.left.getColumn()
+				
+                        
+        # Clase para funciones embedidas
+        class func:
+                def __init__(self,name,arg,line,column):
+                        self.name = name
+                        self.arg = arg
+			self.line = line
+			self.column = column
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str1 = "FUNCION\n" + tabs + "nombre: " + str(self.name)
+                        str2 = "\n" + tabs + "argumento: " + str(self.arg)
+                        cont = cont - 1
+                        return str1 + str2
+		def checktype(self):
+			result = self.arg.checktype()
+			if result != 'range' and result != 'error':
+				str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column) 	
+				str0 = str0 + "se ha pasado una expresion del tipo " + result + " a la funcion " + '"' + self.name + '"' 
+				str0 = str0 + ". Debe pasarse expresion del tipo range"
+				global static_analysis
+				static_analysis = static_analysis + "\n" + str0
+				return 'error'
+			elif result == 'range':
+				return 'int'
+
+        # Clases para instrucciones
+        class inst_while:
+                def __init__(self,cond,inst):
+                        self.cond = cond
+                        self.inst = inst
+
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "ITERACION_INDET\n" + tabs + "condicion: " + str(self.cond) + "\n" + tabs + "instruccion: " + str(self.inst) 
+                        cont = cont - 1
+                        return str_
+		def checktype(self):
+			result = self.cond.checktype()
+			if result != 'bool' and result != "error":
+				global static_analysis
+				str0 = "Error en Linea %s, Columna %s: " % (self.cond.getLine(),self.cond.getColumn())
+				str0 = str0 + "Se esperaba expresion del tipo bool, no del tipo " + result 
+
+				static_analysis = static_analysis + "\n" + str0 
+                                                
+        class inst_for:
+                def __init__(self,var,rango,inst,line,column):
+                        self.var = var
+                        self.rango = rango
+                        self.inst = inst
+			self.line = line
+			self.column = column
+
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "ITERACION_DET\n" + tabs + "var: " + str(self.var) + "\n" + tabs + "rango: " + str(self.rango) + "\n" + tabs + "instruccion: " + str(self.inst)
+                        cont = cont - 1
+                        return str_
+		def checktype(self):
+			clone = list(stack)
+			while clone:
+				st = clone.pop()	
+				global static_analysis
+				if st.isMember(self.var):
+					str0 = "Error en Linea %s, Columna %s" %(self.line,self.column)
+					str0 = str0 + " variable de iteracion determinada " + self.var + " ya fue declarada"
+ 
+					static_analysis = static_analysis + "\n" + str0
+
+				result = self.rango.checktype()
+				if result != 'range' and result != 'error':
+					str0 = "Error en Linea %s, Columna %s: " %(self.rango.getLine(),self.rango.getColumn())
+					str0 = str0 + "se pasa expresion del tipo " + result + " y se requiere expresion del tipo rango"
+
+					static_analysis = static_analysis + "\n" + str0
+
+        class inst_if:
+                def __init__(self,cond,ver,fal):
+                        self.cond = cond
+                        self.ver = ver
+                        self.fal = fal
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+			straux = ""
+			if self.fal != None:
+				straux = tabs + "falso: " + str(self.fal)
+                        str_ = "CONDICIONAL\n" + tabs + "condicion: " + str(self.cond) + "\n" + tabs + "verdadero: " + str(self.ver) + "\n" + straux  
+                        cont = cont - 1
+                        return str_
+		def checktype(self):
+			result = self.cond.checktype()
+			if result != 'bool' and result != 'error':
+				global static_analysis
+				str0 = "Error en Linea %s, Columna %s: " % (self.cond.getLine(),self.cond.getColumn())
+				str0 = str0 + "Se esperaba expresion del tipo bool, no del tipo " + result 
+				static_analysis = static_analysis + "\n" + str0 
+
+        class inst_case:
+                def __init__(self,exp,clist):
+                        self.exp = exp
+                        self.clist = clist
+		def __str__(self):
+			global cont
+			str1 = ""
+			cont += 1
+			tabs = "  "*cont
+			str0 = "CASE\n" + tabs + "expresion : " + str(self.exp) + "\n"
+			while self.clist:
+				elem = self.clist.pop()
+				str1 = tabs + "caso: " + str(elem) + str1
+
+			cont -= 1
+			return str0 + str1 
+
+		def checktype(self):
+			result = self.exp.checktype()
+			if resutl != 'int':
+				str0 = "Error en Linea %s, Columna %s: " %(self.exp.getLine(),self.exp.getColumn())
+				str0 = str0 + "se esperaba expresion del tipo int, no del tipo " + result
+				global static_analysis
+				static_analysis = static_analysis + "\n" + str0 
+
+			#Chequeo de tipos de la lista 
+			lcase = list(clist)
+			while lcase:
+				e = lcase.pop()
+				e.checktype()
+
+        class case_aux:
+                def __init__(self,exp,inst):
+                        self.exp = exp 
+                        self.inst = inst
+		def __str__(self):
+			global cont
+			cont += 1
+			tabs = cont*"  "
+			str0 = tabs + "ran: " + str(self.exp) + "\n"
+			str1 = tabs + "inst: " + str(self.inst) + "\n"
+			cont -= 1
+			return "\n" + str0 + str1
+		def checktype(self):
+			result = self.exp.checktype()	
+			if result != 'range':
+				global static_analysis
+				str0 = "Error en Linea %s, Columna %s: " %(self.exp.getLine(),self.exp.getColumn())
+				str0 = str0 + "Se esperaba que la expresion fuera del tipo range, y no del tipo " + result
+				static_analysis = static_analysis + "\n" + str0
+			
+
+        class inst_assig:
+                def __init__(self,var,val,line,column):
+                        self.var = var
+                        self.val = val
+			self.line = line
+			self.column = column
+                def __str__(self):
+                        
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "ASIGNACION\n" + tabs + "var: " + str(self.var) + "\n" + tabs + "val: " + str(self.val)
+                        cont = cont - 1
+
+                        return str_
+
+		def checktype(self):
+			clone = list(stack)
+			result1 = 'error'
+			while clone and result1 == 'error':
+				st = clone.pop()
+				if st.isMember(self.var):
+					if st.goesTo(self.var,'int'):
+						result1 = 'int'	
+					elif st.goesTo(self.var,'bool'):
+						result1 = 'bool'
+					elif st.goesTo(self.var,'range'):
+						result1 = 'range'
+					
+			global static_analysis
+			if result1 == 'error':
+				str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
+				str0 = str0 + "no puede usar la variable " + self.var + ", pues no ha sido declarada"
+				static_analysis = static_analysis + "\n" + str0
+			else:
+				result2 = self.val.checktype()
+				if result1 != result2 and result2 != "error":
+					str0 = "Error en Linea %s, Columna %s " % (self.val.getLine(),self.val.getColumn())
+					str1 = ": Error de tipos en asignacion a la variable " + self.var
+					static_analysis = static_analysis + "\n" + str0 + str1
+				
+        class inst_read:
+                def __init__(self,var,line,column):
+                        self.var = var
+			self.line = line
+			self.column = column
+                def __str__(self):
+                        global cont
+                        
+                        cont = cont + 1
+
+                        tabs = "  "*cont
+                        str_ = "READ\n" + tabs + "variable: " +  str(self.var)
+                        cont = cont - 1
+
+                        return str_
+		def checktype(self):
+			clone = list(stack)	
+			declared = False
+			while clone and not declared:
+				st = clone.pop()
+				if st.isMember(self.var):
+					declared = True
+			if not declared:
+				global static_analysis
+				str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
+				str0 = str0 + "no puede usar la variable " + '"' + self.var + '"' + ", pues no ha sido declarada"
+				static_analysis = static_analysis + "\n" + str0
+		
+
+	class inst_write:
+		def __init__(self,type):
+			self.type = type
+			self.args = []
+		def __str__(self):
+			global cont
+			cont += 1
+			tabs = cont*"  "
+	
+			strw = "WRITE"
+			if self.type == 'writeln':
+				strw = "WRITELN"
+			str0 = strw + "\n"
+			str1 = ""
+			while len(self.args) > 0:
+				strs = ""
+				elem = self.args.pop()
+				if not isinstance(elem, op_bin) and not isinstance(elem, op_un):
+					#es un string
+					strs = "CADENA\n" + tabs + "  " + "valor: "
+				str1 = tabs + "elemento: " + strs + str(elem) + "\n" + str1
+			cont -= 1
+			return str0 + str1
+		def checktype(self):
+			clone = list(self.args)			
+			while clone:
+				elem = clone.pop()	
+				if not isinstance(elem,str):
+					elem.checktype()
+                        
+        # Clase para una lista de instrucciones
+        class inst_list:
+                def __init__(self):
+                        self.l = []
+                def __len__(self):
+                        return len(self.l)
+                def __pop__(self):
+                        return self.l.pop()
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        
+                        self.l.reverse()
+                        str_ = ""
+                        tabs = cont*"  "
+                        while self.l:
+                                elemento =  self.l.pop()
+                                str_ = str_ + tabs +   str(elemento)
+                                if len(self.l) != 0:
+                                        str_ = str_ +  "\n" + tabs + "SEPARADOR\n"
+                        cont = cont - 1
+                        return str_
+
+                        
+                def print_(self,cont):
+                        self.l.reverse()
+                        while self.l:
+                                elemento =  self.l.pop()
+                                elemento.print_(cont,0)
+                                tabs = cont*"  "
+                                if len(self.l) != 0:
+                                        str_ = str_ + "SEPARADOR"
+                        return str_
+
+        # Clase para un bloque de instrucciones
+        class inst_block:
+                def __init__(self,l,st):
+                        self.l = l
+			self.declare = st #symtable local al bloque 
+                def __len__(self):
+                        return len(self.l)
+                def __str__(self):
+                        global cont
+                        cont = cont + 1
+                        tabs = "  "*cont
+                        str_ = "BLOQUE\n"
+			strdec = ""
+			if self.declare != None:
+				strdec = str(self.declare)	
+                        str_ = str_ + strdec + str(self.l)
+                        cont = cont - 1
+                        return str_
+	class declare:
+		def __init__(self,declist,line,column):
+			self.symtable = SymTable.symtable()	 
+			self.line = line
+			self.column =  column 
+			while declist:
+				elem = declist.pop()
+				if isinstance(elem, dec):
+					while elem.l:
+						e = elem.l.pop()
+						if self.symtable.isMember(str(e)):
+							global static_analysis
+							str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
+							str0 = str0 + "la variable " + '"'+ str(e) + '"' + " ya ha sido declarada"
+							static_analysis = static_analysis + "\n" + str0
+						self.symtable.insert(str(e),elem.type)
+
+			stack.append(self.symtable.cloneSymtable())
+			
+			
+                        
+		def __str__(self):
+			global cont
+			cont = cont + 1
+			tabs = "  "*cont
+			staux = self.symtable.get()
+			str_st = ""
+			for key, value in dict.items(staux):
+				str0 = "variable: " + key + " | "
+				str1 = "tipo: " + value + "\n"
+				str_st = tabs + str0 + str1 + str_st
+			str_st = tabs + "TABLA DE SIMBOLOS\n" + str_st
+			return str_st
+                        
+	class dec:
+		def __init__(self,l,type):
+			self.l = l
+			self.type = type
+		
+        # Definicion del símbolo inicial
+        start = 'program'
+
+        # Se define la precedencia de los operadores
+        precedence = (
+                ('left','TkOr'),
+                ('left','TkAnd'),
+                ('left','TkBelong'),
+                ('left','TkEquiv','TkUneq'),
+                ('left','TkLess','TkGreat','TkGEqua','TkLEqua'),
+                ('left','TkInter'),
+                ('left','TkPlus','TkMinus'),
+                ('left','TkMult','TkDivide','TkModule'),
+                ('left','TkConstruct'),
+                ('right','uminus','unot'),                
+        )
+
+        # Funciones de manejo de gramática y construccion de arbol
+        def p_program(p):
+		''' program : TkProgram instruction '''
+                p[0] = p[2]
+		
+
+        def p_term_num(p):
+                ''' term : TkNum '''
+                p[0] = number(p[1],p.lineno(1),funciones.find_column_parser(inputString,p.lexpos(1)))
+                str_ = ""
+                tabs = (cont+1)*"  "
+
+	def p_term_bool(p):
+		''' term : TkTrue 
+			 | TkFalse'''
+		p[0] = boolean(p[1],p.lineno(1),funciones.find_column_parser(inputString,p.lexpos(1)))
+		
+
+        def p_term_id(p):
+                ''' term : TkId '''
+                p[0] = id(p[1],p.lineno(1),funciones.find_column_parser(inputString,p.lexpos(1)))
+                str_ = ""
+                tabs = (cont+1)*"  "
+
+        def p_exp_un(p):
+                ''' exp_un : TkMinus exp %prec uminus
+                           | TkNot exp %prec unot '''
+                p[0] = op_un(p[1],p[2])
+
+        def p_func(p):
+                ''' exp : TkTop TkLPar exp TkRPar
+                        | TkRtoi TkLPar exp TkRPar
+                        | TkBottom TkLPar exp TkRPar 
+			| TkLength TkLPar exp TkRPar '''
+                p[0] = func(p[1],p[3], p.lineno(1),funciones.find_column_parser(inputString,p.lexpos(1)))
+                
+        def p_exp(p):
+                ''' exp : term
+                        | exp_un
+                        | TkLPar exp TkRPar
+                        | exp TkPlus exp 
+                        | exp TkMult exp
+                        | exp TkModule exp
+                        | exp TkConstruct exp
+                        | exp TkDivide exp
+                        | exp TkMinus exp
+                        | exp TkBelong exp
+                        | exp TkEquiv exp
+                        | exp TkUneq exp
+                        | exp TkLess exp
+                        | exp TkGreat exp
+                        | exp TkGEqua exp
+                        | exp TkLEqua exp
+                        | exp TkInter exp
+                        | exp TkOr exp
+                        | exp TkAnd exp''' 
+
+                if len(p) == 2:
+                        p[0] = p[1]
+                elif len(p) == 4 and p[1] != '(':
+                        p[0] = op_bin(p[1],p[3],p[2])
+		else:
+			p[0] = p[2]
+                
+                
+        def p_instruction_assignment(p):
+		''' instruction : TkId TkEqual exp '''
+                p[0] = inst_assig(p[1],p[3],p.lineno(1),funciones.find_column_parser(inputString,p.lexpos(1)))
+		p[0].checktype()
+
+
+	def p_instruction_read(p):
+		''' instruction : TkRead TkId'''
+                p[0] = inst_read(p[2],p.lineno(2),funciones.find_column_parser(inputString,p.lexpos(1)))
+		p[0].checktype()
+                
+        def p_instruction_write(p):
+		''' instruction : TkWrite wrargs
+			        | TkWriteln wrargs '''
+
+		p[0] = inst_write(p[1])
+		p[0].args = p[2]
+		p[0].checktype()
+
+
+	def p_wrargs(p):
+		'''wrargs  : wrargs TkComma TkString
+			   | wrargs TkComma exp
+			   | TkString
+			   | exp'''
+
+		if len(p) == 2:
+			p[0] = []
+			p[0].append(p[1])
+		elif len(p) == 4:
+			p[0] = p[1]
+			p[0].append(p[3])
+
+
+        # Gramática del while
+	def p_instruction_while(p):
+		''' instruction : TkWhile exp TkDo instruction '''
+                p[0] = inst_while(p[2],p[4])
+		p[0].checktype()
+
+        # Gramática del for
+        def p_instruction_for(p):
+		''' instruction : TkFor TkId TkIn exp TkDo instruction '''
+                p[0] = inst_for(p[2],p[4],p[6],p.lineno(2),p.lexpos(2))
+		p[0].checktype()
+
+        # Gramáticas del case
+	def p_instruction_case(p):
+		''' instruction : TkCase exp TkOf caseslist TkEnd '''
+                p[0] = inst_case(p[2],p[4])
+
+        def p_caseslist(p):
+		'''caseslist : caseslist case TkSemicolon
+			     | case TkSemicolon'''
+                if len(p) == 3:
+			p[0] = []
+			p[0].append(p[1])
+                elif len(p) == 4:
+                        p[0] = p[1]
+                        p[0].append(p[2])
+
+
+                
+	def p_case(p):
+		'case : exp TkRun instruction'
+                p[0] = case_aux(p[1],p[3])
+
+        #Gramáticas del If
+
+        def p_instruction_if(p):
+		''' instruction : TkIf exp TkThen instruction
+			        | TkIf exp TkThen instruction TkElse instruction '''
+                if len(p) == 5:
+                        p[0] = inst_if(p[2],p[4],None)
+                else:
+                        p[0] = inst_if(p[2],p[4],p[6])
+		p[0].checktype()
+
+        # Gramatica del bloque de instrucciones
+	def p_instruction_block(p):
+		''' instruction : TkBegin declare instlist TkEnd
+			        | TkBegin instlist TkEnd'''
+                if len(p) == 4:
+                        p[0] = inst_block(p[2],None)
+                elif len(p) == 5:
+                        p[0] = inst_block(p[3],p[2])
+			stack.pop()
+		
+        
+        # Gramaticas de la lista de instrucciones
+        def p_instlist(p):
+		'''  instlist : instlist semicoloninst 
+			      | instruction '''
+                if len(p) == 2:
+                        p[0] = inst_list()
+                        p[0].l.append(p[1])
+                elif len(p) == 3:
+                        p[0] = p[1]
+                        p[0].l.append(p[2])
+                
+        def p_commainst(p):
+		''' semicoloninst : TkSemicolon instruction '''
+                p[0] = p[2]
+
+        
+        # Gramatica de las declaraciones
+        def p_declare(p):
+                ''' declare : TkDeclare declist '''
+		p[0] = declare(p[2],p.lineno(1),funciones.find_column_parser(inputString,p.lexpos(1)))
+		
+		
+
+	def p_declist(p):
+		''' declist : dec TkSemicolon declist 
+			    | dec '''
+		if len(p) == 2:
+			p[0] = []
+			p[0].append(p[1])
+		else:
+			p[0] = p[3]
+			p[0].append(p[1])
+
+        def p_dec(p):
+		''' dec : varlist TkAs type '''
+		p[0] = dec(p[1],p[3])
+
+        def p_varlist(p):
+		'''varlist : TkId TkComma varlist 
+			   | TkId '''
+		if len(p) == 2:
+			p[0] = []
+			p[0].append(p[1])
+		else:
+			p[0] = p[3]
+			p[0].append(p[1])
+
+        def p_type_int(p):
+		'type : TkInt'
+		p[0] = p[1]
+
+	def p_type_bool(p):
+		'type : TkBool'
+		p[0] = p[1]
+
+	def p_type_range(p):
+		'type : TkRange'
+		p[0] = p[1]
+                
+        # Funcion de error del parser
+        def p_error(p):
+                c = funciones.find_column(inputString,p)
+                print "Error de sintaxis en linea %s, columna %s: token \'%s\' inesperado." % (p.lineno,c,p.value)
+                sys.exit(0)
+
+        # Se construye la funcion de lexer
+        lexer = lex.lex()
+        lexer.input(inputString)
+
+        errors = False   # Variable booleana que controla la ocurrencia de un error
+        while True:
+                tok  = lexer.token()
+                if not tok: break
+                if tok.type == 'error':
+                        errors = True
+                        continue
+
+
+        # Se construye la funcion del parser
+        parser = yacc.yacc()
+
+        ####################
+        # PARTE DEL LOGGER #
+        ####################
+        
+        # Set up a logging object
+        import logging
+        logging.basicConfig(
+                    level = logging.DEBUG,
+                    filename = "parselog.txt",
+                    filemode = "w",
+                    format = "%(filename)10s:%(lineno)4d:%(message)s"
+        )
+        log = logging.getLogger()
+        ########################
+        # FIN PARTE DEL LOGGER #
+        ########################
+
+
+        # Se construye el árbol.
+        arbol = parser.parse(inputString,debug=log)
+
+        # Se imprime el árbol.
+	if static_analysis == '':
+        	print funciones.print_arbol(arbol)
+	else:
+		print static_analysis	
+
+
+if __name__ == "__main__":
+        main()       # Se llama a la función main

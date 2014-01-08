@@ -1,0 +1,65 @@
+//Caso con errores: Errores de tipo y modificacion dentro de for
+program
+begin
+  declare 
+    a1, a2 as int;
+    a3, a4 as bool;
+    a5, a6 as range
+
+  a1 = 42;
+  a2 = a1*a1+a1%a1;
+
+  begin
+    declare a1 as int
+
+    a1 = a2;
+    a2 = a1+a3;
+    a5 = a1..50;
+
+    if a1>>a4 then
+      writeln "Aqui hay algo mal: ", rtoi(a2), length(a1)
+    else
+      begin
+        declare
+          a1 as bool;
+          a2 as range
+
+        if not a1 then
+          begin
+            declare a3 as range
+
+            a3 = 7
+          end
+        else
+          write a1..77
+      end;
+
+    while a2 do
+      begin
+        declare a1, a2, a3 as int
+
+        a3 = a1 and a2 or not a3
+      end;
+
+    for i in a5 do
+      begin
+        declare j as int
+
+        writeln i;
+        a1 = a2+2*i;
+
+        for j in a1 do
+          begin
+            declare a1 as int
+
+            a1 = a2*j;
+            writeln a1;
+            i = 2*j;
+            j = i/2
+          end;
+
+        writeln a1;
+        i = (1..10)*5
+      end
+  end
+end
