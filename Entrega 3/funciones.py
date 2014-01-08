@@ -21,3 +21,11 @@ def hallar_columna(input, t):
             return 1
         column = (t.lexpos - inicio)
         return column
+def find_column_parser(input,lexpos):
+        aux = input.rfind('\n',0,lexpos)
+        # Si es el primer token de la primera línea, su posición es 1
+        if aux < 0 and lexpos == 0:         
+                aux = 0
+                return 1
+        column = (lexpos - aux)
+        return column

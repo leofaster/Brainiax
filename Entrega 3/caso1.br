@@ -1,6 +1,6 @@
-declare x, y :: integer; t :: tape execute 
+declare x, y :: integer; c :: tape execute 
     x := 3 ;
-    y := 15  ;
+    y := true  ;
    for y from 1 to x do
         t := [y] ;
         {++++++++++} at t;
