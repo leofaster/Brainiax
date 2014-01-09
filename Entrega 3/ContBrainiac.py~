@@ -505,6 +505,7 @@ class declare:
         self.column =  column 
         while declist:
             elem = declist.pop()
+            print len(declist)
             if isinstance(elem, dec):
                 while elem.l:
                     e = elem.l.pop()
