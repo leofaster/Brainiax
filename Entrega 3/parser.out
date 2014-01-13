@@ -6,22 +6,22 @@ Rule 0     S' -> programa
 Rule 1     programa -> declaracion TkExecute instlist TkDone
 Rule 2     programa -> TkExecute instlist TkDone
 Rule 3     term -> TkNum
-Rule 4     term -> TkIdent
-Rule 5     exp -> TkResta exp
-Rule 6     exp -> TkNegacion exp
-Rule 7     exp -> TkInspeccion exp
-Rule 8     exp -> term
-Rule 9     exp -> exp_un
-Rule 10    exp -> TkParAbre exp TkParCierra
-Rule 11    exp -> TkCorcheteAbre exp TkCorcheteCierra
-Rule 12    exp -> TkLlaveAbre exp TkLlaveCierra
-Rule 13    exp -> exp TkMas exp
-Rule 14    exp -> exp TkMult exp
-Rule 15    exp -> exp TkMod exp
-Rule 16    exp -> exp TkDiv exp
-Rule 17    exp -> exp TkResta exp
-Rule 18    exp -> TkTrue
-Rule 19    exp -> TkFalse
+Rule 4     term -> TkTrue
+Rule 5     term -> TkFalse
+Rule 6     term -> TkIdent
+Rule 7     exp_un -> TkResta exp
+Rule 8     exp_un -> TkNegacion exp
+Rule 9     exp_un -> TkInspeccion exp
+Rule 10    exp -> term
+Rule 11    exp -> exp_un
+Rule 12    exp -> TkParAbre exp TkParCierra
+Rule 13    exp -> TkCorcheteAbre exp TkCorcheteCierra
+Rule 14    exp -> TkLlaveAbre exp TkLlaveCierra
+Rule 15    exp -> exp TkMas exp
+Rule 16    exp -> exp TkMult exp
+Rule 17    exp -> exp TkMod exp
+Rule 18    exp -> exp TkDiv exp
+Rule 19    exp -> exp TkResta exp
 Rule 20    exp -> exp TkIgual exp
 Rule 21    exp -> exp TkDesigual exp
 Rule 22    exp -> exp TkMenor exp
@@ -72,45 +72,45 @@ TkBoolean            : 59
 TkComa               : 48 56
 TkConcat             : 28
 TkConjuncion         : 27
-TkCorcheteAbre       : 11 39
-TkCorcheteCierra     : 11 39
+TkCorcheteAbre       : 13 39
+TkCorcheteCierra     : 13 39
 TkDeclare            : 52
 TkDesigual           : 21
 TkDisyuncion         : 26
-TkDiv                : 16
+TkDiv                : 18
 TkDo                 : 32 33
 TkDone               : 1 2 32 33 34 35 36 37
 TkElse               : 35
 TkExecute            : 1 2 36 37
-TkFalse              : 19
+TkFalse              : 5
 TkFor                : 33
 TkFrom               : 33
-TkIdent              : 4 29 33 40 56 57
+TkIdent              : 6 29 33 40 56 57
 TkIf                 : 34 35
 TkIgual              : 20
-TkInspeccion         : 7
+TkInspeccion         : 9
 TkInteger            : 58
-TkLlaveAbre          : 12 38
-TkLlaveCierra        : 12 38
-TkMas                : 13 46
+TkLlaveAbre          : 14 38
+TkLlaveCierra        : 14 38
+TkMas                : 15 46
 TkMayor              : 23 44
 TkMayorIgual         : 25
 TkMenor              : 22 45
 TkMenorIgual         : 24
-TkMod                : 15
-TkMult               : 14
-TkNegacion           : 6
+TkMod                : 17
+TkMult               : 16
+TkNegacion           : 8
 TkNum                : 3
-TkParAbre            : 10
-TkParCierra          : 10
+TkParAbre            : 12
+TkParCierra          : 12
 TkPunto              : 43
 TkPuntoYComa         : 51 53
 TkRead               : 30
-TkResta              : 5 17 47
+TkResta              : 7 19 47
 TkTape               : 60
 TkThen               : 34 35
 TkTo                 : 33
-TkTrue               : 18
+TkTrue               : 4
 TkType               : 55
 TkWhile              : 32
 TkWrite              : 31
@@ -121,8 +121,8 @@ Nonterminals, with rules where they appear
 dec                  : 53 54
 declaracion          : 1 36
 declist              : 52 53
-exp                  : 5 6 7 10 11 12 13 13 14 14 15 15 16 16 17 17 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 30 31 32 33 33 34 35 39
-exp_un               : 9
+exp                  : 7 8 9 12 13 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 30 31 32 33 33 34 35 39
+exp_un               : 11
 ident_tape           : 38
 instlist             : 1 2 32 33 34 35 35 36 37 49
 instruccion          : 50 51
@@ -130,7 +130,3747 @@ lista_tape           : 38 41
 programa             : 0
 semicoloninst        : 49
 simb_tape            : 41 42
-term                 : 8
+term                 : 10
 tipo                 : 55
 varlist              : 55 56
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . declaracion TkExecute instlist TkDone
+    (2) programa -> . TkExecute instlist TkDone
+    (52) declaracion -> . TkDeclare declist
+
+    TkExecute       shift and go to state 2
+    TkDeclare       shift and go to state 4
+
+    programa                       shift and go to state 3
+    declaracion                    shift and go to state 1
+
+state 1
+
+    (1) programa -> declaracion . TkExecute instlist TkDone
+
+    TkExecute       shift and go to state 5
+
+
+state 2
+
+    (2) programa -> TkExecute . instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 12
+    declaracion                    shift and go to state 16
+
+state 3
+
+    (0) S' -> programa .
+
+
+
+state 4
+
+    (52) declaracion -> TkDeclare . declist
+    (53) declist -> . dec TkPuntoYComa declist
+    (54) declist -> . dec
+    (55) dec -> . varlist TkType tipo
+    (56) varlist -> . TkIdent TkComa varlist
+    (57) varlist -> . TkIdent
+
+    TkIdent         shift and go to state 19
+
+    varlist                        shift and go to state 18
+    dec                            shift and go to state 20
+    declist                        shift and go to state 17
+
+state 5
+
+    (1) programa -> declaracion TkExecute . instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 21
+    declaracion                    shift and go to state 16
+
+state 6
+
+    (34) instruccion -> TkIf . exp TkThen instlist TkDone
+    (35) instruccion -> TkIf . exp TkThen instlist TkElse instlist TkDone
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 32
+    exp_un                         shift and go to state 29
+
+state 7
+
+    (30) instruccion -> TkRead . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 35
+    exp_un                         shift and go to state 29
+
+state 8
+
+    (29) instruccion -> TkIdent . TkAsignacion exp
+
+    TkAsignacion    shift and go to state 36
+
+
+state 9
+
+    (32) instruccion -> TkWhile . exp TkDo instlist TkDone
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 37
+    exp_un                         shift and go to state 29
+
+state 10
+
+    (33) instruccion -> TkFor . TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+
+    TkIdent         shift and go to state 38
+
+
+state 11
+
+    (50) instlist -> instruccion .
+
+    TkDone          reduce using rule 50 (instlist -> instruccion .)
+    TkPuntoYComa    reduce using rule 50 (instlist -> instruccion .)
+    TkElse          reduce using rule 50 (instlist -> instruccion .)
+
+
+state 12
+
+    (2) programa -> TkExecute instlist . TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 41
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 13
+
+    (37) instruccion -> TkExecute . instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 42
+    declaracion                    shift and go to state 16
+
+state 14
+
+    (38) instruccion -> TkLlaveAbre . lista_tape TkLlaveCierra TkAt ident_tape
+    (41) lista_tape -> . lista_tape simb_tape
+    (42) lista_tape -> . simb_tape
+    (43) simb_tape -> . TkPunto
+    (44) simb_tape -> . TkMayor
+    (45) simb_tape -> . TkMenor
+    (46) simb_tape -> . TkMas
+    (47) simb_tape -> . TkResta
+    (48) simb_tape -> . TkComa
+
+    TkPunto         shift and go to state 44
+    TkMayor         shift and go to state 46
+    TkMenor         shift and go to state 47
+    TkMas           shift and go to state 49
+    TkResta         shift and go to state 43
+    TkComa          shift and go to state 45
+
+    simb_tape                      shift and go to state 48
+    lista_tape                     shift and go to state 50
+
+state 15
+
+    (31) instruccion -> TkWrite . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 51
+    exp_un                         shift and go to state 29
+
+state 16
+
+    (36) instruccion -> declaracion . TkExecute instlist TkDone
+
+    TkExecute       shift and go to state 52
+
+
+state 17
+
+    (52) declaracion -> TkDeclare declist .
+
+    TkExecute       reduce using rule 52 (declaracion -> TkDeclare declist .)
+
+
+state 18
+
+    (55) dec -> varlist . TkType tipo
+
+    TkType          shift and go to state 53
+
+
+state 19
+
+    (56) varlist -> TkIdent . TkComa varlist
+    (57) varlist -> TkIdent .
+
+    TkComa          shift and go to state 54
+    TkType          reduce using rule 57 (varlist -> TkIdent .)
+
+
+state 20
+
+    (53) declist -> dec . TkPuntoYComa declist
+    (54) declist -> dec .
+
+    TkPuntoYComa    shift and go to state 55
+    TkExecute       reduce using rule 54 (declist -> dec .)
+
+
+state 21
+
+    (1) programa -> declaracion TkExecute instlist . TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 56
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 22
+
+    (7) exp_un -> TkResta . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 57
+    exp_un                         shift and go to state 29
+
+state 23
+
+    (4) term -> TkTrue .
+
+    TkMas           reduce using rule 4 (term -> TkTrue .)
+    TkMult          reduce using rule 4 (term -> TkTrue .)
+    TkMod           reduce using rule 4 (term -> TkTrue .)
+    TkDiv           reduce using rule 4 (term -> TkTrue .)
+    TkResta         reduce using rule 4 (term -> TkTrue .)
+    TkIgual         reduce using rule 4 (term -> TkTrue .)
+    TkDesigual      reduce using rule 4 (term -> TkTrue .)
+    TkMenor         reduce using rule 4 (term -> TkTrue .)
+    TkMayor         reduce using rule 4 (term -> TkTrue .)
+    TkMenorIgual    reduce using rule 4 (term -> TkTrue .)
+    TkMayorIgual    reduce using rule 4 (term -> TkTrue .)
+    TkDisyuncion    reduce using rule 4 (term -> TkTrue .)
+    TkConjuncion    reduce using rule 4 (term -> TkTrue .)
+    TkConcat        reduce using rule 4 (term -> TkTrue .)
+    TkThen          reduce using rule 4 (term -> TkTrue .)
+    TkDone          reduce using rule 4 (term -> TkTrue .)
+    TkPuntoYComa    reduce using rule 4 (term -> TkTrue .)
+    TkElse          reduce using rule 4 (term -> TkTrue .)
+    TkDo            reduce using rule 4 (term -> TkTrue .)
+    TkParCierra     reduce using rule 4 (term -> TkTrue .)
+    TkLlaveCierra   reduce using rule 4 (term -> TkTrue .)
+    TkCorcheteCierra reduce using rule 4 (term -> TkTrue .)
+    TkTo            reduce using rule 4 (term -> TkTrue .)
+
+
+state 24
+
+    (8) exp_un -> TkNegacion . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 58
+    exp_un                         shift and go to state 29
+
+state 25
+
+    (5) term -> TkFalse .
+
+    TkMas           reduce using rule 5 (term -> TkFalse .)
+    TkMult          reduce using rule 5 (term -> TkFalse .)
+    TkMod           reduce using rule 5 (term -> TkFalse .)
+    TkDiv           reduce using rule 5 (term -> TkFalse .)
+    TkResta         reduce using rule 5 (term -> TkFalse .)
+    TkIgual         reduce using rule 5 (term -> TkFalse .)
+    TkDesigual      reduce using rule 5 (term -> TkFalse .)
+    TkMenor         reduce using rule 5 (term -> TkFalse .)
+    TkMayor         reduce using rule 5 (term -> TkFalse .)
+    TkMenorIgual    reduce using rule 5 (term -> TkFalse .)
+    TkMayorIgual    reduce using rule 5 (term -> TkFalse .)
+    TkDisyuncion    reduce using rule 5 (term -> TkFalse .)
+    TkConjuncion    reduce using rule 5 (term -> TkFalse .)
+    TkConcat        reduce using rule 5 (term -> TkFalse .)
+    TkThen          reduce using rule 5 (term -> TkFalse .)
+    TkDone          reduce using rule 5 (term -> TkFalse .)
+    TkPuntoYComa    reduce using rule 5 (term -> TkFalse .)
+    TkElse          reduce using rule 5 (term -> TkFalse .)
+    TkDo            reduce using rule 5 (term -> TkFalse .)
+    TkParCierra     reduce using rule 5 (term -> TkFalse .)
+    TkLlaveCierra   reduce using rule 5 (term -> TkFalse .)
+    TkCorcheteCierra reduce using rule 5 (term -> TkFalse .)
+    TkTo            reduce using rule 5 (term -> TkFalse .)
+
+
+state 26
+
+    (3) term -> TkNum .
+
+    TkMas           reduce using rule 3 (term -> TkNum .)
+    TkMult          reduce using rule 3 (term -> TkNum .)
+    TkMod           reduce using rule 3 (term -> TkNum .)
+    TkDiv           reduce using rule 3 (term -> TkNum .)
+    TkResta         reduce using rule 3 (term -> TkNum .)
+    TkIgual         reduce using rule 3 (term -> TkNum .)
+    TkDesigual      reduce using rule 3 (term -> TkNum .)
+    TkMenor         reduce using rule 3 (term -> TkNum .)
+    TkMayor         reduce using rule 3 (term -> TkNum .)
+    TkMenorIgual    reduce using rule 3 (term -> TkNum .)
+    TkMayorIgual    reduce using rule 3 (term -> TkNum .)
+    TkDisyuncion    reduce using rule 3 (term -> TkNum .)
+    TkConjuncion    reduce using rule 3 (term -> TkNum .)
+    TkConcat        reduce using rule 3 (term -> TkNum .)
+    TkThen          reduce using rule 3 (term -> TkNum .)
+    TkDone          reduce using rule 3 (term -> TkNum .)
+    TkPuntoYComa    reduce using rule 3 (term -> TkNum .)
+    TkElse          reduce using rule 3 (term -> TkNum .)
+    TkDo            reduce using rule 3 (term -> TkNum .)
+    TkParCierra     reduce using rule 3 (term -> TkNum .)
+    TkLlaveCierra   reduce using rule 3 (term -> TkNum .)
+    TkCorcheteCierra reduce using rule 3 (term -> TkNum .)
+    TkTo            reduce using rule 3 (term -> TkNum .)
+
+
+state 27
+
+    (12) exp -> TkParAbre . exp TkParCierra
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 59
+    exp_un                         shift and go to state 29
+
+state 28
+
+    (6) term -> TkIdent .
+
+    TkMas           reduce using rule 6 (term -> TkIdent .)
+    TkMult          reduce using rule 6 (term -> TkIdent .)
+    TkMod           reduce using rule 6 (term -> TkIdent .)
+    TkDiv           reduce using rule 6 (term -> TkIdent .)
+    TkResta         reduce using rule 6 (term -> TkIdent .)
+    TkIgual         reduce using rule 6 (term -> TkIdent .)
+    TkDesigual      reduce using rule 6 (term -> TkIdent .)
+    TkMenor         reduce using rule 6 (term -> TkIdent .)
+    TkMayor         reduce using rule 6 (term -> TkIdent .)
+    TkMenorIgual    reduce using rule 6 (term -> TkIdent .)
+    TkMayorIgual    reduce using rule 6 (term -> TkIdent .)
+    TkDisyuncion    reduce using rule 6 (term -> TkIdent .)
+    TkConjuncion    reduce using rule 6 (term -> TkIdent .)
+    TkConcat        reduce using rule 6 (term -> TkIdent .)
+    TkThen          reduce using rule 6 (term -> TkIdent .)
+    TkDone          reduce using rule 6 (term -> TkIdent .)
+    TkPuntoYComa    reduce using rule 6 (term -> TkIdent .)
+    TkElse          reduce using rule 6 (term -> TkIdent .)
+    TkDo            reduce using rule 6 (term -> TkIdent .)
+    TkParCierra     reduce using rule 6 (term -> TkIdent .)
+    TkLlaveCierra   reduce using rule 6 (term -> TkIdent .)
+    TkCorcheteCierra reduce using rule 6 (term -> TkIdent .)
+    TkTo            reduce using rule 6 (term -> TkIdent .)
+
+
+state 29
+
+    (11) exp -> exp_un .
+
+    TkMas           reduce using rule 11 (exp -> exp_un .)
+    TkMult          reduce using rule 11 (exp -> exp_un .)
+    TkMod           reduce using rule 11 (exp -> exp_un .)
+    TkDiv           reduce using rule 11 (exp -> exp_un .)
+    TkResta         reduce using rule 11 (exp -> exp_un .)
+    TkIgual         reduce using rule 11 (exp -> exp_un .)
+    TkDesigual      reduce using rule 11 (exp -> exp_un .)
+    TkMenor         reduce using rule 11 (exp -> exp_un .)
+    TkMayor         reduce using rule 11 (exp -> exp_un .)
+    TkMenorIgual    reduce using rule 11 (exp -> exp_un .)
+    TkMayorIgual    reduce using rule 11 (exp -> exp_un .)
+    TkDisyuncion    reduce using rule 11 (exp -> exp_un .)
+    TkConjuncion    reduce using rule 11 (exp -> exp_un .)
+    TkConcat        reduce using rule 11 (exp -> exp_un .)
+    TkThen          reduce using rule 11 (exp -> exp_un .)
+    TkDone          reduce using rule 11 (exp -> exp_un .)
+    TkPuntoYComa    reduce using rule 11 (exp -> exp_un .)
+    TkElse          reduce using rule 11 (exp -> exp_un .)
+    TkDo            reduce using rule 11 (exp -> exp_un .)
+    TkParCierra     reduce using rule 11 (exp -> exp_un .)
+    TkLlaveCierra   reduce using rule 11 (exp -> exp_un .)
+    TkCorcheteCierra reduce using rule 11 (exp -> exp_un .)
+    TkTo            reduce using rule 11 (exp -> exp_un .)
+
+
+state 30
+
+    (10) exp -> term .
+
+    TkMas           reduce using rule 10 (exp -> term .)
+    TkMult          reduce using rule 10 (exp -> term .)
+    TkMod           reduce using rule 10 (exp -> term .)
+    TkDiv           reduce using rule 10 (exp -> term .)
+    TkResta         reduce using rule 10 (exp -> term .)
+    TkIgual         reduce using rule 10 (exp -> term .)
+    TkDesigual      reduce using rule 10 (exp -> term .)
+    TkMenor         reduce using rule 10 (exp -> term .)
+    TkMayor         reduce using rule 10 (exp -> term .)
+    TkMenorIgual    reduce using rule 10 (exp -> term .)
+    TkMayorIgual    reduce using rule 10 (exp -> term .)
+    TkDisyuncion    reduce using rule 10 (exp -> term .)
+    TkConjuncion    reduce using rule 10 (exp -> term .)
+    TkConcat        reduce using rule 10 (exp -> term .)
+    TkThen          reduce using rule 10 (exp -> term .)
+    TkDone          reduce using rule 10 (exp -> term .)
+    TkPuntoYComa    reduce using rule 10 (exp -> term .)
+    TkElse          reduce using rule 10 (exp -> term .)
+    TkDo            reduce using rule 10 (exp -> term .)
+    TkParCierra     reduce using rule 10 (exp -> term .)
+    TkLlaveCierra   reduce using rule 10 (exp -> term .)
+    TkCorcheteCierra reduce using rule 10 (exp -> term .)
+    TkTo            reduce using rule 10 (exp -> term .)
+
+
+state 31
+
+    (14) exp -> TkLlaveAbre . exp TkLlaveCierra
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 60
+    exp_un                         shift and go to state 29
+
+state 32
+
+    (34) instruccion -> TkIf exp . TkThen instlist TkDone
+    (35) instruccion -> TkIf exp . TkThen instlist TkElse instlist TkDone
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkThen          shift and go to state 71
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 33
+
+    (13) exp -> TkCorcheteAbre . exp TkCorcheteCierra
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 76
+    exp_un                         shift and go to state 29
+
+state 34
+
+    (9) exp_un -> TkInspeccion . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 77
+    exp_un                         shift and go to state 29
+
+state 35
+
+    (30) instruccion -> TkRead exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkDone          reduce using rule 30 (instruccion -> TkRead exp .)
+    TkPuntoYComa    reduce using rule 30 (instruccion -> TkRead exp .)
+    TkElse          reduce using rule 30 (instruccion -> TkRead exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 36
+
+    (29) instruccion -> TkIdent TkAsignacion . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 78
+    exp_un                         shift and go to state 29
+
+state 37
+
+    (32) instruccion -> TkWhile exp . TkDo instlist TkDone
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkDo            shift and go to state 79
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 38
+
+    (33) instruccion -> TkFor TkIdent . TkFrom exp TkTo exp TkDo instlist TkDone
+
+    TkFrom          shift and go to state 80
+
+
+state 39
+
+    (51) semicoloninst -> TkPuntoYComa . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 81
+    declaracion                    shift and go to state 16
+
+state 40
+
+    (49) instlist -> instlist semicoloninst .
+
+    TkDone          reduce using rule 49 (instlist -> instlist semicoloninst .)
+    TkPuntoYComa    reduce using rule 49 (instlist -> instlist semicoloninst .)
+    TkElse          reduce using rule 49 (instlist -> instlist semicoloninst .)
+
+
+state 41
+
+    (2) programa -> TkExecute instlist TkDone .
+
+    $end            reduce using rule 2 (programa -> TkExecute instlist TkDone .)
+
+
+state 42
+
+    (37) instruccion -> TkExecute instlist . TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 82
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 43
+
+    (47) simb_tape -> TkResta .
+
+    TkLlaveCierra   reduce using rule 47 (simb_tape -> TkResta .)
+    TkPunto         reduce using rule 47 (simb_tape -> TkResta .)
+    TkMayor         reduce using rule 47 (simb_tape -> TkResta .)
+    TkMenor         reduce using rule 47 (simb_tape -> TkResta .)
+    TkMas           reduce using rule 47 (simb_tape -> TkResta .)
+    TkResta         reduce using rule 47 (simb_tape -> TkResta .)
+    TkComa          reduce using rule 47 (simb_tape -> TkResta .)
+
+
+state 44
+
+    (43) simb_tape -> TkPunto .
+
+    TkLlaveCierra   reduce using rule 43 (simb_tape -> TkPunto .)
+    TkPunto         reduce using rule 43 (simb_tape -> TkPunto .)
+    TkMayor         reduce using rule 43 (simb_tape -> TkPunto .)
+    TkMenor         reduce using rule 43 (simb_tape -> TkPunto .)
+    TkMas           reduce using rule 43 (simb_tape -> TkPunto .)
+    TkResta         reduce using rule 43 (simb_tape -> TkPunto .)
+    TkComa          reduce using rule 43 (simb_tape -> TkPunto .)
+
+
+state 45
+
+    (48) simb_tape -> TkComa .
+
+    TkLlaveCierra   reduce using rule 48 (simb_tape -> TkComa .)
+    TkPunto         reduce using rule 48 (simb_tape -> TkComa .)
+    TkMayor         reduce using rule 48 (simb_tape -> TkComa .)
+    TkMenor         reduce using rule 48 (simb_tape -> TkComa .)
+    TkMas           reduce using rule 48 (simb_tape -> TkComa .)
+    TkResta         reduce using rule 48 (simb_tape -> TkComa .)
+    TkComa          reduce using rule 48 (simb_tape -> TkComa .)
+
+
+state 46
+
+    (44) simb_tape -> TkMayor .
+
+    TkLlaveCierra   reduce using rule 44 (simb_tape -> TkMayor .)
+    TkPunto         reduce using rule 44 (simb_tape -> TkMayor .)
+    TkMayor         reduce using rule 44 (simb_tape -> TkMayor .)
+    TkMenor         reduce using rule 44 (simb_tape -> TkMayor .)
+    TkMas           reduce using rule 44 (simb_tape -> TkMayor .)
+    TkResta         reduce using rule 44 (simb_tape -> TkMayor .)
+    TkComa          reduce using rule 44 (simb_tape -> TkMayor .)
+
+
+state 47
+
+    (45) simb_tape -> TkMenor .
+
+    TkLlaveCierra   reduce using rule 45 (simb_tape -> TkMenor .)
+    TkPunto         reduce using rule 45 (simb_tape -> TkMenor .)
+    TkMayor         reduce using rule 45 (simb_tape -> TkMenor .)
+    TkMenor         reduce using rule 45 (simb_tape -> TkMenor .)
+    TkMas           reduce using rule 45 (simb_tape -> TkMenor .)
+    TkResta         reduce using rule 45 (simb_tape -> TkMenor .)
+    TkComa          reduce using rule 45 (simb_tape -> TkMenor .)
+
+
+state 48
+
+    (42) lista_tape -> simb_tape .
+
+    TkLlaveCierra   reduce using rule 42 (lista_tape -> simb_tape .)
+    TkPunto         reduce using rule 42 (lista_tape -> simb_tape .)
+    TkMayor         reduce using rule 42 (lista_tape -> simb_tape .)
+    TkMenor         reduce using rule 42 (lista_tape -> simb_tape .)
+    TkMas           reduce using rule 42 (lista_tape -> simb_tape .)
+    TkResta         reduce using rule 42 (lista_tape -> simb_tape .)
+    TkComa          reduce using rule 42 (lista_tape -> simb_tape .)
+
+
+state 49
+
+    (46) simb_tape -> TkMas .
+
+    TkLlaveCierra   reduce using rule 46 (simb_tape -> TkMas .)
+    TkPunto         reduce using rule 46 (simb_tape -> TkMas .)
+    TkMayor         reduce using rule 46 (simb_tape -> TkMas .)
+    TkMenor         reduce using rule 46 (simb_tape -> TkMas .)
+    TkMas           reduce using rule 46 (simb_tape -> TkMas .)
+    TkResta         reduce using rule 46 (simb_tape -> TkMas .)
+    TkComa          reduce using rule 46 (simb_tape -> TkMas .)
+
+
+state 50
+
+    (38) instruccion -> TkLlaveAbre lista_tape . TkLlaveCierra TkAt ident_tape
+    (41) lista_tape -> lista_tape . simb_tape
+    (43) simb_tape -> . TkPunto
+    (44) simb_tape -> . TkMayor
+    (45) simb_tape -> . TkMenor
+    (46) simb_tape -> . TkMas
+    (47) simb_tape -> . TkResta
+    (48) simb_tape -> . TkComa
+
+    TkLlaveCierra   shift and go to state 83
+    TkPunto         shift and go to state 44
+    TkMayor         shift and go to state 46
+    TkMenor         shift and go to state 47
+    TkMas           shift and go to state 49
+    TkResta         shift and go to state 43
+    TkComa          shift and go to state 45
+
+    simb_tape                      shift and go to state 84
+
+state 51
+
+    (31) instruccion -> TkWrite exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkDone          reduce using rule 31 (instruccion -> TkWrite exp .)
+    TkPuntoYComa    reduce using rule 31 (instruccion -> TkWrite exp .)
+    TkElse          reduce using rule 31 (instruccion -> TkWrite exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 52
+
+    (36) instruccion -> declaracion TkExecute . instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 85
+    declaracion                    shift and go to state 16
+
+state 53
+
+    (55) dec -> varlist TkType . tipo
+    (58) tipo -> . TkInteger
+    (59) tipo -> . TkBoolean
+    (60) tipo -> . TkTape
+
+    TkInteger       shift and go to state 88
+    TkBoolean       shift and go to state 87
+    TkTape          shift and go to state 89
+
+    tipo                           shift and go to state 86
+
+state 54
+
+    (56) varlist -> TkIdent TkComa . varlist
+    (56) varlist -> . TkIdent TkComa varlist
+    (57) varlist -> . TkIdent
+
+    TkIdent         shift and go to state 19
+
+    varlist                        shift and go to state 90
+
+state 55
+
+    (53) declist -> dec TkPuntoYComa . declist
+    (53) declist -> . dec TkPuntoYComa declist
+    (54) declist -> . dec
+    (55) dec -> . varlist TkType tipo
+    (56) varlist -> . TkIdent TkComa varlist
+    (57) varlist -> . TkIdent
+
+    TkIdent         shift and go to state 19
+
+    varlist                        shift and go to state 18
+    dec                            shift and go to state 20
+    declist                        shift and go to state 91
+
+state 56
+
+    (1) programa -> declaracion TkExecute instlist TkDone .
+
+    $end            reduce using rule 1 (programa -> declaracion TkExecute instlist TkDone .)
+
+
+state 57
+
+    (7) exp_un -> TkResta exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkCorcheteCierra reduce using rule 7 (exp_un -> TkResta exp .)
+    TkMas           reduce using rule 7 (exp_un -> TkResta exp .)
+    TkMult          reduce using rule 7 (exp_un -> TkResta exp .)
+    TkMod           reduce using rule 7 (exp_un -> TkResta exp .)
+    TkDiv           reduce using rule 7 (exp_un -> TkResta exp .)
+    TkResta         reduce using rule 7 (exp_un -> TkResta exp .)
+    TkIgual         reduce using rule 7 (exp_un -> TkResta exp .)
+    TkDesigual      reduce using rule 7 (exp_un -> TkResta exp .)
+    TkMenor         reduce using rule 7 (exp_un -> TkResta exp .)
+    TkMayor         reduce using rule 7 (exp_un -> TkResta exp .)
+    TkMenorIgual    reduce using rule 7 (exp_un -> TkResta exp .)
+    TkMayorIgual    reduce using rule 7 (exp_un -> TkResta exp .)
+    TkDisyuncion    reduce using rule 7 (exp_un -> TkResta exp .)
+    TkConjuncion    reduce using rule 7 (exp_un -> TkResta exp .)
+    TkConcat        reduce using rule 7 (exp_un -> TkResta exp .)
+    TkThen          reduce using rule 7 (exp_un -> TkResta exp .)
+    TkDone          reduce using rule 7 (exp_un -> TkResta exp .)
+    TkPuntoYComa    reduce using rule 7 (exp_un -> TkResta exp .)
+    TkElse          reduce using rule 7 (exp_un -> TkResta exp .)
+    TkDo            reduce using rule 7 (exp_un -> TkResta exp .)
+    TkParCierra     reduce using rule 7 (exp_un -> TkResta exp .)
+    TkLlaveCierra   reduce using rule 7 (exp_un -> TkResta exp .)
+    TkTo            reduce using rule 7 (exp_un -> TkResta exp .)
+
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkMult          [ shift and go to state 70 ]
+  ! TkMod           [ shift and go to state 63 ]
+  ! TkDiv           [ shift and go to state 67 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+  ! TkConcat        [ shift and go to state 61 ]
+
+
+state 58
+
+    (8) exp_un -> TkNegacion exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkCorcheteCierra reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkMas           reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkMult          reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkMod           reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkDiv           reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkResta         reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkIgual         reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkDesigual      reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkMenor         reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkMayor         reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkMenorIgual    reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkMayorIgual    reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkDisyuncion    reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkConjuncion    reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkConcat        reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkThen          reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkDone          reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkPuntoYComa    reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkElse          reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkDo            reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkParCierra     reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkLlaveCierra   reduce using rule 8 (exp_un -> TkNegacion exp .)
+    TkTo            reduce using rule 8 (exp_un -> TkNegacion exp .)
+
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkMult          [ shift and go to state 70 ]
+  ! TkMod           [ shift and go to state 63 ]
+  ! TkDiv           [ shift and go to state 67 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+  ! TkConcat        [ shift and go to state 61 ]
+
+
+state 59
+
+    (12) exp -> TkParAbre exp . TkParCierra
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkParCierra     shift and go to state 92
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 60
+
+    (14) exp -> TkLlaveAbre exp . TkLlaveCierra
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkLlaveCierra   shift and go to state 93
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 61
+
+    (28) exp -> exp TkConcat . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 94
+    exp_un                         shift and go to state 29
+
+state 62
+
+    (19) exp -> exp TkResta . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 95
+    exp_un                         shift and go to state 29
+
+state 63
+
+    (17) exp -> exp TkMod . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 96
+    exp_un                         shift and go to state 29
+
+state 64
+
+    (25) exp -> exp TkMayorIgual . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 97
+    exp_un                         shift and go to state 29
+
+state 65
+
+    (24) exp -> exp TkMenorIgual . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 98
+    exp_un                         shift and go to state 29
+
+state 66
+
+    (27) exp -> exp TkConjuncion . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 99
+    exp_un                         shift and go to state 29
+
+state 67
+
+    (18) exp -> exp TkDiv . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 100
+    exp_un                         shift and go to state 29
+
+state 68
+
+    (22) exp -> exp TkMenor . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 101
+    exp_un                         shift and go to state 29
+
+state 69
+
+    (15) exp -> exp TkMas . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 102
+    exp_un                         shift and go to state 29
+
+state 70
+
+    (16) exp -> exp TkMult . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 103
+    exp_un                         shift and go to state 29
+
+state 71
+
+    (34) instruccion -> TkIf exp TkThen . instlist TkDone
+    (35) instruccion -> TkIf exp TkThen . instlist TkElse instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 104
+    declaracion                    shift and go to state 16
+
+state 72
+
+    (21) exp -> exp TkDesigual . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 105
+    exp_un                         shift and go to state 29
+
+state 73
+
+    (20) exp -> exp TkIgual . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 106
+    exp_un                         shift and go to state 29
+
+state 74
+
+    (26) exp -> exp TkDisyuncion . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 107
+    exp_un                         shift and go to state 29
+
+state 75
+
+    (23) exp -> exp TkMayor . exp
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 108
+    exp_un                         shift and go to state 29
+
+state 76
+
+    (13) exp -> TkCorcheteAbre exp . TkCorcheteCierra
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkCorcheteCierra shift and go to state 109
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 77
+
+    (9) exp_un -> TkInspeccion exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkCorcheteCierra reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkMas           reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkMult          reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkMod           reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkDiv           reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkResta         reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkIgual         reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkDesigual      reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkMenor         reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkMayor         reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkMenorIgual    reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkMayorIgual    reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkDisyuncion    reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkConjuncion    reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkConcat        reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkThen          reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkDone          reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkPuntoYComa    reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkElse          reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkDo            reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkParCierra     reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkLlaveCierra   reduce using rule 9 (exp_un -> TkInspeccion exp .)
+    TkTo            reduce using rule 9 (exp_un -> TkInspeccion exp .)
+
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkMult          [ shift and go to state 70 ]
+  ! TkMod           [ shift and go to state 63 ]
+  ! TkDiv           [ shift and go to state 67 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+  ! TkConcat        [ shift and go to state 61 ]
+
+
+state 78
+
+    (29) instruccion -> TkIdent TkAsignacion exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkDone          reduce using rule 29 (instruccion -> TkIdent TkAsignacion exp .)
+    TkPuntoYComa    reduce using rule 29 (instruccion -> TkIdent TkAsignacion exp .)
+    TkElse          reduce using rule 29 (instruccion -> TkIdent TkAsignacion exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 79
+
+    (32) instruccion -> TkWhile exp TkDo . instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 110
+    declaracion                    shift and go to state 16
+
+state 80
+
+    (33) instruccion -> TkFor TkIdent TkFrom . exp TkTo exp TkDo instlist TkDone
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 111
+    exp_un                         shift and go to state 29
+
+state 81
+
+    (51) semicoloninst -> TkPuntoYComa instruccion .
+
+    TkDone          reduce using rule 51 (semicoloninst -> TkPuntoYComa instruccion .)
+    TkPuntoYComa    reduce using rule 51 (semicoloninst -> TkPuntoYComa instruccion .)
+    TkElse          reduce using rule 51 (semicoloninst -> TkPuntoYComa instruccion .)
+
+
+state 82
+
+    (37) instruccion -> TkExecute instlist TkDone .
+
+    TkDone          reduce using rule 37 (instruccion -> TkExecute instlist TkDone .)
+    TkPuntoYComa    reduce using rule 37 (instruccion -> TkExecute instlist TkDone .)
+    TkElse          reduce using rule 37 (instruccion -> TkExecute instlist TkDone .)
+
+
+state 83
+
+    (38) instruccion -> TkLlaveAbre lista_tape TkLlaveCierra . TkAt ident_tape
+
+    TkAt            shift and go to state 112
+
+
+state 84
+
+    (41) lista_tape -> lista_tape simb_tape .
+
+    TkLlaveCierra   reduce using rule 41 (lista_tape -> lista_tape simb_tape .)
+    TkPunto         reduce using rule 41 (lista_tape -> lista_tape simb_tape .)
+    TkMayor         reduce using rule 41 (lista_tape -> lista_tape simb_tape .)
+    TkMenor         reduce using rule 41 (lista_tape -> lista_tape simb_tape .)
+    TkMas           reduce using rule 41 (lista_tape -> lista_tape simb_tape .)
+    TkResta         reduce using rule 41 (lista_tape -> lista_tape simb_tape .)
+    TkComa          reduce using rule 41 (lista_tape -> lista_tape simb_tape .)
+
+
+state 85
+
+    (36) instruccion -> declaracion TkExecute instlist . TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 113
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 86
+
+    (55) dec -> varlist TkType tipo .
+
+    TkPuntoYComa    reduce using rule 55 (dec -> varlist TkType tipo .)
+    TkExecute       reduce using rule 55 (dec -> varlist TkType tipo .)
+
+
+state 87
+
+    (59) tipo -> TkBoolean .
+
+    TkPuntoYComa    reduce using rule 59 (tipo -> TkBoolean .)
+    TkExecute       reduce using rule 59 (tipo -> TkBoolean .)
+
+
+state 88
+
+    (58) tipo -> TkInteger .
+
+    TkPuntoYComa    reduce using rule 58 (tipo -> TkInteger .)
+    TkExecute       reduce using rule 58 (tipo -> TkInteger .)
+
+
+state 89
+
+    (60) tipo -> TkTape .
+
+    TkPuntoYComa    reduce using rule 60 (tipo -> TkTape .)
+    TkExecute       reduce using rule 60 (tipo -> TkTape .)
+
+
+state 90
+
+    (56) varlist -> TkIdent TkComa varlist .
+
+    TkType          reduce using rule 56 (varlist -> TkIdent TkComa varlist .)
+
+
+state 91
+
+    (53) declist -> dec TkPuntoYComa declist .
+
+    TkExecute       reduce using rule 53 (declist -> dec TkPuntoYComa declist .)
+
+
+state 92
+
+    (12) exp -> TkParAbre exp TkParCierra .
+
+    TkMas           reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkMult          reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkMod           reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkDiv           reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkResta         reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkIgual         reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkDesigual      reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkMenor         reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkMayor         reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkMenorIgual    reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkMayorIgual    reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkDisyuncion    reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkConjuncion    reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkConcat        reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkThen          reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkDone          reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkPuntoYComa    reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkElse          reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkDo            reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkParCierra     reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkLlaveCierra   reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkCorcheteCierra reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+    TkTo            reduce using rule 12 (exp -> TkParAbre exp TkParCierra .)
+
+
+state 93
+
+    (14) exp -> TkLlaveAbre exp TkLlaveCierra .
+
+    TkMas           reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkMult          reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkMod           reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkDiv           reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkResta         reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkIgual         reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkDesigual      reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkMenor         reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkMayor         reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkMenorIgual    reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkMayorIgual    reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkDisyuncion    reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkConjuncion    reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkConcat        reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkThen          reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkDone          reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkPuntoYComa    reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkElse          reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkDo            reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkParCierra     reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkLlaveCierra   reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkCorcheteCierra reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+    TkTo            reduce using rule 14 (exp -> TkLlaveAbre exp TkLlaveCierra .)
+
+
+state 94
+
+    (28) exp -> exp TkConcat exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkMas           reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkMult          reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkMod           reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkDiv           reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkResta         reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkIgual         reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkDesigual      reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkMenor         reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkMayor         reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkMenorIgual    reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkMayorIgual    reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkDisyuncion    reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkConjuncion    reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkConcat        reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkThen          reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkDone          reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkPuntoYComa    reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkElse          reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkDo            reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkParCierra     reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkLlaveCierra   reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkCorcheteCierra reduce using rule 28 (exp -> exp TkConcat exp .)
+    TkTo            reduce using rule 28 (exp -> exp TkConcat exp .)
+
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkMult          [ shift and go to state 70 ]
+  ! TkMod           [ shift and go to state 63 ]
+  ! TkDiv           [ shift and go to state 67 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+  ! TkConcat        [ shift and go to state 61 ]
+
+
+state 95
+
+    (19) exp -> exp TkResta exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkMas           reduce using rule 19 (exp -> exp TkResta exp .)
+    TkResta         reduce using rule 19 (exp -> exp TkResta exp .)
+    TkIgual         reduce using rule 19 (exp -> exp TkResta exp .)
+    TkDesigual      reduce using rule 19 (exp -> exp TkResta exp .)
+    TkMenor         reduce using rule 19 (exp -> exp TkResta exp .)
+    TkMayor         reduce using rule 19 (exp -> exp TkResta exp .)
+    TkMenorIgual    reduce using rule 19 (exp -> exp TkResta exp .)
+    TkMayorIgual    reduce using rule 19 (exp -> exp TkResta exp .)
+    TkDisyuncion    reduce using rule 19 (exp -> exp TkResta exp .)
+    TkConjuncion    reduce using rule 19 (exp -> exp TkResta exp .)
+    TkThen          reduce using rule 19 (exp -> exp TkResta exp .)
+    TkDone          reduce using rule 19 (exp -> exp TkResta exp .)
+    TkPuntoYComa    reduce using rule 19 (exp -> exp TkResta exp .)
+    TkElse          reduce using rule 19 (exp -> exp TkResta exp .)
+    TkDo            reduce using rule 19 (exp -> exp TkResta exp .)
+    TkParCierra     reduce using rule 19 (exp -> exp TkResta exp .)
+    TkLlaveCierra   reduce using rule 19 (exp -> exp TkResta exp .)
+    TkCorcheteCierra reduce using rule 19 (exp -> exp TkResta exp .)
+    TkTo            reduce using rule 19 (exp -> exp TkResta exp .)
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkConcat        shift and go to state 61
+
+  ! TkMult          [ reduce using rule 19 (exp -> exp TkResta exp .) ]
+  ! TkMod           [ reduce using rule 19 (exp -> exp TkResta exp .) ]
+  ! TkDiv           [ reduce using rule 19 (exp -> exp TkResta exp .) ]
+  ! TkConcat        [ reduce using rule 19 (exp -> exp TkResta exp .) ]
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 96
+
+    (17) exp -> exp TkMod exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkMas           reduce using rule 17 (exp -> exp TkMod exp .)
+    TkMult          reduce using rule 17 (exp -> exp TkMod exp .)
+    TkMod           reduce using rule 17 (exp -> exp TkMod exp .)
+    TkDiv           reduce using rule 17 (exp -> exp TkMod exp .)
+    TkResta         reduce using rule 17 (exp -> exp TkMod exp .)
+    TkIgual         reduce using rule 17 (exp -> exp TkMod exp .)
+    TkDesigual      reduce using rule 17 (exp -> exp TkMod exp .)
+    TkMenor         reduce using rule 17 (exp -> exp TkMod exp .)
+    TkMayor         reduce using rule 17 (exp -> exp TkMod exp .)
+    TkMenorIgual    reduce using rule 17 (exp -> exp TkMod exp .)
+    TkMayorIgual    reduce using rule 17 (exp -> exp TkMod exp .)
+    TkDisyuncion    reduce using rule 17 (exp -> exp TkMod exp .)
+    TkConjuncion    reduce using rule 17 (exp -> exp TkMod exp .)
+    TkThen          reduce using rule 17 (exp -> exp TkMod exp .)
+    TkDone          reduce using rule 17 (exp -> exp TkMod exp .)
+    TkPuntoYComa    reduce using rule 17 (exp -> exp TkMod exp .)
+    TkElse          reduce using rule 17 (exp -> exp TkMod exp .)
+    TkDo            reduce using rule 17 (exp -> exp TkMod exp .)
+    TkParCierra     reduce using rule 17 (exp -> exp TkMod exp .)
+    TkLlaveCierra   reduce using rule 17 (exp -> exp TkMod exp .)
+    TkCorcheteCierra reduce using rule 17 (exp -> exp TkMod exp .)
+    TkTo            reduce using rule 17 (exp -> exp TkMod exp .)
+    TkConcat        shift and go to state 61
+
+  ! TkConcat        [ reduce using rule 17 (exp -> exp TkMod exp .) ]
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkMult          [ shift and go to state 70 ]
+  ! TkMod           [ shift and go to state 63 ]
+  ! TkDiv           [ shift and go to state 67 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 97
+
+    (25) exp -> exp TkMayorIgual exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkIgual         reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkDesigual      reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkMenor         reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkMayor         reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkMenorIgual    reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkMayorIgual    reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkDisyuncion    reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkConjuncion    reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkThen          reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkDone          reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkPuntoYComa    reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkElse          reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkDo            reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkParCierra     reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkLlaveCierra   reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkCorcheteCierra reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkTo            reduce using rule 25 (exp -> exp TkMayorIgual exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 25 (exp -> exp TkMayorIgual exp .) ]
+  ! TkMult          [ reduce using rule 25 (exp -> exp TkMayorIgual exp .) ]
+  ! TkMod           [ reduce using rule 25 (exp -> exp TkMayorIgual exp .) ]
+  ! TkDiv           [ reduce using rule 25 (exp -> exp TkMayorIgual exp .) ]
+  ! TkResta         [ reduce using rule 25 (exp -> exp TkMayorIgual exp .) ]
+  ! TkConcat        [ reduce using rule 25 (exp -> exp TkMayorIgual exp .) ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 98
+
+    (24) exp -> exp TkMenorIgual exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkIgual         reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkDesigual      reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkMenor         reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkMayor         reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkMenorIgual    reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkMayorIgual    reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkDisyuncion    reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkConjuncion    reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkThen          reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkDone          reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkPuntoYComa    reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkElse          reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkDo            reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkParCierra     reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkLlaveCierra   reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkCorcheteCierra reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkTo            reduce using rule 24 (exp -> exp TkMenorIgual exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 24 (exp -> exp TkMenorIgual exp .) ]
+  ! TkMult          [ reduce using rule 24 (exp -> exp TkMenorIgual exp .) ]
+  ! TkMod           [ reduce using rule 24 (exp -> exp TkMenorIgual exp .) ]
+  ! TkDiv           [ reduce using rule 24 (exp -> exp TkMenorIgual exp .) ]
+  ! TkResta         [ reduce using rule 24 (exp -> exp TkMenorIgual exp .) ]
+  ! TkConcat        [ reduce using rule 24 (exp -> exp TkMenorIgual exp .) ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 99
+
+    (27) exp -> exp TkConjuncion exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkDisyuncion    reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkConjuncion    reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkThen          reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkDone          reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkPuntoYComa    reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkElse          reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkDo            reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkParCierra     reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkLlaveCierra   reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkCorcheteCierra reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkTo            reduce using rule 27 (exp -> exp TkConjuncion exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkMult          [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkMod           [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkDiv           [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkResta         [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkIgual         [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkDesigual      [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkMenor         [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkMayor         [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkMenorIgual    [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkMayorIgual    [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkConcat        [ reduce using rule 27 (exp -> exp TkConjuncion exp .) ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 100
+
+    (18) exp -> exp TkDiv exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkMas           reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkMult          reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkMod           reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkDiv           reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkResta         reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkIgual         reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkDesigual      reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkMenor         reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkMayor         reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkMenorIgual    reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkMayorIgual    reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkDisyuncion    reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkConjuncion    reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkThen          reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkDone          reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkPuntoYComa    reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkElse          reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkDo            reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkParCierra     reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkLlaveCierra   reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkCorcheteCierra reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkTo            reduce using rule 18 (exp -> exp TkDiv exp .)
+    TkConcat        shift and go to state 61
+
+  ! TkConcat        [ reduce using rule 18 (exp -> exp TkDiv exp .) ]
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkMult          [ shift and go to state 70 ]
+  ! TkMod           [ shift and go to state 63 ]
+  ! TkDiv           [ shift and go to state 67 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 101
+
+    (22) exp -> exp TkMenor exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkIgual         reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkDesigual      reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkMenor         reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkMayor         reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkMenorIgual    reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkMayorIgual    reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkDisyuncion    reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkConjuncion    reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkThen          reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkDone          reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkPuntoYComa    reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkElse          reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkDo            reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkParCierra     reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkLlaveCierra   reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkCorcheteCierra reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkTo            reduce using rule 22 (exp -> exp TkMenor exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 22 (exp -> exp TkMenor exp .) ]
+  ! TkMult          [ reduce using rule 22 (exp -> exp TkMenor exp .) ]
+  ! TkMod           [ reduce using rule 22 (exp -> exp TkMenor exp .) ]
+  ! TkDiv           [ reduce using rule 22 (exp -> exp TkMenor exp .) ]
+  ! TkResta         [ reduce using rule 22 (exp -> exp TkMenor exp .) ]
+  ! TkConcat        [ reduce using rule 22 (exp -> exp TkMenor exp .) ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 102
+
+    (15) exp -> exp TkMas exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkMas           reduce using rule 15 (exp -> exp TkMas exp .)
+    TkResta         reduce using rule 15 (exp -> exp TkMas exp .)
+    TkIgual         reduce using rule 15 (exp -> exp TkMas exp .)
+    TkDesigual      reduce using rule 15 (exp -> exp TkMas exp .)
+    TkMenor         reduce using rule 15 (exp -> exp TkMas exp .)
+    TkMayor         reduce using rule 15 (exp -> exp TkMas exp .)
+    TkMenorIgual    reduce using rule 15 (exp -> exp TkMas exp .)
+    TkMayorIgual    reduce using rule 15 (exp -> exp TkMas exp .)
+    TkDisyuncion    reduce using rule 15 (exp -> exp TkMas exp .)
+    TkConjuncion    reduce using rule 15 (exp -> exp TkMas exp .)
+    TkThen          reduce using rule 15 (exp -> exp TkMas exp .)
+    TkDone          reduce using rule 15 (exp -> exp TkMas exp .)
+    TkPuntoYComa    reduce using rule 15 (exp -> exp TkMas exp .)
+    TkElse          reduce using rule 15 (exp -> exp TkMas exp .)
+    TkDo            reduce using rule 15 (exp -> exp TkMas exp .)
+    TkParCierra     reduce using rule 15 (exp -> exp TkMas exp .)
+    TkLlaveCierra   reduce using rule 15 (exp -> exp TkMas exp .)
+    TkCorcheteCierra reduce using rule 15 (exp -> exp TkMas exp .)
+    TkTo            reduce using rule 15 (exp -> exp TkMas exp .)
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkConcat        shift and go to state 61
+
+  ! TkMult          [ reduce using rule 15 (exp -> exp TkMas exp .) ]
+  ! TkMod           [ reduce using rule 15 (exp -> exp TkMas exp .) ]
+  ! TkDiv           [ reduce using rule 15 (exp -> exp TkMas exp .) ]
+  ! TkConcat        [ reduce using rule 15 (exp -> exp TkMas exp .) ]
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 103
+
+    (16) exp -> exp TkMult exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkMas           reduce using rule 16 (exp -> exp TkMult exp .)
+    TkMult          reduce using rule 16 (exp -> exp TkMult exp .)
+    TkMod           reduce using rule 16 (exp -> exp TkMult exp .)
+    TkDiv           reduce using rule 16 (exp -> exp TkMult exp .)
+    TkResta         reduce using rule 16 (exp -> exp TkMult exp .)
+    TkIgual         reduce using rule 16 (exp -> exp TkMult exp .)
+    TkDesigual      reduce using rule 16 (exp -> exp TkMult exp .)
+    TkMenor         reduce using rule 16 (exp -> exp TkMult exp .)
+    TkMayor         reduce using rule 16 (exp -> exp TkMult exp .)
+    TkMenorIgual    reduce using rule 16 (exp -> exp TkMult exp .)
+    TkMayorIgual    reduce using rule 16 (exp -> exp TkMult exp .)
+    TkDisyuncion    reduce using rule 16 (exp -> exp TkMult exp .)
+    TkConjuncion    reduce using rule 16 (exp -> exp TkMult exp .)
+    TkThen          reduce using rule 16 (exp -> exp TkMult exp .)
+    TkDone          reduce using rule 16 (exp -> exp TkMult exp .)
+    TkPuntoYComa    reduce using rule 16 (exp -> exp TkMult exp .)
+    TkElse          reduce using rule 16 (exp -> exp TkMult exp .)
+    TkDo            reduce using rule 16 (exp -> exp TkMult exp .)
+    TkParCierra     reduce using rule 16 (exp -> exp TkMult exp .)
+    TkLlaveCierra   reduce using rule 16 (exp -> exp TkMult exp .)
+    TkCorcheteCierra reduce using rule 16 (exp -> exp TkMult exp .)
+    TkTo            reduce using rule 16 (exp -> exp TkMult exp .)
+    TkConcat        shift and go to state 61
+
+  ! TkConcat        [ reduce using rule 16 (exp -> exp TkMult exp .) ]
+  ! TkMas           [ shift and go to state 69 ]
+  ! TkMult          [ shift and go to state 70 ]
+  ! TkMod           [ shift and go to state 63 ]
+  ! TkDiv           [ shift and go to state 67 ]
+  ! TkResta         [ shift and go to state 62 ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 104
+
+    (34) instruccion -> TkIf exp TkThen instlist . TkDone
+    (35) instruccion -> TkIf exp TkThen instlist . TkElse instlist TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 115
+    TkElse          shift and go to state 114
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 105
+
+    (21) exp -> exp TkDesigual exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkIgual         reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkDesigual      reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkDisyuncion    reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkConjuncion    reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkThen          reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkDone          reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkPuntoYComa    reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkElse          reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkDo            reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkParCierra     reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkLlaveCierra   reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkCorcheteCierra reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkTo            reduce using rule 21 (exp -> exp TkDesigual exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkMult          [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkMod           [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkDiv           [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkResta         [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkMenor         [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkMayor         [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkMenorIgual    [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkMayorIgual    [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkConcat        [ reduce using rule 21 (exp -> exp TkDesigual exp .) ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 106
+
+    (20) exp -> exp TkIgual exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkIgual         reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkDesigual      reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkDisyuncion    reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkConjuncion    reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkThen          reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkDone          reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkPuntoYComa    reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkElse          reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkDo            reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkParCierra     reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkLlaveCierra   reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkCorcheteCierra reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkTo            reduce using rule 20 (exp -> exp TkIgual exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkMult          [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkMod           [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkDiv           [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkResta         [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkMenor         [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkMayor         [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkMenorIgual    [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkMayorIgual    [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkConcat        [ reduce using rule 20 (exp -> exp TkIgual exp .) ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 107
+
+    (26) exp -> exp TkDisyuncion exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkDisyuncion    reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkThen          reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkDone          reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkPuntoYComa    reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkElse          reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkDo            reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkParCierra     reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkLlaveCierra   reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkCorcheteCierra reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkTo            reduce using rule 26 (exp -> exp TkDisyuncion exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkMult          [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkMod           [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkDiv           [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkResta         [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkIgual         [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkDesigual      [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkMenor         [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkMayor         [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkMenorIgual    [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkMayorIgual    [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkConjuncion    [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkConcat        [ reduce using rule 26 (exp -> exp TkDisyuncion exp .) ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+
+
+state 108
+
+    (23) exp -> exp TkMayor exp .
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkIgual         reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkDesigual      reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkMenor         reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkMayor         reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkMenorIgual    reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkMayorIgual    reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkDisyuncion    reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkConjuncion    reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkThen          reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkDone          reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkPuntoYComa    reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkElse          reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkDo            reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkParCierra     reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkLlaveCierra   reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkCorcheteCierra reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkTo            reduce using rule 23 (exp -> exp TkMayor exp .)
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkConcat        shift and go to state 61
+
+  ! TkMas           [ reduce using rule 23 (exp -> exp TkMayor exp .) ]
+  ! TkMult          [ reduce using rule 23 (exp -> exp TkMayor exp .) ]
+  ! TkMod           [ reduce using rule 23 (exp -> exp TkMayor exp .) ]
+  ! TkDiv           [ reduce using rule 23 (exp -> exp TkMayor exp .) ]
+  ! TkResta         [ reduce using rule 23 (exp -> exp TkMayor exp .) ]
+  ! TkConcat        [ reduce using rule 23 (exp -> exp TkMayor exp .) ]
+  ! TkIgual         [ shift and go to state 73 ]
+  ! TkDesigual      [ shift and go to state 72 ]
+  ! TkMenor         [ shift and go to state 68 ]
+  ! TkMayor         [ shift and go to state 75 ]
+  ! TkMenorIgual    [ shift and go to state 65 ]
+  ! TkMayorIgual    [ shift and go to state 64 ]
+  ! TkDisyuncion    [ shift and go to state 74 ]
+  ! TkConjuncion    [ shift and go to state 66 ]
+
+
+state 109
+
+    (13) exp -> TkCorcheteAbre exp TkCorcheteCierra .
+
+    TkMas           reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkMult          reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkMod           reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkDiv           reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkResta         reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkIgual         reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkDesigual      reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkMenor         reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkMayor         reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkMenorIgual    reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkMayorIgual    reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkDisyuncion    reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkConjuncion    reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkConcat        reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkThen          reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkDone          reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkPuntoYComa    reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkElse          reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkDo            reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkParCierra     reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkLlaveCierra   reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkCorcheteCierra reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkTo            reduce using rule 13 (exp -> TkCorcheteAbre exp TkCorcheteCierra .)
+
+
+state 110
+
+    (32) instruccion -> TkWhile exp TkDo instlist . TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 116
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 111
+
+    (33) instruccion -> TkFor TkIdent TkFrom exp . TkTo exp TkDo instlist TkDone
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkTo            shift and go to state 117
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 112
+
+    (38) instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt . ident_tape
+    (39) ident_tape -> . TkCorcheteAbre exp TkCorcheteCierra
+    (40) ident_tape -> . TkIdent
+
+    TkCorcheteAbre  shift and go to state 120
+    TkIdent         shift and go to state 119
+
+    ident_tape                     shift and go to state 118
+
+state 113
+
+    (36) instruccion -> declaracion TkExecute instlist TkDone .
+
+    TkDone          reduce using rule 36 (instruccion -> declaracion TkExecute instlist TkDone .)
+    TkPuntoYComa    reduce using rule 36 (instruccion -> declaracion TkExecute instlist TkDone .)
+    TkElse          reduce using rule 36 (instruccion -> declaracion TkExecute instlist TkDone .)
+
+
+state 114
+
+    (35) instruccion -> TkIf exp TkThen instlist TkElse . instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 121
+    declaracion                    shift and go to state 16
+
+state 115
+
+    (34) instruccion -> TkIf exp TkThen instlist TkDone .
+
+    TkDone          reduce using rule 34 (instruccion -> TkIf exp TkThen instlist TkDone .)
+    TkPuntoYComa    reduce using rule 34 (instruccion -> TkIf exp TkThen instlist TkDone .)
+    TkElse          reduce using rule 34 (instruccion -> TkIf exp TkThen instlist TkDone .)
+
+
+state 116
+
+    (32) instruccion -> TkWhile exp TkDo instlist TkDone .
+
+    TkDone          reduce using rule 32 (instruccion -> TkWhile exp TkDo instlist TkDone .)
+    TkPuntoYComa    reduce using rule 32 (instruccion -> TkWhile exp TkDo instlist TkDone .)
+    TkElse          reduce using rule 32 (instruccion -> TkWhile exp TkDo instlist TkDone .)
+
+
+state 117
+
+    (33) instruccion -> TkFor TkIdent TkFrom exp TkTo . exp TkDo instlist TkDone
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 122
+    exp_un                         shift and go to state 29
+
+state 118
+
+    (38) instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape .
+
+    TkDone          reduce using rule 38 (instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape .)
+    TkPuntoYComa    reduce using rule 38 (instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape .)
+    TkElse          reduce using rule 38 (instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape .)
+
+
+state 119
+
+    (40) ident_tape -> TkIdent .
+
+    TkDone          reduce using rule 40 (ident_tape -> TkIdent .)
+    TkPuntoYComa    reduce using rule 40 (ident_tape -> TkIdent .)
+    TkElse          reduce using rule 40 (ident_tape -> TkIdent .)
+
+
+state 120
+
+    (39) ident_tape -> TkCorcheteAbre . exp TkCorcheteCierra
+    (10) exp -> . term
+    (11) exp -> . exp_un
+    (12) exp -> . TkParAbre exp TkParCierra
+    (13) exp -> . TkCorcheteAbre exp TkCorcheteCierra
+    (14) exp -> . TkLlaveAbre exp TkLlaveCierra
+    (15) exp -> . exp TkMas exp
+    (16) exp -> . exp TkMult exp
+    (17) exp -> . exp TkMod exp
+    (18) exp -> . exp TkDiv exp
+    (19) exp -> . exp TkResta exp
+    (20) exp -> . exp TkIgual exp
+    (21) exp -> . exp TkDesigual exp
+    (22) exp -> . exp TkMenor exp
+    (23) exp -> . exp TkMayor exp
+    (24) exp -> . exp TkMenorIgual exp
+    (25) exp -> . exp TkMayorIgual exp
+    (26) exp -> . exp TkDisyuncion exp
+    (27) exp -> . exp TkConjuncion exp
+    (28) exp -> . exp TkConcat exp
+    (3) term -> . TkNum
+    (4) term -> . TkTrue
+    (5) term -> . TkFalse
+    (6) term -> . TkIdent
+    (7) exp_un -> . TkResta exp
+    (8) exp_un -> . TkNegacion exp
+    (9) exp_un -> . TkInspeccion exp
+
+    TkParAbre       shift and go to state 27
+    TkCorcheteAbre  shift and go to state 33
+    TkLlaveAbre     shift and go to state 31
+    TkNum           shift and go to state 26
+    TkTrue          shift and go to state 23
+    TkFalse         shift and go to state 25
+    TkIdent         shift and go to state 28
+    TkResta         shift and go to state 22
+    TkNegacion      shift and go to state 24
+    TkInspeccion    shift and go to state 34
+
+    term                           shift and go to state 30
+    exp                            shift and go to state 123
+    exp_un                         shift and go to state 29
+
+state 121
+
+    (35) instruccion -> TkIf exp TkThen instlist TkElse instlist . TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 124
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 122
+
+    (33) instruccion -> TkFor TkIdent TkFrom exp TkTo exp . TkDo instlist TkDone
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkDo            shift and go to state 125
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 123
+
+    (39) ident_tape -> TkCorcheteAbre exp . TkCorcheteCierra
+    (15) exp -> exp . TkMas exp
+    (16) exp -> exp . TkMult exp
+    (17) exp -> exp . TkMod exp
+    (18) exp -> exp . TkDiv exp
+    (19) exp -> exp . TkResta exp
+    (20) exp -> exp . TkIgual exp
+    (21) exp -> exp . TkDesigual exp
+    (22) exp -> exp . TkMenor exp
+    (23) exp -> exp . TkMayor exp
+    (24) exp -> exp . TkMenorIgual exp
+    (25) exp -> exp . TkMayorIgual exp
+    (26) exp -> exp . TkDisyuncion exp
+    (27) exp -> exp . TkConjuncion exp
+    (28) exp -> exp . TkConcat exp
+
+    TkCorcheteCierra shift and go to state 126
+    TkMas           shift and go to state 69
+    TkMult          shift and go to state 70
+    TkMod           shift and go to state 63
+    TkDiv           shift and go to state 67
+    TkResta         shift and go to state 62
+    TkIgual         shift and go to state 73
+    TkDesigual      shift and go to state 72
+    TkMenor         shift and go to state 68
+    TkMayor         shift and go to state 75
+    TkMenorIgual    shift and go to state 65
+    TkMayorIgual    shift and go to state 64
+    TkDisyuncion    shift and go to state 74
+    TkConjuncion    shift and go to state 66
+    TkConcat        shift and go to state 61
+
+
+state 124
+
+    (35) instruccion -> TkIf exp TkThen instlist TkElse instlist TkDone .
+
+    TkDone          reduce using rule 35 (instruccion -> TkIf exp TkThen instlist TkElse instlist TkDone .)
+    TkPuntoYComa    reduce using rule 35 (instruccion -> TkIf exp TkThen instlist TkElse instlist TkDone .)
+    TkElse          reduce using rule 35 (instruccion -> TkIf exp TkThen instlist TkElse instlist TkDone .)
+
+
+state 125
+
+    (33) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo . instlist TkDone
+    (49) instlist -> . instlist semicoloninst
+    (50) instlist -> . instruccion
+    (29) instruccion -> . TkIdent TkAsignacion exp
+    (30) instruccion -> . TkRead exp
+    (31) instruccion -> . TkWrite exp
+    (32) instruccion -> . TkWhile exp TkDo instlist TkDone
+    (33) instruccion -> . TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone
+    (34) instruccion -> . TkIf exp TkThen instlist TkDone
+    (35) instruccion -> . TkIf exp TkThen instlist TkElse instlist TkDone
+    (36) instruccion -> . declaracion TkExecute instlist TkDone
+    (37) instruccion -> . TkExecute instlist TkDone
+    (38) instruccion -> . TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape
+    (52) declaracion -> . TkDeclare declist
+
+    TkIdent         shift and go to state 8
+    TkRead          shift and go to state 7
+    TkWrite         shift and go to state 15
+    TkWhile         shift and go to state 9
+    TkFor           shift and go to state 10
+    TkIf            shift and go to state 6
+    TkExecute       shift and go to state 13
+    TkLlaveAbre     shift and go to state 14
+    TkDeclare       shift and go to state 4
+
+    instruccion                    shift and go to state 11
+    instlist                       shift and go to state 127
+    declaracion                    shift and go to state 16
+
+state 126
+
+    (39) ident_tape -> TkCorcheteAbre exp TkCorcheteCierra .
+
+    TkDone          reduce using rule 39 (ident_tape -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkPuntoYComa    reduce using rule 39 (ident_tape -> TkCorcheteAbre exp TkCorcheteCierra .)
+    TkElse          reduce using rule 39 (ident_tape -> TkCorcheteAbre exp TkCorcheteCierra .)
+
+
+state 127
+
+    (33) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instlist . TkDone
+    (49) instlist -> instlist . semicoloninst
+    (51) semicoloninst -> . TkPuntoYComa instruccion
+
+    TkDone          shift and go to state 128
+    TkPuntoYComa    shift and go to state 39
+
+    semicoloninst                  shift and go to state 40
+
+state 128
+
+    (33) instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone .
+
+    TkDone          reduce using rule 33 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone .)
+    TkPuntoYComa    reduce using rule 33 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone .)
+    TkElse          reduce using rule 33 (instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone .)
 

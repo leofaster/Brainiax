@@ -14,7 +14,7 @@ from LexBrainiax import tokens
 
 contador = -1
 stack = []  #Pila de tabla de simbolos
-static_analysis = ""
+Analisis = ""
 
 
 # Clases utilizadas para imprimir el arbol sintactico
@@ -46,7 +46,7 @@ class numero:
         return self.column
 
 # Clase para BOOLEAN
-class boolean:
+class booleano:
 
     def __init__(self,value,line,column):
         self.type = "bool"
@@ -55,11 +55,11 @@ class boolean:
         self.column = column
 
     def __str__(self):
-        global cont
-        cont = cont + 1
-        tabs = "  "*cont
+        global contador
+        contador = contador + 1
+        tabs = "  "*contador
         str_ = "CONSTANTE_ENT\n" + tabs +  "valor: " + str(self.value)
-        cont = cont - 1
+        contador = contador - 1
         return str_
 
     def checktype(self):
@@ -101,16 +101,16 @@ class ident:
                 elif st.goesTo(self.name,'tape'):
                     result = 'tape'
             if result == 'error':
-                global static_analysis
+                global Analisis
                 str0 = "Error en Linea %s , Columna %s:" %(self.line,self.column) 
-                str0 = str0 + " no puede usar la variablexxx " + '"' + self.name + '"' + ", pues no ha sido declarada" 
-                static_analysis = static_analysis + "\n" + str0
+                str0 = str0 + " no puede usar la variable " + '"' + self.name + '"' + ", pues no ha sido declarada" 
+                Analisis = Analisis + "\n" + str0
             self.type = result
             return result 
-        def getLine(self):
-            return self.line 
-        def getColumn(self):
-            return self.column
+    def getLine(self):
+        return self.line 
+    def getColumn(self):
+        return self.column
 
 # Clase para EXPRESION UNARIA
 class op_un:
@@ -136,7 +136,7 @@ class op_un:
         elif self.pre == '#':
             return 'tape'
         elif self.pre == '~':
-            return 'bool'
+            return 'boolean'
 
     def getLine(self):
         return self.line 
@@ -195,7 +195,7 @@ class op_bin:
         result1 = self.left.checktype() 
         result2 = self.right.checktype()
         result = "error"
-        global static_analysis
+        global Analisis
         if (result1 == 'integer') and (result2 == 'integer'): 
             if (self.op == 'Suma' or self.op == 'Resta' or self.op == 'Multiplicacion'
                 or self.op == 'Modulo' or self.op == 'Division'):
@@ -207,7 +207,7 @@ class op_bin:
                 str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
                 str0 = str0 + "Se intenta operacion " + self.op
                 str1 = " con expresiones del tipo entera" 
-                static_analysis = static_analysis + "\n" + str0 + str1
+                Analisis = Analisis + "\n" + str0 + str1
         elif (result1 == 'tape') and (result2 == 'tape'):
             if (self.op == 'Concatenacion'):   
                 result = 'tape'
@@ -215,7 +215,7 @@ class op_bin:
                 str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
                 str0 = str0 + "Se intenta operacion " + self.op
                 str1 = " con expresiones del tipo tape" 
-                static_analysis = static_analysis + "\n" + str0 + str1
+                Analisis = Analisis + "\n" + str0 + str1
         elif (result1 == 'bool' and result2 == 'bool'):
             if self.op == 'Igual' or self.op == 'Desigual' or self.op == 'Or' or self.op ==  'And':
                 result = 'bool'
@@ -223,13 +223,13 @@ class op_bin:
                 str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
                 str0 = str0 + "Se intenta operacion " + self.op
                 str1 = " con expresiones del tipo bool" 
-                static_analysis = static_analysis + "\n" + str0 + str1
+                Analisis = Analisis + "\n" + str0 + str1
         else:
             if result1 != "error" and result2 != "error":   
                 str0 = "Error en Linea %s, Columna %s: " % (self.left.getLine(),self.left.getColumn())
                 str0 = str0 + "Se intenta operacion " + self.op
                 str1 = " con expresion izquierda del tipo " + result1 + " y expresion derecha del tipo " + result2
-                static_analysis = static_analysis + "\n" + str0 + str1
+                Analisis = Analisis + "\n" + str0 + str1
         return result 
     
     def getLine(self):
@@ -257,10 +257,10 @@ class inst_while:
     def checktype(self):
         result = self.cond.checktype()
         if result != 'bool' and result != "error":
-            global static_analysis
+            global Analisis
             str0 = "Error en Linea %s, Columna %s: " % (self.cond.getLine(),self.cond.getColumn())
             str0 = str0 + "Se esperaba expresion del tipo bool, no del tipo " + result 
-            static_analysis = static_analysis + "\n" + str0 
+            Analisis = Analisis + "\n" + str0 
 
 # Clase para ITERACION_DETERMINADA
 class inst_for:
@@ -287,11 +287,11 @@ class inst_for:
         clone = list(stack)
         while clone:
             st = clone.pop()    
-            global static_analysis
+            global Analisis
             if st.isMember(self.ident):
                 str0 = "Error en Linea %s, Columna %s" %(self.line,self.column)
                 str0 = str0 + " variable de iteracion determinada " + self.ident + " ya fue declarada"
-                static_analysis = static_analysis + "\n" + str0
+                Analisis = Analisis + "\n" + str0
             break
 
 # Clase para CONDICIONAL
@@ -316,10 +316,10 @@ class inst_if:
     def checktype(self):
         result = self.cond.checktype()
         if result != 'bool' and result != 'error':
-            global static_analysis
+            global Analisis
             str0 = "Error en Linea %s, Columna %s: " % (self.cond.getLine(),self.cond.getColumn())
             str0 = str0 + "Se esperaba expresion del tipo bool, no del tipo " + result 
-            static_analysis = static_analysis + "\n" + str0 
+            Analisis = Analisis + "\n" + str0 
 
 # Clase para B-INSTRUCCION
 class inst_b:
@@ -376,17 +376,17 @@ class inst_asig:
                 elif st.goesTo(self.ident,'tape'):
                     result1 = 'tape'
                 
-        global static_analysis
+        global Analisis
         if result1 == 'error':
             str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
             str0 = str0 + "no puede usar la variable " + '"' + self.ident + '"' + ", pues no ha sido declarada"
-            static_analysis = static_analysis + "\n" + str0
+            Analisis = Analisis + "\n" + str0
         else:
             result2 = self.val.checktype()
             if result1 != result2 and result2 != "error":
                 str0 = "Error en Linea %s, Columna %s " % (self.val.getLine(),self.val.getColumn())
                 str1 = ": Error de tipos en asignacion a la variable " + self.ident
-                static_analysis = static_analysis + "\n" + str0 + str1
+                Analisis = Analisis + "\n" + str0 + str1
 
 # Clase para READ
 class inst_read:
@@ -407,19 +407,19 @@ class inst_read:
     def checktype(self):
         clone = list(stack) 
         declared = False
-        global static_analysis
+        global Analisis
         while clone and not declared:
             st = clone.pop()
             if st.isMember(self.var):
                 if st.goesToType(self.var,'reado'):	
                     str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
                     str0 = str0 + "no puede hacer READ sobre la variable " + '"' +  self.var + '"' +", pues es una variable de SOLO-LECTURA"
-                    static_analysis = static_analysis + "\n" + str0
+                    Analisis = Analisis + "\n" + str0
                 declared = True
         if not declared:
             str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
             str0 = str0 + "no puede usar la variable " + '"' + self.ident + '"' + ", pues no ha sido declarada"
-            static_analysis = static_analysis + "\n" + str0
+            Analisis = Analisis + "\n" + str0
 
 # Clase para WRITE
 class inst_write:
@@ -451,7 +451,7 @@ class inst_list:
         contador = contador + 1
                     
         self.lista.reverse()
-        str_ = "SECUENCIACION\n"
+        str_ = contador*" " + "SECUENCIACION\n"
         contador = contador + 1
         tabs = contador*"  "
         while self.lista:
@@ -476,7 +476,7 @@ class inst_list:
 # Clase para BLOQUE
 class bloque:
 
-    def __init__(self,lista):
+    def __init__(self,lista,st):
         self.lista = lista
         self.declare = st #symtable local al bloque
 
@@ -491,8 +491,8 @@ class bloque:
         strdec = ""
         if self.declare != None:
             strdec = str(self.declare)  
-        str_ = str_ + strdec + str(self.l)
-        cont = cont - 1
+        str_ = str_ + strdec + str(self.lista)
+        contador = contador - 1
         return str_
 
 #Clases para DECLARACION de variables
@@ -509,17 +509,17 @@ class declare:
                 while elem.l:
                     e = elem.l.pop()
                     if self.symtable.isMember(str(e)):
-                        global static_analysis
+                        global Analisis
                         str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
                         str0 = str0 + "la variable " + '"'+ str(e) + '"' + " ya ha sido declarada"
-                        static_analysis = static_analysis + "\n" + str0
+                        Analisis = Analisis + "\n" + str0
                     self.symtable.insert(str(e),elem.type)
                     stack.append(self.symtable.cloneSymtable())     
        
     def __str__(self):
-        global cont
-        cont = cont + 1
-        tabs = "  "*cont
+        global contador
+        contador = contador + 1
+        tabs = "  "*contador
         staux = self.symtable.get()
         str_st = ""
         for key, value in dict.items(staux):
@@ -584,6 +584,13 @@ def main():
         str_ = ""
         tabs = (contador+1)*"  "
 
+    # TERMINO BOOLEANO
+    def p_term_bool(p):
+        ''' term : TkTrue
+                | TkFalse '''
+        p[0] = booleano(p[1],p.lineno(1),funciones.find_column_parser(codigo,p.lexpos(1)))
+        str_ = ""
+        tabs = (contador+1)*"  "
 
     # IDENTIFICADOR
     def p_term_ident(p):
@@ -613,8 +620,6 @@ def main():
                 | exp TkMod exp
                 | exp TkDiv exp
                 | exp TkResta exp
-                | TkTrue
-                | TkFalse
                 | exp TkIgual exp
                 | exp TkDesigual exp
                 | exp TkMenor exp
@@ -683,10 +688,10 @@ def main():
         ''' instruccion :  declaracion TkExecute instlist TkDone
                             | TkExecute instlist TkDone '''
         if len(p) == 4:
-            p[0] = inst_bloque(p[2])
+            p[0] = bloque(p[2], None)
         elif len(p) == 5:
-            p[0] = inst_bloque(p[3])
-
+            p[0] = bloque(p[3], p[1])
+            stack.pop()
 
     # BLOQUE DE B-INSTRUCCION (Ej: {lista_tape} At [a] )
     def p_instruccion_b(p):
@@ -802,10 +807,10 @@ def main():
     arbol = parser.parse(codigo,debug=log)
 
     # Se imprime el árbol
-    if static_analysis == '':
+    if Analisis == '':
         print funciones.print_arbol(arbol)
     else:
-        print static_analysis	
+        print Analisis	
 
 if __name__ == "__main__":
     main()

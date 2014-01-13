@@ -1,14 +1,19 @@
-declare x, y :: integer; t :: tape execute 
-    x := 3 ;
-    y := true  ;
+declare x, y :: integer; t, s :: tape execute 
+    x := 3+3-9 ;
+    y := 4  ;
    for i from 1 to x do
-        t := [y] ;
         {++++++++++} at t;
-        while t /= 0 do 
+
+        while y /= 0 do 
+            if x>y then
+                declare y :: integer execute
+                    y := 4                
+                done
+            done;
             {>+++++++>++++++++++>+++>+<<<<-} at t
         done;
         {>++.>+.+++++++..+++.>++.} at t;
-        {<<+++++++++++++++.>.+++.} at t;
-        {------.--------.>+.>.} at t
+        {<<+++++++++++++++.>.+++.} at s;
+        x := -x
     done
 done
