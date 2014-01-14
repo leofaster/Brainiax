@@ -13,7 +13,7 @@ def print_arbol(arb):
         return str_
 
 # Funcion que halla la columna donde se encuentra un token dado
-def print_column(input, t):
+def hallar_columna(input, t):
         inicio = input.rfind('\n',0,t.lexpos)
         # Si es el primer token de la primera linea, su posicion es 1
         if inicio < 0 and t.lexpos == 0:         
@@ -21,8 +21,6 @@ def print_column(input, t):
             return 1
         column = (t.lexpos - inicio)
         return column
-        
-# Funcion que halla la columna donde se encuentra un token dado        
 def find_column_parser(input,lexpos):
         aux = input.rfind('\n',0,lexpos)
         # Si es el primer token de la primera línea, su posición es 1

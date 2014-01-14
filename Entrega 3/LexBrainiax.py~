@@ -131,7 +131,7 @@ t_ignore_Comentarios = r'\$-(.|\n)*?-\$|\${2}[^\n]*'
 
 # Funcion para obtener errores en una lista
 def t_error(t):
-  c = funciones.print_column(t.lexer.lexdata,t)
+  c = funciones.hallar_columna(t.lexer.lexdata,t)
   print "Error: caracter inesperado \"%s\" en linea %s, columna %s." % (t.value[0],t.lineno,c)
   sys.exit(0)             
   return t

@@ -1,14 +1,23 @@
-declare x, y :: integer; c :: tape execute 
-    x := 3 ;
-    y := true  ;
+declare x, y, z:: integer; t, s, p :: tape; b, c, d:: boolean execute 
+   x := y + z;
+   t := s & p;
+   b := c /\ d;
+   write a;
+   read x;
    for i from 1 to x do
-        t := [y] ;
         {++++++++++} at t;
-        while t /= 0 do 
+
+        while y /= 0 do 
+            if x>y then
+                declare y :: integer execute
+                    y := 4;
+                    z := 1
+                done
+            done;
             {>+++++++>++++++++++>+++>+<<<<-} at t
         done;
         {>++.>+.+++++++..+++.>++.} at t;
-        {<<+++++++++++++++.>.+++.} at t;
-        {------.--------.>+.>.} at t
+        {<<+++++++++++++++.>.+++.} at s;
+        x := -x
     done
 done

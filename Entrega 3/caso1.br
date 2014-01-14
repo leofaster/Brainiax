@@ -1,13 +1,17 @@
-declare x, y :: integer; t, s :: tape execute 
-    x := 3+3-9 ;
-    y := 4  ;
+declare x, y, z:: integer; t, s, p :: tape; b, c, d:: boolean execute 
+   x := y + z;
+   t := s & p;
+   b := c /\ d;
+   write a;
+   read t;
    for i from 1 to x do
         {++++++++++} at t;
 
         while y /= 0 do 
             if x>y then
                 declare y :: integer execute
-                    y := 4                
+                    y := 4;
+                    z := 1
                 done
             done;
             {>+++++++>++++++++++>+++>+<<<<-} at t

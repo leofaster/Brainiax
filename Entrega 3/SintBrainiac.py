@@ -3,7 +3,7 @@
 # Analisis Sintactico del lenguaje Brainiac.
 # Modulo: SintBrainiac
 # Autores:  Wilthew, Patricia    09-10910
-#               Leopoldo Pimentel    06-40095
+#           Leopoldo Pimentel    06-40095
 
 import ply.lex as lex
 import ply.yacc as yacc
