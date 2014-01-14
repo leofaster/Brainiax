@@ -1,0 +1,11 @@
+declare x,y :: integer; b :: boolean execute
+	b := true;
+	y := 42;
+	if b then 
+       x := 42
+    else
+       x := -1
+    done
+done
+
+

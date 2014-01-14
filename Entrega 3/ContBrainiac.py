@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # coding: utf8 
 # Analisis de Contexto del lenguaje Brainiac.
 # Modulo: ContBrainiac
@@ -58,7 +59,7 @@ class booleano:
         global contador
         contador = contador + 1
         tabs = "  "*contador
-        str_ = "CONSTANTE_ENT\n" + tabs +  "valor: " + str(self.value)
+        str_ = str(self.value)
         contador = contador - 1
         return str_
 
@@ -100,15 +101,17 @@ class ident:
                     result = 'boolean'
                 elif st.goesTo(self.name,'tape'):
                     result = 'tape'
-            if result == 'error':
-                global Analisis
-                str0 = "Error en Linea %s , Columna %s:" %(self.line,self.column) 
-                str0 = str0 + " no puede usar la variable " + '"' + self.name + '"' + ", pues no ha sido declarada" 
-                Analisis = Analisis + "\n" + str0
-            self.type = result
-            return result 
+
+	if result == 'error':
+	    global Analisis
+	    str0 = "Error en Linea %s , Columna %s:" %(self.line,self.column) 
+	    str0 = str0 + " no puede usar la variable " + '"' + self.name + '"' + ", pues no ha sido declarada" 
+	    Analisis = Analisis + "\n" + str0
+        return result 
+            
     def getLine(self):
         return self.line 
+        
     def getColumn(self):
         return self.column
 
@@ -308,7 +311,7 @@ class inst_if:
         tabs = "  "*contador
         aux = ""
         if self.instr1 != None:
-            aux = "\n" +tabs + "Else: " + str(self.instr1) + " "
+            aux = "\n" +tabs + "Else: \n" + str(self.instr1) + " "
         str_ = "CONDICIONAL\n" + tabs + "Guardia: " + str(self.cond) + "\n" + tabs + "Exito: \n" + str(self.instr0) + aux  
         contador = contador - 1
         return str_
@@ -446,7 +449,7 @@ class inst_list:
         global contador      
         contador = contador + 1
         self.lista.reverse()
-	tabs = "  "*contador  
+        tabs = "  "*contador
         str_ = ""
         
         while self.lista:
@@ -510,7 +513,7 @@ class declare:
                         str0 = str0 + "la variable " + '"'+ str(e) + '"' + " ya ha sido declarada"
                         Analisis = Analisis + "\n" + str0
                     self.symtable.insert(str(e),elem.type)
-                stack.append(self.symtable)     
+                stack.append(self.symtable.cloneSymtable())    
        
     def __str__(self):
         global contador
@@ -687,6 +690,7 @@ def main():
             p[0] = bloque(p[3], p[1])
             stack.pop()
 
+
     # BLOQUE DE B-INSTRUCCION (Ej: {lista_tape} At [a] )
     def p_instruccion_b(p):
         ''' instruccion : TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape '''
@@ -747,11 +751,11 @@ def main():
         ''' declist : dec TkPuntoYComa declist 
                     | dec '''
         if len(p) == 2:
-			p[0] = []
-			p[0].append(p[1])
+            p[0] = []
+            p[0].append(p[1])
         else:
-			p[0] = p[3]
-			p[0].append(p[1])
+            p[0] = p[3]
+            p[0].append(p[1])
 
     def p_dec(p):
         ''' dec : varlist TkType tipo '''
@@ -761,11 +765,11 @@ def main():
         ''' varlist : TkIdent TkComa varlist 
                     | TkIdent '''
         if len(p) == 2:
-			p[0] = []
-			p[0].append(p[1])
+            p[0] = []
+            p[0].append(p[1])
         else:
-			p[0] = p[3]
-			p[0].append(p[1])
+            p[0] = p[3]
+            p[0].append(p[1])
 
     def p_tipo(p):
         ''' tipo : TkInteger
@@ -777,10 +781,11 @@ def main():
     #Funcion de error del parser
     def p_error(p):
         c = funciones.print_column(codigo,p)
-        print "Error de sintaxis en linea %s, columna %s: token \'%s\' inesperado." % (p.lineno,c,p.value[0])
+        str = "Error de sintaxis en linea %s, columna %s: token %s inesperado. \n" %(p.lineno, c, p.value[0])
+        print str
         sys.exit(0)
-
-
+        
+        
     # Se construye la funcion del parser
     parser = yacc.yacc()
 

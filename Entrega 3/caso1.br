@@ -4,20 +4,24 @@ declare x, y, z:: integer; t, s, p :: tape; b, c, d:: boolean execute
    b := c /\ d;
    write a;
    read t;
-   for i from 1 to x do
-        {++++++++++} at t;
+  declare s :: boolean execute
+      s := false;
+      z := 1;
+      c := true;
+      x := 3;
+      p := #p
+  done;
+  declare k :: boolean execute
+      k := false;
+      z := 1;
+      c := true;
+      x := z;
+      p := #p
+  done;
+  write HOLA;
+  {>+++++++>++++++++++>+++>+<<<<-} at t;
+  {>++.>+.+++++++..+++.>++.} at t;
+  {<<+++++++++++++++.>.+++.} at s;
+  x := -x
 
-        while y /= 0 do 
-            if x>y then
-                declare y :: integer execute
-                    y := 4;
-                    z := 1
-                done
-            done;
-            {>+++++++>++++++++++>+++>+<<<<-} at t
-        done;
-        {>++.>+.+++++++..+++.>++.} at t;
-        {<<+++++++++++++++.>.+++.} at s;
-        x := -x
-    done
 done

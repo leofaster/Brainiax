@@ -1,0 +1,16 @@
+SECUENCIACION
+    ASIGNACION
+        - var: b
+        - val: true
+    ASIGNACION
+        - var: y
+        - val: 42
+    CONDICIONAL
+        - guardia: BOOL_EXPR
+                       - val: b
+        - exito: ASIGNACION
+                     - var: x
+                     - val: 42
+        - fracaso: ASIGNACION
+                     - var: x
+                     - val: -1

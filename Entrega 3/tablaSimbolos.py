@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #coding: utf8 
 # Analisis Sintactico del lenguaje Brainiac.
 # Modulo: symtable
@@ -42,4 +43,4 @@ class symtable:
 	    d = symtable()
 	    d.dic = self.get()
 	    return d
-		
+	    

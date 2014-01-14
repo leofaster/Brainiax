@@ -1,0 +1,10 @@
+declare deja :: integer execute
+    deja := 0;
+    if deja = 0 then
+        declare vu, deja :: integer; vu :: boolean execute
+            deja := 1;
+            vu := 0;
+            vu := deja + vu
+        done
+    done
+done

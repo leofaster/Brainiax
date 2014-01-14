@@ -1,0 +1,11 @@
+declare x, y, z :: integer; b :: boolean execute
+    x := 2;
+    b := false;
+    y := 3;
+    declare b :: integer; c :: boolean execute
+        b := 0;
+        y := z + b;
+	x := 3
+    done;
+    y := x + b
+done
