@@ -1,0 +1,2235 @@
+   yacc.py: 292:PLY: PARSE DEBUG START
+   yacc.py: 337:
+   yacc.py: 338:State  : 0
+   yacc.py: 352:Stack  : . LexToken(TkDeclare,'declare',1,0)
+   yacc.py: 366:Action : Shift and goto state 4
+   yacc.py: 337:
+   yacc.py: 338:State  : 4
+   yacc.py: 352:Stack  : TkDeclare . LexToken(TkIdent,'x',1,8)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare TkIdent . LexToken(TkComa,',',1,9)
+   yacc.py: 366:Action : Shift and goto state 54
+   yacc.py: 337:
+   yacc.py: 338:State  : 54
+   yacc.py: 352:Stack  : TkDeclare TkIdent TkComa . LexToken(TkIdent,'y',1,11)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare TkIdent TkComa TkIdent . LexToken(TkComa,',',1,12)
+   yacc.py: 366:Action : Shift and goto state 54
+   yacc.py: 337:
+   yacc.py: 338:State  : 54
+   yacc.py: 352:Stack  : TkDeclare TkIdent TkComa TkIdent TkComa . LexToken(TkIdent,'z',1,14)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare TkIdent TkComa TkIdent TkComa TkIdent . LexToken(TkType,'::',1,15)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent] with ['z'] and goto state 57
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 90
+   yacc.py: 352:Stack  : TkDeclare TkIdent TkComa TkIdent TkComa varlist . LexToken(TkType,'::',1,15)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent TkComa varlist] with ['y',',',None] and goto state 56
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 90
+   yacc.py: 352:Stack  : TkDeclare TkIdent TkComa varlist . LexToken(TkType,'::',1,15)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent TkComa varlist] with ['x',',',None] and goto state 56
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 18
+   yacc.py: 352:Stack  : TkDeclare varlist . LexToken(TkType,'::',1,15)
+   yacc.py: 366:Action : Shift and goto state 53
+   yacc.py: 337:
+   yacc.py: 338:State  : 53
+   yacc.py: 352:Stack  : TkDeclare varlist TkType . LexToken(TkInteger,'integer',1,18)
+   yacc.py: 366:Action : Shift and goto state 88
+   yacc.py: 337:
+   yacc.py: 338:State  : 88
+   yacc.py: 352:Stack  : TkDeclare varlist TkType TkInteger . LexToken(TkPuntoYComa,';',1,25)
+   yacc.py: 389:Action : Reduce rule [tipo -> TkInteger] with ['integer'] and goto state 58
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 86
+   yacc.py: 352:Stack  : TkDeclare varlist TkType tipo . LexToken(TkPuntoYComa,';',1,25)
+   yacc.py: 389:Action : Reduce rule [dec -> varlist TkType tipo] with [None,'::',None] and goto state 55
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 20
+   yacc.py: 352:Stack  : TkDeclare dec . LexToken(TkPuntoYComa,';',1,25)
+   yacc.py: 366:Action : Shift and goto state 55
+   yacc.py: 337:
+   yacc.py: 338:State  : 55
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa . LexToken(TkIdent,'t',1,27)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa TkIdent . LexToken(TkComa,',',1,28)
+   yacc.py: 366:Action : Shift and goto state 54
+   yacc.py: 337:
+   yacc.py: 338:State  : 54
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa TkIdent TkComa . LexToken(TkIdent,'s',1,30)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa TkIdent TkComa TkIdent . LexToken(TkComa,',',1,31)
+   yacc.py: 366:Action : Shift and goto state 54
+   yacc.py: 337:
+   yacc.py: 338:State  : 54
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa TkIdent TkComa TkIdent TkComa . LexToken(TkIdent,'p',1,33)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa TkIdent TkComa TkIdent TkComa TkIdent . LexToken(TkType,'::',1,35)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent] with ['p'] and goto state 57
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 90
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa TkIdent TkComa TkIdent TkComa varlist . LexToken(TkType,'::',1,35)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent TkComa varlist] with ['s',',',None] and goto state 56
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 90
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa TkIdent TkComa varlist . LexToken(TkType,'::',1,35)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent TkComa varlist] with ['t',',',None] and goto state 56
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 18
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa varlist . LexToken(TkType,'::',1,35)
+   yacc.py: 366:Action : Shift and goto state 53
+   yacc.py: 337:
+   yacc.py: 338:State  : 53
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa varlist TkType . LexToken(TkTape,'tape',1,38)
+   yacc.py: 366:Action : Shift and goto state 89
+   yacc.py: 337:
+   yacc.py: 338:State  : 89
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa varlist TkType TkTape . LexToken(TkPuntoYComa,';',1,42)
+   yacc.py: 389:Action : Reduce rule [tipo -> TkTape] with ['tape'] and goto state 60
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 86
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa varlist TkType tipo . LexToken(TkPuntoYComa,';',1,42)
+   yacc.py: 389:Action : Reduce rule [dec -> varlist TkType tipo] with [None,'::',None] and goto state 55
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 20
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec . LexToken(TkPuntoYComa,';',1,42)
+   yacc.py: 366:Action : Shift and goto state 55
+   yacc.py: 337:
+   yacc.py: 338:State  : 55
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa . LexToken(TkIdent,'b',1,44)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa TkIdent . LexToken(TkComa,',',1,45)
+   yacc.py: 366:Action : Shift and goto state 54
+   yacc.py: 337:
+   yacc.py: 338:State  : 54
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa TkIdent TkComa . LexToken(TkIdent,'c',1,47)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa TkIdent TkComa TkIdent . LexToken(TkComa,',',1,48)
+   yacc.py: 366:Action : Shift and goto state 54
+   yacc.py: 337:
+   yacc.py: 338:State  : 54
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa TkIdent TkComa TkIdent TkComa . LexToken(TkIdent,'d',1,50)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa TkIdent TkComa TkIdent TkComa TkIdent . LexToken(TkType,'::',1,51)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent] with ['d'] and goto state 57
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 90
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa TkIdent TkComa TkIdent TkComa varlist . LexToken(TkType,'::',1,51)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent TkComa varlist] with ['c',',',None] and goto state 56
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 90
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa TkIdent TkComa varlist . LexToken(TkType,'::',1,51)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent TkComa varlist] with ['b',',',None] and goto state 56
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 18
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa varlist . LexToken(TkType,'::',1,51)
+   yacc.py: 366:Action : Shift and goto state 53
+   yacc.py: 337:
+   yacc.py: 338:State  : 53
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa varlist TkType . LexToken(TkBoolean,'boolean',1,54)
+   yacc.py: 366:Action : Shift and goto state 87
+   yacc.py: 337:
+   yacc.py: 338:State  : 87
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa varlist TkType TkBoolean . LexToken(TkExecute,'execute',1,62)
+   yacc.py: 389:Action : Reduce rule [tipo -> TkBoolean] with ['boolean'] and goto state 59
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 86
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa varlist TkType tipo . LexToken(TkExecute,'execute',1,62)
+   yacc.py: 389:Action : Reduce rule [dec -> varlist TkType tipo] with [None,'::',None] and goto state 55
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 20
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa dec . LexToken(TkExecute,'execute',1,62)
+   yacc.py: 389:Action : Reduce rule [declist -> dec] with [None] and goto state 54
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 91
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa dec TkPuntoYComa declist . LexToken(TkExecute,'execute',1,62)
+   yacc.py: 389:Action : Reduce rule [declist -> dec TkPuntoYComa declist] with [None,';',None] and goto state 53
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 91
+   yacc.py: 352:Stack  : TkDeclare dec TkPuntoYComa declist . LexToken(TkExecute,'execute',1,62)
+   yacc.py: 389:Action : Reduce rule [declist -> dec TkPuntoYComa declist] with [None,';',None] and goto state 53
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 17
+   yacc.py: 352:Stack  : TkDeclare declist . LexToken(TkExecute,'execute',1,62)
+   yacc.py: 389:Action : Reduce rule [declaracion -> TkDeclare declist] with ['declare',None] and goto state 52
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 1
+   yacc.py: 352:Stack  : declaracion . LexToken(TkExecute,'execute',1,62)
+   yacc.py: 366:Action : Shift and goto state 5
+   yacc.py: 337:
+   yacc.py: 338:State  : 5
+   yacc.py: 352:Stack  : declaracion TkExecute . LexToken(TkIdent,'x',2,74)
+   yacc.py: 366:Action : Shift and goto state 8
+   yacc.py: 337:
+   yacc.py: 338:State  : 8
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent . LexToken(TkAsignacion,':=',2,76)
+   yacc.py: 366:Action : Shift and goto state 36
+   yacc.py: 337:
+   yacc.py: 338:State  : 36
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion . LexToken(TkIdent,'y',2,79)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion TkIdent . LexToken(TkMas,'+',2,81)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['y'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1680> (<__main__.ident instance at 0x7f8f30de16 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion term . LexToken(TkMas,'+',2,81)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1680>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1680> (<__main__.ident instance at 0x7f8f30de16 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion exp . LexToken(TkMas,'+',2,81)
+   yacc.py: 366:Action : Shift and goto state 69
+   yacc.py: 337:
+   yacc.py: 338:State  : 69
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion exp TkMas . LexToken(TkIdent,'z',2,83)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion exp TkMas TkIdent . LexToken(TkPuntoYComa,';',2,84)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['z'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de16c8> (<__main__.ident instance at 0x7f8f30de16 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion exp TkMas term . LexToken(TkPuntoYComa,';',2,84)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de16c8>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de16c8> (<__main__.ident instance at 0x7f8f30de16 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 102
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion exp TkMas exp . LexToken(TkPuntoYComa,';',2,84)
+   yacc.py: 389:Action : Reduce rule [exp -> exp TkMas exp] with [<instance @ 0x7f8f30de1680>,'+',<instance @ 0x7f8f30de16c8>] and goto state 13
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1638> (<__main__.op_bin instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute TkIdent TkAsignacion exp . LexToken(TkPuntoYComa,';',2,84)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkIdent TkAsignacion exp] with ['x',':=',<instance @ 0x7f8f30de1638>] and goto state 29
+   yacc.py: 423:Result : <instance @ 0x7f8f30de15a8> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 11
+   yacc.py: 352:Stack  : declaracion TkExecute instruccion . LexToken(TkPuntoYComa,';',2,84)
+   yacc.py: 389:Action : Reduce rule [instlist -> instruccion] with [<instance @ 0x7f8f30de15a8>] and goto state 50
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 21
+   yacc.py: 352:Stack  : declaracion TkExecute instlist . LexToken(TkPuntoYComa,';',2,84)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa . LexToken(TkIdent,'t',3,89)
+   yacc.py: 366:Action : Shift and goto state 8
+   yacc.py: 337:
+   yacc.py: 338:State  : 8
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent . LexToken(TkAsignacion,':=',3,91)
+   yacc.py: 366:Action : Shift and goto state 36
+   yacc.py: 337:
+   yacc.py: 338:State  : 36
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion . LexToken(TkIdent,'s',3,94)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion TkIdent . LexToken(TkConcat,'&',3,96)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['s'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de17a0> (<__main__.ident instance at 0x7f8f30de17 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion term . LexToken(TkConcat,'&',3,96)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de17a0>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de17a0> (<__main__.ident instance at 0x7f8f30de17 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp . LexToken(TkConcat,'&',3,96)
+   yacc.py: 366:Action : Shift and goto state 61
+   yacc.py: 337:
+   yacc.py: 338:State  : 61
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConcat . LexToken(TkIdent,'p',3,98)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConcat TkIdent . LexToken(TkPuntoYComa,';',3,99)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['p'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de17e8> (<__main__.ident instance at 0x7f8f30de17 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConcat term . LexToken(TkPuntoYComa,';',3,99)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de17e8>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de17e8> (<__main__.ident instance at 0x7f8f30de17 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 94
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConcat exp . LexToken(TkPuntoYComa,';',3,99)
+   yacc.py: 389:Action : Reduce rule [exp -> exp TkConcat exp] with [<instance @ 0x7f8f30de17a0>,'&',<instance @ 0x7f8f30de17e8>] and goto state 28
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1878> (<__main__.op_bin instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp . LexToken(TkPuntoYComa,';',3,99)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkIdent TkAsignacion exp] with ['t',':=',<instance @ 0x7f8f30de1878>] and goto state 29
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1830> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa instruccion . LexToken(TkPuntoYComa,';',3,99)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30de1830>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1830> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist semicoloninst . LexToken(TkPuntoYComa,';',3,99)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1758>,<instance @ 0x7f8f30de1830>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 21
+   yacc.py: 352:Stack  : declaracion TkExecute instlist . LexToken(TkPuntoYComa,';',3,99)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa . LexToken(TkIdent,'b',4,104)
+   yacc.py: 366:Action : Shift and goto state 8
+   yacc.py: 337:
+   yacc.py: 338:State  : 8
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent . LexToken(TkAsignacion,':=',4,106)
+   yacc.py: 366:Action : Shift and goto state 36
+   yacc.py: 337:
+   yacc.py: 338:State  : 36
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion . LexToken(TkIdent,'c',4,109)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion TkIdent . LexToken(TkConjuncion,'/\\',4,111)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['c'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de15f0> (<__main__.ident instance at 0x7f8f30de15 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion term . LexToken(TkConjuncion,'/\\',4,111)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de15f0>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de15f0> (<__main__.ident instance at 0x7f8f30de15 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp . LexToken(TkConjuncion,'/\\',4,111)
+   yacc.py: 366:Action : Shift and goto state 66
+   yacc.py: 337:
+   yacc.py: 338:State  : 66
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConjuncion . LexToken(TkIdent,'d',4,114)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConjuncion TkIdent . LexToken(TkPuntoYComa,';',4,115)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['d'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1950> (<__main__.ident instance at 0x7f8f30de19 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConjuncion term . LexToken(TkPuntoYComa,';',4,115)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1950>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1950> (<__main__.ident instance at 0x7f8f30de19 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 99
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp TkConjuncion exp . LexToken(TkPuntoYComa,';',4,115)
+   yacc.py: 389:Action : Reduce rule [exp -> exp TkConjuncion exp] with [<instance @ 0x7f8f30de15f0>,'/\\',<instance @ 0x7f8f30de1950>] and goto state 27
+   yacc.py: 423:Result : <instance @ 0x7f8f30de19e0> (<__main__.op_bin instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp . LexToken(TkPuntoYComa,';',4,115)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkIdent TkAsignacion exp] with ['b',':=',<instance @ 0x7f8f30de19e0>] and goto state 29
+   yacc.py: 423:Result : <instance @ 0x7f8f30de18c0> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa instruccion . LexToken(TkPuntoYComa,';',4,115)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30de18c0>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30de18c0> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist semicoloninst . LexToken(TkPuntoYComa,';',4,115)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1758>,<instance @ 0x7f8f30de18c0>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 21
+   yacc.py: 352:Stack  : declaracion TkExecute instlist . LexToken(TkPuntoYComa,';',4,115)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa . LexToken(TkWrite,'write',5,120)
+   yacc.py: 366:Action : Shift and goto state 15
+   yacc.py: 337:
+   yacc.py: 338:State  : 15
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkWrite . LexToken(TkIdent,'a',5,126)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkWrite TkIdent . LexToken(TkPuntoYComa,';',5,127)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['a'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1908> (<__main__.ident instance at 0x7f8f30de19 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkWrite term . LexToken(TkPuntoYComa,';',5,127)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1908>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1908> (<__main__.ident instance at 0x7f8f30de19 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 51
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkWrite exp . LexToken(TkPuntoYComa,';',5,127)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkWrite exp] with ['write',<instance @ 0x7f8f30de1908>] and goto state 31
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1a70> (<__main__.inst_write instance at 0x7f8f3 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa instruccion . LexToken(TkPuntoYComa,';',5,127)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30de1a70>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1a70> (<__main__.inst_write instance at 0x7f8f3 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist semicoloninst . LexToken(TkPuntoYComa,';',5,127)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1758>,<instance @ 0x7f8f30de1a70>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 21
+   yacc.py: 352:Stack  : declaracion TkExecute instlist . LexToken(TkPuntoYComa,';',5,127)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa . LexToken(TkRead,'read',6,132)
+   yacc.py: 366:Action : Shift and goto state 7
+   yacc.py: 337:
+   yacc.py: 338:State  : 7
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkRead . LexToken(TkIdent,'t',6,137)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkRead TkIdent . LexToken(TkPuntoYComa,';',6,138)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['t'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1a28> (<__main__.ident instance at 0x7f8f30de1a ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkRead term . LexToken(TkPuntoYComa,';',6,138)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1a28>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1a28> (<__main__.ident instance at 0x7f8f30de1a ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 35
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkRead exp . LexToken(TkPuntoYComa,';',6,138)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkRead exp] with ['read',<instance @ 0x7f8f30de1a28>] and goto state 30
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1b00> (<__main__.inst_read instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa instruccion . LexToken(TkPuntoYComa,';',6,138)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30de1b00>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1b00> (<__main__.inst_read instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist semicoloninst . LexToken(TkPuntoYComa,';',6,138)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1758>,<instance @ 0x7f8f30de1b00>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 21
+   yacc.py: 352:Stack  : declaracion TkExecute instlist . LexToken(TkPuntoYComa,';',6,138)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa . LexToken(TkFor,'for',7,143)
+   yacc.py: 366:Action : Shift and goto state 10
+   yacc.py: 337:
+   yacc.py: 338:State  : 10
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor . LexToken(TkIdent,'i',7,147)
+   yacc.py: 366:Action : Shift and goto state 38
+   yacc.py: 337:
+   yacc.py: 338:State  : 38
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent . LexToken(TkFrom,'from',7,149)
+   yacc.py: 366:Action : Shift and goto state 80
+   yacc.py: 337:
+   yacc.py: 338:State  : 80
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom . LexToken(TkNum,1,7,154)
+   yacc.py: 366:Action : Shift and goto state 26
+   yacc.py: 337:
+   yacc.py: 338:State  : 26
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom TkNum . LexToken(TkTo,'to',7,156)
+   yacc.py: 389:Action : Reduce rule [term -> TkNum] with [1] and goto state 3
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1998> (<__main__.numero instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom term . LexToken(TkTo,'to',7,156)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1998>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1998> (<__main__.numero instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 111
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp . LexToken(TkTo,'to',7,156)
+   yacc.py: 366:Action : Shift and goto state 117
+   yacc.py: 337:
+   yacc.py: 338:State  : 117
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo . LexToken(TkIdent,'x',7,159)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo TkIdent . LexToken(TkDo,'do',7,161)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['x'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1b90> (<__main__.ident instance at 0x7f8f30de1b ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo term . LexToken(TkDo,'do',7,161)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1b90>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1b90> (<__main__.ident instance at 0x7f8f30de1b ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 122
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp . LexToken(TkDo,'do',7,161)
+   yacc.py: 366:Action : Shift and goto state 125
+   yacc.py: 337:
+   yacc.py: 338:State  : 125
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo . LexToken(TkLlaveAbre,'{',8,172)
+   yacc.py: 366:Action : Shift and goto state 14
+   yacc.py: 337:
+   yacc.py: 338:State  : 14
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre . LexToken(TkMas,'+',8,173)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre TkMas . LexToken(TkMas,'+',8,174)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 48
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre simb_tape . LexToken(TkMas,'+',8,174)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> simb_tape] with ['+'] and goto state 42
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,174)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,175)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,175)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['+'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,175)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,176)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,176)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['+', '+'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,176)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,177)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,177)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['+', '+', '+'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,177)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,178)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,178)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30e1edd0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,178)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,179)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,179)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30e1edd0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,179)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,180)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,180)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30e1edd0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,180)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,181)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,181)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30e1edd0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,181)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',8,182)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',8,182)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30e1edd0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkMas,'+',8,182)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkMas . LexToken(TkLlaveCierra,'}',8,183)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape simb_tape . LexToken(TkLlaveCierra,'}',8,183)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30e1edd0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30e1edd0> (['+', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape . LexToken(TkLlaveCierra,'}',8,183)
+   yacc.py: 366:Action : Shift and goto state 83
+   yacc.py: 337:
+   yacc.py: 338:State  : 83
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkLlaveCierra . LexToken(TkAt,'at',8,185)
+   yacc.py: 366:Action : Shift and goto state 112
+   yacc.py: 337:
+   yacc.py: 338:State  : 112
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkLlaveCierra TkAt . LexToken(TkIdent,'t',8,188)
+   yacc.py: 366:Action : Shift and goto state 119
+   yacc.py: 337:
+   yacc.py: 338:State  : 119
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkLlaveCierra TkAt TkIdent . LexToken(TkPuntoYComa,';',8,189)
+   yacc.py: 389:Action : Reduce rule [ident_tape -> TkIdent] with ['t'] and goto state 40
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd1c0> ('t')
+   yacc.py: 337:
+   yacc.py: 338:State  : 118
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape . LexToken(TkPuntoYComa,';',8,189)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape] with ['{',<list @ 0x7f8f30e1edd0>,'}','at','t'] and goto state 38
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1cb0> (<__main__.inst_b instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 11
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instruccion . LexToken(TkPuntoYComa,';',8,189)
+   yacc.py: 389:Action : Reduce rule [instlist -> instruccion] with [<instance @ 0x7f8f30de1cb0>] and goto state 50
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1c68> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 127
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist . LexToken(TkPuntoYComa,';',8,189)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa . LexToken(TkWhile,'while',10,200)
+   yacc.py: 366:Action : Shift and goto state 9
+   yacc.py: 337:
+   yacc.py: 338:State  : 9
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile . LexToken(TkIdent,'y',10,206)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile TkIdent . LexToken(TkDesigual,'/=',10,208)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['y'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1c20> (<__main__.ident instance at 0x7f8f30de1c ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile term . LexToken(TkDesigual,'/=',10,208)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1c20>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1c20> (<__main__.ident instance at 0x7f8f30de1c ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 37
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp . LexToken(TkDesigual,'/=',10,208)
+   yacc.py: 366:Action : Shift and goto state 72
+   yacc.py: 337:
+   yacc.py: 338:State  : 72
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDesigual . LexToken(TkNum,0,10,211)
+   yacc.py: 366:Action : Shift and goto state 26
+   yacc.py: 337:
+   yacc.py: 338:State  : 26
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDesigual TkNum . LexToken(TkDo,'do',10,213)
+   yacc.py: 389:Action : Reduce rule [term -> TkNum] with [0] and goto state 3
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1cf8> (<__main__.numero instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDesigual term . LexToken(TkDo,'do',10,213)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1cf8>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1cf8> (<__main__.numero instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 105
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDesigual exp . LexToken(TkDo,'do',10,213)
+   yacc.py: 389:Action : Reduce rule [exp -> exp TkDesigual exp] with [<instance @ 0x7f8f30de1c20>,'/=',<instance @ 0x7f8f30de1cf8>] and goto state 21
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1dd0> (<__main__.op_bin instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 37
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp . LexToken(TkDo,'do',10,213)
+   yacc.py: 366:Action : Shift and goto state 79
+   yacc.py: 337:
+   yacc.py: 338:State  : 79
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo . LexToken(TkIf,'if',11,229)
+   yacc.py: 366:Action : Shift and goto state 6
+   yacc.py: 337:
+   yacc.py: 338:State  : 6
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf . LexToken(TkIdent,'x',11,232)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf TkIdent . LexToken(TkMayor,'>',11,233)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['x'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1d88> (<__main__.ident instance at 0x7f8f30de1d ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf term . LexToken(TkMayor,'>',11,233)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1d88>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1d88> (<__main__.ident instance at 0x7f8f30de1d ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 32
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp . LexToken(TkMayor,'>',11,233)
+   yacc.py: 366:Action : Shift and goto state 75
+   yacc.py: 337:
+   yacc.py: 338:State  : 75
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkMayor . LexToken(TkIdent,'y',11,234)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkMayor TkIdent . LexToken(TkThen,'then',11,236)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['y'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1ea8> (<__main__.ident instance at 0x7f8f30de1e ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkMayor term . LexToken(TkThen,'then',11,236)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1ea8>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1ea8> (<__main__.ident instance at 0x7f8f30de1e ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 108
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkMayor exp . LexToken(TkThen,'then',11,236)
+   yacc.py: 389:Action : Reduce rule [exp -> exp TkMayor exp] with [<instance @ 0x7f8f30de1d88>,'>',<instance @ 0x7f8f30de1ea8>] and goto state 23
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1ef0> (<__main__.op_bin instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 32
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp . LexToken(TkThen,'then',11,236)
+   yacc.py: 366:Action : Shift and goto state 71
+   yacc.py: 337:
+   yacc.py: 338:State  : 71
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen . LexToken(TkDeclare,'declare',12,257)
+   yacc.py: 366:Action : Shift and goto state 4
+   yacc.py: 337:
+   yacc.py: 338:State  : 4
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare . LexToken(TkIdent,'y',12,265)
+   yacc.py: 366:Action : Shift and goto state 19
+   yacc.py: 337:
+   yacc.py: 338:State  : 19
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare TkIdent . LexToken(TkType,'::',12,267)
+   yacc.py: 389:Action : Reduce rule [varlist -> TkIdent] with ['y'] and goto state 57
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 18
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare varlist . LexToken(TkType,'::',12,267)
+   yacc.py: 366:Action : Shift and goto state 53
+   yacc.py: 337:
+   yacc.py: 338:State  : 53
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare varlist TkType . LexToken(TkInteger,'integer',12,270)
+   yacc.py: 366:Action : Shift and goto state 88
+   yacc.py: 337:
+   yacc.py: 338:State  : 88
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare varlist TkType TkInteger . LexToken(TkExecute,'execute',12,278)
+   yacc.py: 389:Action : Reduce rule [tipo -> TkInteger] with ['integer'] and goto state 58
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 86
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare varlist TkType tipo . LexToken(TkExecute,'execute',12,278)
+   yacc.py: 389:Action : Reduce rule [dec -> varlist TkType tipo] with [None,'::',None] and goto state 55
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 20
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare dec . LexToken(TkExecute,'execute',12,278)
+   yacc.py: 389:Action : Reduce rule [declist -> dec] with [None] and goto state 54
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 17
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen TkDeclare declist . LexToken(TkExecute,'execute',12,278)
+   yacc.py: 389:Action : Reduce rule [declaracion -> TkDeclare declist] with ['declare',None] and goto state 52
+   yacc.py: 423:Result : <NoneType @ 0x880fa0> (None)
+   yacc.py: 337:
+   yacc.py: 338:State  : 16
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion . LexToken(TkExecute,'execute',12,278)
+   yacc.py: 366:Action : Shift and goto state 52
+   yacc.py: 337:
+   yacc.py: 338:State  : 52
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute . LexToken(TkIdent,'y',13,306)
+   yacc.py: 366:Action : Shift and goto state 8
+   yacc.py: 337:
+   yacc.py: 338:State  : 8
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute TkIdent . LexToken(TkAsignacion,':=',13,308)
+   yacc.py: 366:Action : Shift and goto state 36
+   yacc.py: 337:
+   yacc.py: 338:State  : 36
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute TkIdent TkAsignacion . LexToken(TkNum,4,13,311)
+   yacc.py: 366:Action : Shift and goto state 26
+   yacc.py: 337:
+   yacc.py: 338:State  : 26
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute TkIdent TkAsignacion TkNum . LexToken(TkPuntoYComa,';',13,312)
+   yacc.py: 389:Action : Reduce rule [term -> TkNum] with [4] and goto state 3
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1e18> (<__main__.numero instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute TkIdent TkAsignacion term . LexToken(TkPuntoYComa,';',13,312)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30de1e18>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1e18> (<__main__.numero instance at 0x7f8f30de1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute TkIdent TkAsignacion exp . LexToken(TkPuntoYComa,';',13,312)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkIdent TkAsignacion exp] with ['y',':=',<instance @ 0x7f8f30de1e18>] and goto state 29
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1f38> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 11
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instruccion . LexToken(TkPuntoYComa,';',13,312)
+   yacc.py: 389:Action : Reduce rule [instlist -> instruccion] with [<instance @ 0x7f8f30de1f38>] and goto state 50
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb050> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 85
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist . LexToken(TkPuntoYComa,';',13,312)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkPuntoYComa . LexToken(TkIdent,'z',14,334)
+   yacc.py: 366:Action : Shift and goto state 8
+   yacc.py: 337:
+   yacc.py: 338:State  : 8
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkPuntoYComa TkIdent . LexToken(TkAsignacion,':=',14,336)
+   yacc.py: 366:Action : Shift and goto state 36
+   yacc.py: 337:
+   yacc.py: 338:State  : 36
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion . LexToken(TkNum,1,14,339)
+   yacc.py: 366:Action : Shift and goto state 26
+   yacc.py: 337:
+   yacc.py: 338:State  : 26
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion TkNum . LexToken(TkDone,'done',15,357)
+   yacc.py: 389:Action : Reduce rule [term -> TkNum] with [1] and goto state 3
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb098> (<__main__.numero instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion term . LexToken(TkDone,'done',15,357)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30deb098>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb098> (<__main__.numero instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkPuntoYComa TkIdent TkAsignacion exp . LexToken(TkDone,'done',15,357)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkIdent TkAsignacion exp] with ['z',':=',<instance @ 0x7f8f30deb098>] and goto state 29
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb128> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkPuntoYComa instruccion . LexToken(TkDone,'done',15,357)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30deb128>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb128> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist semicoloninst . LexToken(TkDone,'done',15,357)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30deb050>,<instance @ 0x7f8f30deb128>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb050> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 85
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist . LexToken(TkDone,'done',15,357)
+   yacc.py: 366:Action : Shift and goto state 113
+   yacc.py: 337:
+   yacc.py: 338:State  : 113
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen declaracion TkExecute instlist TkDone . LexToken(TkDone,'done',16,374)
+   yacc.py: 389:Action : Reduce rule [instruccion -> declaracion TkExecute instlist TkDone] with [None,'execute',<instance @ 0x7f8f30deb050>,'done'] and goto state 36
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb0e0> (<__main__.bloque instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 11
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen instruccion . LexToken(TkDone,'done',16,374)
+   yacc.py: 389:Action : Reduce rule [instlist -> instruccion] with [<instance @ 0x7f8f30deb0e0>] and goto state 50
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1fc8> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 104
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen instlist . LexToken(TkDone,'done',16,374)
+   yacc.py: 366:Action : Shift and goto state 115
+   yacc.py: 337:
+   yacc.py: 338:State  : 115
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo TkIf exp TkThen instlist TkDone . LexToken(TkPuntoYComa,';',16,378)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkIf exp TkThen instlist TkDone] with ['if',<instance @ 0x7f8f30de1ef0>,'then',<instance @ 0x7f8f30de1fc8>,'done'] and goto state 34
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb1b8> (<__main__.inst_if instance at 0x7f8f30de ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 11
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instruccion . LexToken(TkPuntoYComa,';',16,378)
+   yacc.py: 389:Action : Reduce rule [instlist -> instruccion] with [<instance @ 0x7f8f30deb1b8>] and goto state 50
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1f80> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 110
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist . LexToken(TkPuntoYComa,';',16,378)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa . LexToken(TkLlaveAbre,'{',17,392)
+   yacc.py: 366:Action : Shift and goto state 14
+   yacc.py: 337:
+   yacc.py: 338:State  : 14
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre . LexToken(TkMayor,'>',17,393)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre TkMayor . LexToken(TkMas,'+',17,394)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 48
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre simb_tape . LexToken(TkMas,'+',17,394)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> simb_tape] with ['>'] and goto state 42
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,394)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,395)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,395)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['>'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,395)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,396)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,396)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['>', '+'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,396)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,397)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,397)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['>', '+', '+'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,397)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,398)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,398)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,398)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,399)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,399)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,399)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,400)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,400)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,400)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMayor,'>',17,401)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMayor,'>',17,401)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMayor,'>',17,401)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMayor . LexToken(TkMas,'+',17,402)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,402)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'>'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,402)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,403)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,403)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,403)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,404)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,404)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,404)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,405)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,405)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,405)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,406)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,406)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,406)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,407)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,407)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,407)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,408)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,408)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,408)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,409)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,409)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,409)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,410)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,410)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,410)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,411)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,411)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,411)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMayor,'>',17,412)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMayor,'>',17,412)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMayor,'>',17,412)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMayor . LexToken(TkMas,'+',17,413)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,413)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'>'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,413)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,414)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,414)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,414)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',17,415)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,415)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,415)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMayor,'>',17,416)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMayor,'>',17,416)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMayor,'>',17,416)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMayor . LexToken(TkMas,'+',17,417)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',17,417)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'>'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',17,417)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMenor,'<',17,418)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMenor,'<',17,418)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMenor,'<',17,418)
+   yacc.py: 366:Action : Shift and goto state 47
+   yacc.py: 337:
+   yacc.py: 338:State  : 47
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMenor . LexToken(TkMenor,'<',17,419)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMenor] with ['<'] and goto state 45
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd28> ('<')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMenor,'<',17,419)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'<'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMenor,'<',17,419)
+   yacc.py: 366:Action : Shift and goto state 47
+   yacc.py: 337:
+   yacc.py: 338:State  : 47
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMenor . LexToken(TkMenor,'<',17,420)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMenor] with ['<'] and goto state 45
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd28> ('<')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMenor,'<',17,420)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'<'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMenor,'<',17,420)
+   yacc.py: 366:Action : Shift and goto state 47
+   yacc.py: 337:
+   yacc.py: 338:State  : 47
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMenor . LexToken(TkMenor,'<',17,421)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMenor] with ['<'] and goto state 45
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd28> ('<')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMenor,'<',17,421)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'<'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMenor,'<',17,421)
+   yacc.py: 366:Action : Shift and goto state 47
+   yacc.py: 337:
+   yacc.py: 338:State  : 47
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMenor . LexToken(TkResta,'-',17,422)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMenor] with ['<'] and goto state 45
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd28> ('<')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkResta,'-',17,422)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'<'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkResta,'-',17,422)
+   yacc.py: 366:Action : Shift and goto state 43
+   yacc.py: 337:
+   yacc.py: 338:State  : 43
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkResta . LexToken(TkLlaveCierra,'}',17,423)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkResta] with ['-'] and goto state 47
+   yacc.py: 423:Result : <str @ 0x7f8f30edef30> ('-')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkLlaveCierra,'}',17,423)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93f8>,'-'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93f8> (['>', '+', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkLlaveCierra,'}',17,423)
+   yacc.py: 366:Action : Shift and goto state 83
+   yacc.py: 337:
+   yacc.py: 338:State  : 83
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra . LexToken(TkAt,'at',17,425)
+   yacc.py: 366:Action : Shift and goto state 112
+   yacc.py: 337:
+   yacc.py: 338:State  : 112
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt . LexToken(TkIdent,'t',17,428)
+   yacc.py: 366:Action : Shift and goto state 119
+   yacc.py: 337:
+   yacc.py: 338:State  : 119
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt TkIdent . LexToken(TkDone,'done',18,438)
+   yacc.py: 389:Action : Reduce rule [ident_tape -> TkIdent] with ['t'] and goto state 40
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd1c0> ('t')
+   yacc.py: 337:
+   yacc.py: 338:State  : 118
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape . LexToken(TkDone,'done',18,438)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape] with ['{',<list @ 0x7f8f30db93f8>,'}','at','t'] and goto state 38
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb248> (<__main__.inst_b instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkPuntoYComa instruccion . LexToken(TkDone,'done',18,438)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30deb248>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb248> (<__main__.inst_b instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist semicoloninst . LexToken(TkDone,'done',18,438)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1f80>,<instance @ 0x7f8f30deb248>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1f80> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 110
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist . LexToken(TkDone,'done',18,438)
+   yacc.py: 366:Action : Shift and goto state 116
+   yacc.py: 337:
+   yacc.py: 338:State  : 116
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkWhile exp TkDo instlist TkDone . LexToken(TkPuntoYComa,';',18,442)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkWhile exp TkDo instlist TkDone] with ['while',<instance @ 0x7f8f30de1dd0>,'do',<instance @ 0x7f8f30de1f80>,'done'] and goto state 32
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb290> (<__main__.inst_while instance at 0x7f8f3 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa instruccion . LexToken(TkPuntoYComa,';',18,442)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30deb290>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb290> (<__main__.inst_while instance at 0x7f8f3 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist semicoloninst . LexToken(TkPuntoYComa,';',18,442)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1c68>,<instance @ 0x7f8f30deb290>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1c68> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 127
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist . LexToken(TkPuntoYComa,';',18,442)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa . LexToken(TkLlaveAbre,'{',19,452)
+   yacc.py: 366:Action : Shift and goto state 14
+   yacc.py: 337:
+   yacc.py: 338:State  : 14
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre . LexToken(TkMayor,'>',19,453)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre TkMayor . LexToken(TkMas,'+',19,454)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 48
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre simb_tape . LexToken(TkMas,'+',19,454)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> simb_tape] with ['>'] and goto state 42
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,454)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,455)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,455)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['>'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,455)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkPunto,'.',19,456)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',19,456)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['>', '+'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',19,456)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkMayor,'>',19,457)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMayor,'>',19,457)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['>', '+', '+'],'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMayor,'>',19,457)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMayor . LexToken(TkMas,'+',19,458)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,458)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'>'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,458)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkPunto,'.',19,459)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',19,459)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',19,459)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkMas,'+',19,460)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,460)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,460)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,461)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,461)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,461)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,462)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,462)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,462)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,463)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,463)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,463)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,464)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,464)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,464)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,465)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,465)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,465)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,466)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,466)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,466)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkPunto,'.',19,467)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',19,467)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',19,467)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkPunto,'.',19,468)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',19,468)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',19,468)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkMas,'+',19,469)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,469)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,469)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,470)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,470)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,470)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,471)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,471)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,471)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkPunto,'.',19,472)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',19,472)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',19,472)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkMayor,'>',19,473)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMayor,'>',19,473)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMayor,'>',19,473)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMayor . LexToken(TkMas,'+',19,474)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,474)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'>'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,474)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',19,475)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',19,475)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',19,475)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkPunto,'.',19,476)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',19,476)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',19,476)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkLlaveCierra,'}',19,477)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkLlaveCierra,'}',19,477)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db93b0>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db93b0> (['>', '+', '+', '.', '>', '+', '.', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkLlaveCierra,'}',19,477)
+   yacc.py: 366:Action : Shift and goto state 83
+   yacc.py: 337:
+   yacc.py: 338:State  : 83
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra . LexToken(TkAt,'at',19,479)
+   yacc.py: 366:Action : Shift and goto state 112
+   yacc.py: 337:
+   yacc.py: 338:State  : 112
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt . LexToken(TkIdent,'t',19,482)
+   yacc.py: 366:Action : Shift and goto state 119
+   yacc.py: 337:
+   yacc.py: 338:State  : 119
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt TkIdent . LexToken(TkPuntoYComa,';',19,483)
+   yacc.py: 389:Action : Reduce rule [ident_tape -> TkIdent] with ['t'] and goto state 40
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd1c0> ('t')
+   yacc.py: 337:
+   yacc.py: 338:State  : 118
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape . LexToken(TkPuntoYComa,';',19,483)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape] with ['{',<list @ 0x7f8f30db93b0>,'}','at','t'] and goto state 38
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb320> (<__main__.inst_b instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa instruccion . LexToken(TkPuntoYComa,';',19,483)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30deb320>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb320> (<__main__.inst_b instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist semicoloninst . LexToken(TkPuntoYComa,';',19,483)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1c68>,<instance @ 0x7f8f30deb320>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1c68> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 127
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist . LexToken(TkPuntoYComa,';',19,483)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa . LexToken(TkLlaveAbre,'{',20,493)
+   yacc.py: 366:Action : Shift and goto state 14
+   yacc.py: 337:
+   yacc.py: 338:State  : 14
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre . LexToken(TkMenor,'<',20,494)
+   yacc.py: 366:Action : Shift and goto state 47
+   yacc.py: 337:
+   yacc.py: 338:State  : 47
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre TkMenor . LexToken(TkMenor,'<',20,495)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMenor] with ['<'] and goto state 45
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd28> ('<')
+   yacc.py: 337:
+   yacc.py: 338:State  : 48
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre simb_tape . LexToken(TkMenor,'<',20,495)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> simb_tape] with ['<'] and goto state 42
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMenor,'<',20,495)
+   yacc.py: 366:Action : Shift and goto state 47
+   yacc.py: 337:
+   yacc.py: 338:State  : 47
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMenor . LexToken(TkMas,'+',20,496)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMenor] with ['<'] and goto state 45
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd28> ('<')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,496)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['<'],'<'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,496)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,497)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,497)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['<', '<'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,497)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,498)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,498)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [['<', '<', '+'],'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,498)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,499)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,499)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,499)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,500)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,500)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,500)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,501)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,501)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,501)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,502)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,502)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+'])
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,502)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,503)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,503)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,503)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,504)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,504)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,504)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,505)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,505)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,505)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,506)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,506)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,506)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,507)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,507)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,507)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,508)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,508)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,508)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,509)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,509)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,509)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,510)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,510)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,510)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkPunto,'.',20,511)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',20,511)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',20,511)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkMayor,'>',20,512)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMayor,'>',20,512)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMayor,'>',20,512)
+   yacc.py: 366:Action : Shift and goto state 46
+   yacc.py: 337:
+   yacc.py: 338:State  : 46
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMayor . LexToken(TkPunto,'.',20,513)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMayor] with ['>'] and goto state 44
+   yacc.py: 423:Result : <str @ 0x7f8f30ebdd50> ('>')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',20,513)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'>'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',20,513)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkMas,'+',20,514)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,514)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,514)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,515)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,515)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,515)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkMas,'+',20,516)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkMas,'+',20,516)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkMas,'+',20,516)
+   yacc.py: 366:Action : Shift and goto state 49
+   yacc.py: 337:
+   yacc.py: 338:State  : 49
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkMas . LexToken(TkPunto,'.',20,517)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkMas] with ['+'] and goto state 46
+   yacc.py: 423:Result : <str @ 0x7f8f30e62f58> ('+')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkPunto,'.',20,517)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'+'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkPunto,'.',20,517)
+   yacc.py: 366:Action : Shift and goto state 44
+   yacc.py: 337:
+   yacc.py: 338:State  : 44
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkPunto . LexToken(TkLlaveCierra,'}',20,518)
+   yacc.py: 389:Action : Reduce rule [simb_tape -> TkPunto] with ['.'] and goto state 43
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd468> ('.')
+   yacc.py: 337:
+   yacc.py: 338:State  : 84
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape simb_tape . LexToken(TkLlaveCierra,'}',20,518)
+   yacc.py: 389:Action : Reduce rule [lista_tape -> lista_tape simb_tape] with [<list @ 0x7f8f30db9320>,'.'] and goto state 41
+   yacc.py: 423:Result : <list @ 0x7f8f30db9320> (['<', '<', '+', '+', '+', '+', '+', '+', ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 50
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape . LexToken(TkLlaveCierra,'}',20,518)
+   yacc.py: 366:Action : Shift and goto state 83
+   yacc.py: 337:
+   yacc.py: 338:State  : 83
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra . LexToken(TkAt,'at',20,520)
+   yacc.py: 366:Action : Shift and goto state 112
+   yacc.py: 337:
+   yacc.py: 338:State  : 112
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt . LexToken(TkIdent,'s',20,523)
+   yacc.py: 366:Action : Shift and goto state 119
+   yacc.py: 337:
+   yacc.py: 338:State  : 119
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt TkIdent . LexToken(TkPuntoYComa,';',20,524)
+   yacc.py: 389:Action : Reduce rule [ident_tape -> TkIdent] with ['s'] and goto state 40
+   yacc.py: 423:Result : <str @ 0x7f8f30ebd4b8> ('s')
+   yacc.py: 337:
+   yacc.py: 338:State  : 118
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape . LexToken(TkPuntoYComa,';',20,524)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkLlaveAbre lista_tape TkLlaveCierra TkAt ident_tape] with ['{',<list @ 0x7f8f30db9320>,'}','at','s'] and goto state 38
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb3b0> (<__main__.inst_b instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa instruccion . LexToken(TkPuntoYComa,';',20,524)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30deb3b0>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb3b0> (<__main__.inst_b instance at 0x7f8f30deb ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist semicoloninst . LexToken(TkPuntoYComa,';',20,524)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1c68>,<instance @ 0x7f8f30deb3b0>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1c68> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 127
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist . LexToken(TkPuntoYComa,';',20,524)
+   yacc.py: 366:Action : Shift and goto state 39
+   yacc.py: 337:
+   yacc.py: 338:State  : 39
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa . LexToken(TkIdent,'x',21,534)
+   yacc.py: 366:Action : Shift and goto state 8
+   yacc.py: 337:
+   yacc.py: 338:State  : 8
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent . LexToken(TkAsignacion,':=',21,536)
+   yacc.py: 366:Action : Shift and goto state 36
+   yacc.py: 337:
+   yacc.py: 338:State  : 36
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent TkAsignacion . LexToken(TkResta,'-',21,539)
+   yacc.py: 366:Action : Shift and goto state 22
+   yacc.py: 337:
+   yacc.py: 338:State  : 22
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent TkAsignacion TkResta . LexToken(TkIdent,'x',21,540)
+   yacc.py: 366:Action : Shift and goto state 28
+   yacc.py: 337:
+   yacc.py: 338:State  : 28
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent TkAsignacion TkResta TkIdent . LexToken(TkDone,'done',22,546)
+   yacc.py: 389:Action : Reduce rule [term -> TkIdent] with ['x'] and goto state 4
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb170> (<__main__.ident instance at 0x7f8f30deb1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 30
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent TkAsignacion TkResta term . LexToken(TkDone,'done',22,546)
+   yacc.py: 389:Action : Reduce rule [exp -> term] with [<instance @ 0x7f8f30deb170>] and goto state 8
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb170> (<__main__.ident instance at 0x7f8f30deb1 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 57
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent TkAsignacion TkResta exp . LexToken(TkDone,'done',22,546)
+   yacc.py: 389:Action : Reduce rule [exp_un -> TkResta exp] with ['-',<instance @ 0x7f8f30deb170>] and goto state 5
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1e60> (<__main__.op_un instance at 0x7f8f30de1e ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 29
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent TkAsignacion exp_un . LexToken(TkDone,'done',22,546)
+   yacc.py: 389:Action : Reduce rule [exp -> exp_un] with [<instance @ 0x7f8f30de1e60>] and goto state 9
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1e60> (<__main__.op_un instance at 0x7f8f30de1e ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 78
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa TkIdent TkAsignacion exp . LexToken(TkDone,'done',22,546)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkIdent TkAsignacion exp] with ['x',':=',<instance @ 0x7f8f30de1e60>] and goto state 29
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb200> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkPuntoYComa instruccion . LexToken(TkDone,'done',22,546)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30deb200>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30deb200> (<__main__.inst_asig instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist semicoloninst . LexToken(TkDone,'done',22,546)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1c68>,<instance @ 0x7f8f30deb200>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1c68> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 127
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist . LexToken(TkDone,'done',22,546)
+   yacc.py: 366:Action : Shift and goto state 128
+   yacc.py: 337:
+   yacc.py: 338:State  : 128
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone . LexToken(TkDone,'done',23,551)
+   yacc.py: 389:Action : Reduce rule [instruccion -> TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone] with ['for','i','from',<instance @ 0x7f8f30de1998>,'to',<instance @ 0x7f8f30de1b90>,'do',<instance @ 0x7f8f30de1c68>,'done'] and goto state 33
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1d40> (<__main__.inst_for instance at 0x7f8f30d ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 81
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkPuntoYComa instruccion . LexToken(TkDone,'done',23,551)
+   yacc.py: 389:Action : Reduce rule [semicoloninst -> TkPuntoYComa instruccion] with [';',<instance @ 0x7f8f30de1d40>] and goto state 51
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1d40> (<__main__.inst_for instance at 0x7f8f30d ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 40
+   yacc.py: 352:Stack  : declaracion TkExecute instlist semicoloninst . LexToken(TkDone,'done',23,551)
+   yacc.py: 389:Action : Reduce rule [instlist -> instlist semicoloninst] with [<instance @ 0x7f8f30de1758>,<instance @ 0x7f8f30de1d40>] and goto state 49
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 21
+   yacc.py: 352:Stack  : declaracion TkExecute instlist . LexToken(TkDone,'done',23,551)
+   yacc.py: 366:Action : Shift and goto state 56
+   yacc.py: 337:
+   yacc.py: 338:State  : 56
+   yacc.py: 352:Stack  : declaracion TkExecute instlist TkDone . $end
+   yacc.py: 389:Action : Reduce rule [programa -> declaracion TkExecute instlist TkDone] with [None,'execute',<instance @ 0x7f8f30de1758>,'done'] and goto state 1
+   yacc.py: 423:Result : <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 337:
+   yacc.py: 338:State  : 3
+   yacc.py: 352:Stack  : programa . $end
+   yacc.py: 484:Done   : Returning <instance @ 0x7f8f30de1758> (<__main__.inst_list instance at 0x7f8f30 ...)
+   yacc.py: 485:PLY: PARSE DEBUG END

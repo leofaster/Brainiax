@@ -401,9 +401,9 @@ def main():
         ''' instruccion :  declaracion TkExecute instlist TkDone
                             | TkExecute instlist TkDone '''
         if len(p) == 4:
-            p[0] = inst_bloque(p[2])
+            p[0] = bloque(p[2])
         elif len(p) == 5:
-            p[0] = inst_bloque(p[3])
+            p[0] = bloque(p[3])
 
 
     # BLOQUE DE B-INSTRUCCION (Ej: {lista_tape} At [a] )
