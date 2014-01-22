@@ -1,0 +1,10 @@
+ITERACION_DETERMINADA
+	- variable: evil
+	- cotaInf: 1
+	- cotaSup: 10
+	- instruccion: 
+		BLOQUE_DE_INSTRUCCIONES
+			- instruccion: 
+				ASIGNACION
+					- var: evil
+					- val: 0

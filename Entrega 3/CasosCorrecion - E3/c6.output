@@ -1,0 +1,46 @@
+SECUENCIACION
+	ASIGNACION
+		- var: x
+		- val: 3
+      SECUENCIACION
+            ASIGNACION
+                  - var: y
+                  - val: 15
+            ITERACION_DET
+                  - cotaInf: 1
+                  - cotaSup: VARIABLE
+                        - nombre: x
+                  - instruccion:
+                        SECUENCIACION
+                              ASIGNACION
+                                    - var: t
+                                    - val: CINTA
+                                          - tamaño: VARIABLE
+                                                - nombre: y
+                              SECUENCIACION
+                                    EJECUCION_CINTA
+                                          - cinta: VARIABLE
+                                                - nombre: t
+                                          - b-instrucciones: '++++++++++'
+                                    SECUENCIACION
+                                          ITERACION_INDET
+                                                - guardia: BIN_RELACIONAL
+                                                      - operacion: 'No igual'
+                                                      - operador izquierdo: TAMAÑO_CINTA
+                                                            - cinta: VARIABLE
+                                                                  - nombre: t
+                                                      - operador derecho: 0
+                                                - instruccion: EJECUCION_CINTA
+                                                      - cinta: t
+                                                      - b-instrucciones: '>+++++++>++++++++++>+++>+<<<<-'
+                                          SECUENCIACION
+                                                EJECUCION_CINTA
+                                                      - cinta: t
+                                                      - b-instrucciones: '>++.>+.+++++++..+++.>++.'
+                                                SECUENCIACION
+                                                      EJECUCION_CINTA
+                                                            - cinta: t
+                                                            - b-instrucciones: '<<+++++++++++++++.>.+++.'
+                                                      EJECUCION_CINTA
+                                                            - cinta: t
+                                                            - b-instrucciones: '------.--------.>+.>.'

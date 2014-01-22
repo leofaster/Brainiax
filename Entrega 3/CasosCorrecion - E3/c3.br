@@ -1,0 +1,10 @@
+declare x,y :: integer; b :: boolean execute
+    x := 2;
+    b := false;
+
+    declare b :: integer execute
+        b := 0;
+        x := x + b
+    done;
+    y := x + b
+done

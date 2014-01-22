@@ -72,6 +72,32 @@ class booleano:
     def getColumn(self):
         return self.column
 
+# Clase para una EXPRESION TAPE [a]
+class tape:
+	def __init__(self,tamano,line,column):
+		self.type = tape
+		self.tamano = tamano
+		
+	def __str__(self):
+		global contador
+		contador = contador + 1
+		tabs = "  "*contador
+		str_ = "[ " + str(self.tamano) + "]"
+		contador = contador - 1
+		return str_
+        
+	def checktype(self):
+		return 'tape'
+
+	def getLine(self):
+		return self.line
+
+	def getColumn(self):
+		return self.column
+        
+	def evaluate(self):
+		return self.tamano
+
 # Clase para IDENTIFICADOR           
 class ident:
 
@@ -137,7 +163,7 @@ class op_un:
         if self.pre == '-':
             return 'integer'
         elif self.pre == '#':
-            return 'tape'
+            return 'integer'
         elif self.pre == '~':
             return 'boolean'
 
@@ -280,7 +306,10 @@ class inst_for:
         global contador
         contador = contador + 1
         tabs = "  "*contador
-        str_ = "ITERACION_DETERMINADA\n" + tabs + "Identificador: " + str(self.ident) 
+        identificador = " "
+        if not(self.ident == None):
+            identificador = self.ident
+        str_ = "ITERACION_DETERMINADA\n" + tabs + "Identificador: " + identificador 
         str_ = str_ + "\n" + tabs + "Cota inf: " + str(self.inf) +", Cota sup: " 
         str_ = str_ + str(self.sup) + "\n" + tabs + "Instruccion: \n" + str(self.inst) + " "
         contador = contador - 1
@@ -291,10 +320,11 @@ class inst_for:
         while clone:
             st = clone.pop()    
             global Analisis
-            if st.isMember(self.ident):
-                str0 = "Error en Linea %s, Columna %s" %(self.line,self.column)
-                str0 = str0 + " variable de iteracion determinada " + self.ident + " ya fue declarada"
-                Analisis = Analisis + "\n" + str0
+            if not(self.ident == None):
+                if not(st.isMember(self.ident)):
+                    str0 = "Error en Linea %s, Columna %s" %(self.line,self.column)
+                    str0 = str0 + " variable de iteracion determinada " + self.ident + " no ha sido declarada"
+                    Analisis = Analisis + "\n" + str0
             break
 
 # Clase para CONDICIONAL
@@ -631,6 +661,8 @@ def main():
             p[0] = p[1]
         elif len(p) == 4 and p[1] != '(' and p[1] != '[' and p[1] != '{':
             p[0] = op_bin(p[1],p[3],p[2])
+        elif len(p) == 4 and p[1] == '[':
+			p[0] = tape(p[2],p.lineno(1),funciones.find_column_parser(codigo,p.lexpos(1)))
         else:
             p[0] = p[2]
                 
@@ -664,8 +696,12 @@ def main():
 
     # FOR
     def p_instruccion_for(p):
-        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone'''
-        p[0] = inst_for(p[2],p[4],p[6],p[8],p.lineno(2),p.lexpos(2))
+        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone 
+                            | TkFor exp TkTo exp TkDo instlist  TkDone'''
+        if len(p) == 10:
+            p[0] = inst_for(p[2],p[4],p[6],p[8],p.lineno(2),p.lexpos(2))
+        else:
+            p[0] = inst_for(None,p[2],p[4],p[6],p.lineno(2),p.lexpos(2))
         p[0].checktype()
 
 

@@ -1,0 +1,25 @@
+SECUENCIACION
+	ASIGNACION
+		- var: x
+		- val: 3
+	SECUENCIACION
+	        ASIGNACION
+		        - var: y
+		        - val: 15
+	        ITERACION_DETERMINADA
+	                - variable: k
+   	                - cotaInf: 1
+	                - cotaSup: VARIABLE
+	                        - nombre: x
+	                - instruccion: 
+	                        SECUENCIACION 
+	                                ASIGNACION
+	                                        - var: t
+			                        - val: BIN_ARITMETICO
+				                        - operacion: 'Suma'
+				                        - operador izquierdo: VARIABLE
+	                                                        - nombre: y
+				                        - operador derecho: 1      
+	                                ASIGNACION
+		                                - var: t
+		                                - val: 3

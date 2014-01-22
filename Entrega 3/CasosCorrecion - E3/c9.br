@@ -1,0 +1,7 @@
+declare evil :: integer execute
+	for evil from 1 to 10 do
+		for evil from 1 to 20 do
+			write evil
+		done
+	done
+done

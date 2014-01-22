@@ -1,0 +1,13 @@
+declare x, b :: integer execute
+    x := 98;
+    b := 1;
+
+    declare problems :: integer execute
+        problems := 0
+    done;        
+
+    if x = 99 then
+       problems := 99;
+       b := 0
+    done
+done
