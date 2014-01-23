@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # coding: utf8 
 # Analisis de Contexto del lenguaje Brainiac.
 # Modulo: ContBrainiac
@@ -58,7 +59,7 @@ class booleano:
         global contador
         contador = contador + 1
         tabs = "  "*contador
-        str_ = "CONSTANTE_ENT\n" + tabs +  "valor: " + str(self.value)
+        str_ = str(self.value)
         contador = contador - 1
         return str_
 
@@ -70,6 +71,32 @@ class booleano:
 
     def getColumn(self):
         return self.column
+
+# Clase para una EXPRESION TAPE [a]
+class tape:
+	def __init__(self,tamano,line,column):
+		self.type = tape
+		self.tamano = tamano
+		
+	def __str__(self):
+		global contador
+		contador = contador + 1
+		tabs = "  "*contador
+		str_ = "[ " + str(self.tamano) + "]"
+		contador = contador - 1
+		return str_
+        
+	def checktype(self):
+		return 'tape'
+
+	def getLine(self):
+		return self.line
+
+	def getColumn(self):
+		return self.column
+        
+	def evaluate(self):
+		return self.tamano
 
 # Clase para IDENTIFICADOR           
 class ident:
@@ -100,15 +127,17 @@ class ident:
                     result = 'boolean'
                 elif st.goesTo(self.name,'tape'):
                     result = 'tape'
-            if result == 'error':
-                global Analisis
-                str0 = "Error en Linea %s , Columna %s:" %(self.line,self.column) 
-                str0 = str0 + " no puede usar la variable " + '"' + self.name + '"' + ", pues no ha sido declarada" 
-                Analisis = Analisis + "\n" + str0
-            self.type = result
-            return result 
+
+	if result == 'error':
+	    global Analisis
+	    str0 = "Error en Linea %s , Columna %s:" %(self.line,self.column) 
+	    str0 = str0 + " no puede usar la variable " + '"' + self.name + '"' + ", pues no ha sido declarada" 
+	    Analisis = Analisis + "\n" + str0
+        return result 
+            
     def getLine(self):
         return self.line 
+        
     def getColumn(self):
         return self.column
 
@@ -134,7 +163,7 @@ class op_un:
         if self.pre == '-':
             return 'integer'
         elif self.pre == '#':
-            return 'tape'
+            return 'integer'
         elif self.pre == '~':
             return 'boolean'
 
@@ -277,7 +306,10 @@ class inst_for:
         global contador
         contador = contador + 1
         tabs = "  "*contador
-        str_ = "ITERACION_DETERMINADA\n" + tabs + "Identificador: " + str(self.ident) 
+        identificador = " "
+        if not(self.ident == None):
+            identificador = self.ident
+        str_ = "ITERACION_DETERMINADA\n" + tabs + "Identificador: " + identificador 
         str_ = str_ + "\n" + tabs + "Cota inf: " + str(self.inf) +", Cota sup: " 
         str_ = str_ + str(self.sup) + "\n" + tabs + "Instruccion: \n" + str(self.inst) + " "
         contador = contador - 1
@@ -288,10 +320,14 @@ class inst_for:
         while clone:
             st = clone.pop()    
             global Analisis
-            if st.isMember(self.ident):
-                str0 = "Error en Linea %s, Columna %s" %(self.line,self.column)
-                str0 = str0 + " variable de iteracion determinada " + self.ident + " ya fue declarada"
-                Analisis = Analisis + "\n" + str0
+            if not(self.ident == None):
+                if not(st.isMember(self.ident)):
+                    str0 = "Error en Linea %s, Columna %s" %(self.line,self.column)
+                    str0 = str0 + " variable de iteracion determinada " + self.ident + " no ha sido declarada"
+                    Analisis = Analisis + "\n" + str0
+                else: 
+		    st.insert(str(self.ident),'int-for')
+		    stack.append(st.cloneSymtable())    
             break
 
 # Clase para CONDICIONAL
@@ -308,7 +344,7 @@ class inst_if:
         tabs = "  "*contador
         aux = ""
         if self.instr1 != None:
-            aux = "\n" +tabs + "Else: " + str(self.instr1) + " "
+            aux = "\n" +tabs + "Else: \n" + str(self.instr1) + " "
         str_ = "CONDICIONAL\n" + tabs + "Guardia: " + str(self.cond) + "\n" + tabs + "Exito: \n" + str(self.instr0) + aux  
         contador = contador - 1
         return str_
@@ -366,7 +402,7 @@ class inst_asig:
     def checktype(self):
         clone = list(stack)
         result1 = 'error'
-        while clone and result1 == 'error':
+        while clone and (result1 == 'error' or result1 == 'error_modificacion'):
             st = clone.pop()
             if st.isMember(self.ident):
                 if st.goesTo(self.ident,'integer'):
@@ -375,9 +411,16 @@ class inst_asig:
                     result1 = 'boolean'
                 elif st.goesTo(self.ident,'tape'):
                     result1 = 'tape'
+                elif st.goesTo(self.ident,'int-for'):
+		    result1 = 'error_modificacion'
                 
         global Analisis
-        if result1 == 'error':
+        
+        if result1 == 'error_modificacion':
+	    str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
+            str0 = str0 + "no puede cambiar la variable " + '"' + self.ident + '"' + ", pues de ella depende la iteracion"
+	    Analisis = Analisis + "\n" + str0
+        elif result1 == 'error':
             str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
             str0 = str0 + "no puede usar la variable " + '"' + self.ident + '"' + ", pues no ha sido declarada"
             Analisis = Analisis + "\n" + str0
@@ -446,7 +489,7 @@ class inst_list:
         global contador      
         contador = contador + 1
         self.lista.reverse()
-	tabs = "  "*contador  
+        tabs = "  "*contador
         str_ = ""
         
         while self.lista:
@@ -510,7 +553,7 @@ class declare:
                         str0 = str0 + "la variable " + '"'+ str(e) + '"' + " ya ha sido declarada"
                         Analisis = Analisis + "\n" + str0
                     self.symtable.insert(str(e),elem.type)
-                stack.append(self.symtable)     
+                stack.append(self.symtable.cloneSymtable())    
        
     def __str__(self):
         global contador
@@ -628,6 +671,8 @@ def main():
             p[0] = p[1]
         elif len(p) == 4 and p[1] != '(' and p[1] != '[' and p[1] != '{':
             p[0] = op_bin(p[1],p[3],p[2])
+        elif len(p) == 4 and p[1] == '[':
+			p[0] = tape(p[2],p.lineno(1),funciones.find_column_parser(codigo,p.lexpos(1)))
         else:
             p[0] = p[2]
                 
@@ -661,8 +706,12 @@ def main():
 
     # FOR
     def p_instruccion_for(p):
-        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone'''
-        p[0] = inst_for(p[2],p[4],p[6],p[8],p.lineno(2),p.lexpos(2))
+        ''' instruccion : TkFor TkIdent TkFrom exp TkTo exp TkDo instlist TkDone 
+                            | TkFor exp TkTo exp TkDo instlist  TkDone'''
+        if len(p) == 10:
+            p[0] = inst_for(p[2],p[4],p[6],p[8],p.lineno(2),p.lexpos(2))
+        else:
+            p[0] = inst_for(None,p[2],p[4],p[6],p.lineno(2),p.lexpos(2))
         p[0].checktype()
 
 
@@ -686,6 +735,7 @@ def main():
         elif len(p) == 5:
             p[0] = bloque(p[3], p[1])
             stack.pop()
+
 
     # BLOQUE DE B-INSTRUCCION (Ej: {lista_tape} At [a] )
     def p_instruccion_b(p):
@@ -747,11 +797,11 @@ def main():
         ''' declist : dec TkPuntoYComa declist 
                     | dec '''
         if len(p) == 2:
-			p[0] = []
-			p[0].append(p[1])
+            p[0] = []
+            p[0].append(p[1])
         else:
-			p[0] = p[3]
-			p[0].append(p[1])
+            p[0] = p[3]
+            p[0].append(p[1])
 
     def p_dec(p):
         ''' dec : varlist TkType tipo '''
@@ -761,11 +811,11 @@ def main():
         ''' varlist : TkIdent TkComa varlist 
                     | TkIdent '''
         if len(p) == 2:
-			p[0] = []
-			p[0].append(p[1])
+            p[0] = []
+            p[0].append(p[1])
         else:
-			p[0] = p[3]
-			p[0].append(p[1])
+            p[0] = p[3]
+            p[0].append(p[1])
 
     def p_tipo(p):
         ''' tipo : TkInteger
@@ -777,10 +827,11 @@ def main():
     #Funcion de error del parser
     def p_error(p):
         c = funciones.print_column(codigo,p)
-        print "Error de sintaxis en linea %s, columna %s: token \'%s\' inesperado." % (p.lineno,c,p.value[0])
+        str = "Error de sintaxis en linea %s, columna %s: token %s inesperado. \n" %(p.lineno, c, p.value[0])
+        print str
         sys.exit(0)
-
-
+        
+        
     # Se construye la funcion del parser
     parser = yacc.yacc()
 

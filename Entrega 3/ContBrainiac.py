@@ -325,6 +325,9 @@ class inst_for:
                     str0 = "Error en Linea %s, Columna %s" %(self.line,self.column)
                     str0 = str0 + " variable de iteracion determinada " + self.ident + " no ha sido declarada"
                     Analisis = Analisis + "\n" + str0
+                else: 
+		    st.insert(str(self.ident),'int-for')
+		    stack.append(st.cloneSymtable())    
             break
 
 # Clase para CONDICIONAL
@@ -399,7 +402,7 @@ class inst_asig:
     def checktype(self):
         clone = list(stack)
         result1 = 'error'
-        while clone and result1 == 'error':
+        while clone and (result1 == 'error'):
             st = clone.pop()
             if st.isMember(self.ident):
                 if st.goesTo(self.ident,'integer'):
@@ -408,9 +411,16 @@ class inst_asig:
                     result1 = 'boolean'
                 elif st.goesTo(self.ident,'tape'):
                     result1 = 'tape'
+                elif st.goesTo(self.ident,'int-for'):
+		    result1 = 'error_modificacion'
                 
         global Analisis
-        if result1 == 'error':
+        
+        if result1 == 'error_modificacion':
+	    str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
+            str0 = str0 + "no puede cambiar la variable " + '"' + self.ident + '"' + ", pues de ella depende la iteracion"
+	    Analisis = Analisis + "\n" + str0
+        elif result1 == 'error':
             str0 = "Error en Linea %s, Columna %s: " %(self.line,self.column)
             str0 = str0 + "no puede usar la variable " + '"' + self.ident + '"' + ", pues no ha sido declarada"
             Analisis = Analisis + "\n" + str0
