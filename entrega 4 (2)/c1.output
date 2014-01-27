@@ -1,0 +1,16 @@
+SECUENCIACION
+	ASIGNACION
+		- var: bar
+		- val: 3
+	CONDICIONAL
+		- guardia: BIN_RELACIONAL
+			- operacion: 'Mayor que'
+			- operador izquierdo: bar
+			- operador derecho: 2
+		- exito: ASIGNACION
+			- var: foo
+			- val: BIN_ARITMETICO
+				- operacion: 'Suma'
+				- operador izquierdo: 35
+				- operador derecho: bar
+

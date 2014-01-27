@@ -1,0 +1,8 @@
+declare x, y, k, t :: integer execute
+	x := 3 ;
+	y := 15 ;
+	for k from 1 to x do
+		t := y + 1;
+		t := 3
+	done
+done
